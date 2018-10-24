@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import Home from "./Home";
 import Counter from "./Counter";
+import { GlobalStyle } from '../styles';
 
 import type { Store } from '../types/Store';
 
@@ -20,6 +21,7 @@ export default class Root extends Component<Props> {
                             <Route exact path="/" component={ Home } />
                             <Route exact path="/counter" component={ Counter } />
                         </div>
+                        <GlobalStyle/>
                     </Fragment>
                 </Router>
             </Provider>
