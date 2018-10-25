@@ -9,6 +9,10 @@ const links = [
         text: 'Homepage'
     },
     {
+        to: '/about',
+        text: 'About'
+    },
+    {
         to: '/counter',
         text: 'Counter'
     }

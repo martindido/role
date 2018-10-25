@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
-import Home from '../components/Home';
+import About from '../components/About';
 
 const mapStateToProps = () => ({});
 
@@ -12,5 +12,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(Home)
+    )(About)
 );
