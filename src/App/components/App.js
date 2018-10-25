@@ -4,15 +4,18 @@ import Header from '../containers/Header';
 import Routes from '../routes';
 
 import type { Location } from 'react-router';
+import type { EstablishCurrentUserAction } from "../types/Action";
 
 type Props = {
-    location: Location
+    isAuthenticated: boolean,
+    location: Location,
+    establishCurrentUser: () => EstablishCurrentUserAction,
 };
 
 export default class App extends Component<Props> {
     componentWillMount() {
         if (!isServer) {
-            // this.props.establishCurrentUser();
+            this.props.establishCurrentUser();
         }
     }
 
@@ -20,7 +23,7 @@ export default class App extends Component<Props> {
         return (
             <div id="app">
                 <Header
-                    isAuthenticated={ false }
+                    isAuthenticated={ this.props.isAuthenticated }
                     current={ this.props.location.pathname }
                 />
                 <div id="content">

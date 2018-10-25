@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 
 import { Header as StyledHeader, Title, Nav, NavLink } from '../styles/Header';
 
-const links = [
-    {
-        to: '/',
-        text: 'Homepage'
-    },
-    {
-        to: '/about',
-        text: 'About'
-    },
-    {
-        to: '/counter',
-        text: 'Counter'
-    }
-];
+const links = [{
+    to: '/',
+    text: 'Homepage'
+}, {
+    to: '/about',
+    text: 'About'
+}, {
+    to: '/counter',
+    text: 'Counter'
+}, {
+    to: '/login',
+    text: 'Login',
+    auth: false
+}];
 const isCurrent = (to, current) => {
     if (to === '/' && current === to) {
         return true;
@@ -33,6 +33,7 @@ type LinkProps = {
     text: string
 };
 type Props = {
+    isAuthenticated: boolean,
     current: string
 };
 
@@ -52,14 +53,25 @@ class HeaderLink extends Component<LinkProps> {
 
 export default class Header extends Component<Props> {
     render() {
-        const current = this.props.current;
+        const { isAuthenticated, current } = this.props;
 
         return (
             <StyledHeader className="header">
                 <Title className="title">Role</Title>
                 <Nav className="links">
                     { links.map((link, index) => {
-                        return <HeaderLink key={index} current={current} {...link} />;
+                        const headerLink = <HeaderLink key={index} current={current} {...link} />;
+
+                        if (!link.hasOwnProperty('auth')) {
+                            return headerLink;
+                        }
+                        if (link.auth && isAuthenticated) {
+                            return headerLink;
+                        }
+                        if (!link.auth && !isAuthenticated) {
+                            return headerLink;
+                        }
+                        return null;
                     }) }
                 </Nav>
             </StyledHeader>

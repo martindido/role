@@ -1,25 +1,20 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
-import App from '../components/App';
-import {
-    establishCurrentUser
-} from '../actions/auth';
+import { bindActionCreators } from 'redux';
+import UnauthenticatedRoute from '../components/UnauthenticatedRoute';
 
-import type { State } from '../types/State';
+import type { State } from "../types/State";
 
 const mapStateToProps = ({ auth: { isAuthenticated } }: State) => ({
     isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({
-        establishCurrentUser
-    }, dispatch);
+    bindActionCreators({}, dispatch);
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(App)
+    )(UnauthenticatedRoute)
 );

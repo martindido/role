@@ -6,7 +6,8 @@ import type { Action } from "../types/Action";
 
 type State = number;
 
-export const counter = (state: State = 0, action: Action) => {
+export const initialState = 0;
+export const counter = (state: State = initialState, action: Action) => {
     switch (action.type) {
         case COMPLETE_UPDATE_COUNTER:
             return state + action.payload;
@@ -14,5 +15,3 @@ export const counter = (state: State = 0, action: Action) => {
             return state;
     }
 };
-
-export const initialState = 0;
