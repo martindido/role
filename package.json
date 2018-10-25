@@ -33,8 +33,6 @@
   "devDependencies": {
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
     "react-scripts": "^2.0.5"
   }
 }
