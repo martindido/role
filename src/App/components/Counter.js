@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Container, Section, Link } from '../../styles';
-import { Count, Actions, Button } from '../../styles/Counter';
+import { Container, Section, Link } from '../styles/index';
+import { Count, Actions, Button } from '../styles/Counter';
 
-import type { Action } from '../../types/Action';
+import type { Action } from '../types/Action';
 type Props = {|
     counter: number,
     increment: (amount: number) => Action,

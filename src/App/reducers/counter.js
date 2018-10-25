@@ -14,3 +14,5 @@ export const counter = (state: State = 0, action: Action) => {
             return state;
     }
 };
+
+export const initialState = 0;
