@@ -18,4 +18,9 @@ export const Nav = styled.ul``;
 
 export const NavLink = styled.li`
   color: #61dafb;
+  
+  &.current a {
+    color: white;
+  }
 `;
+

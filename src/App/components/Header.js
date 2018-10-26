@@ -24,15 +24,6 @@ const links = [{
     to: '/not-found',
     text: 'Not Found'
 }];
-const isCurrent = (to, current) => {
-    if (to === '/' && current === to) {
-        return true;
-    } else if (to !== '/' && current.includes(to)) {
-        return true;
-    }
-    return false;
-};
-
 
 type LinkProps = {
     to: string,
@@ -45,13 +36,23 @@ type Props = {
 };
 
 class HeaderLink extends Component<LinkProps> {
+    isCurrent(to, current) {
+        if (to === '/' && current === to) {
+            return true;
+        }
+        if (to !== '/' && current.includes(to)) {
+            return true;
+        }
+        return false;
+    };
+
     render() {
         const to = this.props.to;
         const current = this.props.current;
         const text = this.props.text;
 
         return (
-            <NavLink className={isCurrent(to, current) ? 'current' : ''}>
+            <NavLink className={this.isCurrent(to, current) ? 'current' : ''}>
                 <Link to={to}>{text}</Link>
             </NavLink>
         );
