@@ -13,6 +13,15 @@ const links = [{
     to: '/counter',
     text: 'Counter'
 }, {
+    to: '/profile/1',
+    text: 'Profile 1'
+}, {
+    to: '/profile/2',
+    text: 'Profile 2'
+}, {
+    to: '/profile/3',
+    text: 'Profile 3'
+}, {
     to: '/dashboard',
     text: 'Dashboard',
     auth: true

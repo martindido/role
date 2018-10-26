@@ -44,7 +44,7 @@ export default class Page extends Component<Props> {
         schema: 'WebPage',
         separator: ' | ',
         className: ''
-    };
+    }
 
     getMetaTags(
         {

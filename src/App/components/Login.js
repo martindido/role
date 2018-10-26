@@ -5,9 +5,9 @@ import { Section } from '../styles/index';
 import { Actions, Button } from '../styles/Counter';
 
 import type { User } from '../types/User';
-import type { Action } from '../types/Action';
+import type { LoginAction } from '../types/Action';
 type Props = {|
-    login: (user: User) => Action
+    login: (user: User) => LoginAction
 |}
 
 export default class Login extends Component<Props> {

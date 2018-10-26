@@ -1,4 +1,15 @@
 import type { User } from './User';
+import type { Profile } from './Profile';
+
+export type SetLoadingAction = {
+    type: 'SET_LOADING',
+    payload: boolean
+};
+
+export type SetNotFoundAction = {
+    type: 'SET_NOT_FOUND',
+    payload: boolean
+};
 
 export type IncrementAction = {
     type: 'INCREMENT_COUNTER',
@@ -42,6 +53,20 @@ export type EstablishCurrentUserAction = {
     type: 'ESTABLISH_CURRENT_USER'
 };
 
+export type GetCurrentProfileAction = {
+    type: 'GET_CURRENT_PROFILE',
+    payload: number
+};
+
+export type SetCurrentProfileAction = {
+    type: 'SET_CURRENT_PROFILE',
+    payload: Profile
+};
+
+export type UnsetCurrentProfileAction = {
+    type: 'UNSET_CURRENT_PROFILE'
+};
+
 export type CounterAction =
     | IncrementAction
     | DecrementAction
@@ -55,6 +80,14 @@ export type AuthAction =
     | UnsetCurrentUserAction
     | EstablishCurrentUserAction;
 
+export type ProfileAction =
+    | GetCurrentProfileAction
+    | SetCurrentProfileAction
+    | UnsetCurrentProfileAction;
+
 export type Action =
+    | SetLoadingAction
+    | SetNotFoundAction
     | CounterAction
-    | AuthAction;
+    | AuthAction
+    | ProfileAction;
