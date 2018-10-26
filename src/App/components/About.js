@@ -3,7 +3,7 @@ import Page from "../containers/Page";
 
 type Props = {};
 
-export default class Home extends Component<Props> {
+export default class About extends Component<Props> {
     render() {
         return (
             <Page id="About" title="About" description="This is about really cool stuff.">
