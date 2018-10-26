@@ -20,6 +20,10 @@ export type LoginAction = {
     payload: User
 };
 
+export type LogoutAction = {
+    type: 'LOGOUT'
+};
+
 export type AuthenticateAction = {
     type: 'AUTHENTICATE',
     payload: boolean
@@ -28,6 +32,10 @@ export type AuthenticateAction = {
 export type SetCurrentUserAction = {
     type: 'SET_CURRENT_USER',
     payload: User
+};
+
+export type UnsetCurrentUserAction = {
+    type: 'UNSET_CURRENT_USER'
 };
 
 export type EstablishCurrentUserAction = {
@@ -41,8 +49,10 @@ export type CounterAction =
 
 export type AuthAction =
     | LoginAction
+    | LogoutAction
     | AuthenticateAction
     | SetCurrentUserAction
+    | UnsetCurrentUserAction
     | EstablishCurrentUserAction;
 
 export type Action =

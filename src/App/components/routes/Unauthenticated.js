@@ -13,7 +13,7 @@ type Query = {
     redirect?: string | Array<string> | null
 };
 
-export default class UnauthenticatedRoute extends Component<Props> {
+export default class Unauthenticated extends Component<Props> {
     getRedirect(query: Query) {
         let redirect = query.redirect || '';
 
@@ -25,12 +25,13 @@ export default class UnauthenticatedRoute extends Component<Props> {
 
     render() {
         const { component: Component, ...rest } = this.props;
-        const query = queryString.parse(rest.location.search);
-        const redirect = this.getRedirect(query);
 
         return (
             <Route
                 render={() => {
+                    const query = queryString.parse(rest.location.search);
+                    const redirect = this.getRedirect(query);
+
                     return rest.isAuthenticated ? (
                         <Redirect to={redirect || '/dashboard'} />
                     ) : (

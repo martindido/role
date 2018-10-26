@@ -1,6 +1,7 @@
 import {
     AUTHENTICATE,
-    SET_CURRENT_USER
+    SET_CURRENT_USER,
+    UNSET_CURRENT_USER
 } from '../constants/actions';
 
 import type { AuthAction } from "../types/Action";
@@ -25,6 +26,11 @@ export const auth = (state: State = initialState, action: AuthAction) => {
             return {
                 ...state,
                 currentUser: action.payload
+            };
+        case UNSET_CURRENT_USER:
+            return {
+                ...state,
+                currentUser: undefined
             };
         default:
             return state;

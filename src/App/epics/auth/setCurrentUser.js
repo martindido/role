@@ -1,4 +1,5 @@
 import { SET_CURRENT_USER } from '../../constants/actions';
+import { USER } from '../../constants/cookies';
 import { authenticate } from '../../actions/auth';
 import { ofType } from 'redux-observable';
 import { map } from 'rxjs/operators';
@@ -11,7 +12,7 @@ export default (action$: ActionsObservable<SetCurrentUserAction>) =>
     action$.pipe(
         ofType(SET_CURRENT_USER),
         map((action: SetCurrentUserAction) => {
-            Cookies.set('role:user', action.payload);
+            Cookies.set(USER, action.payload);
             return authenticate(true);
         })
     );
