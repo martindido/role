@@ -13,6 +13,10 @@ const links = [{
     to: '/counter',
     text: 'Counter'
 }, {
+    to: '/dashboard',
+    text: 'Dashboard',
+    auth: true
+}, {
     to: '/login',
     text: 'Login',
     auth: false

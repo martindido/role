@@ -18,7 +18,8 @@ export default class Login extends Component<Props> {
                     <Actions>
                         <Button key="login" onClick={() => this.props.login({
                             email: 'martindido87@gmail.com',
-                            password: '123123123'
+                            password: '123123123',
+                            name: 'Tincho'
                         })}>
                             Click the button...
                         </Button>
