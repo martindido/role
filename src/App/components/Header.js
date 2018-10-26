@@ -20,6 +20,9 @@ const links = [{
     to: '/logout',
     text: 'Logout',
     auth: true
+}, {
+    to: '/not-found',
+    text: 'Not Found'
 }];
 const isCurrent = (to, current) => {
     if (to === '/' && current === to) {
