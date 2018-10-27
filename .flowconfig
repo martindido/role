@@ -1,5 +1,15 @@
 [ignore]
-.*/node_modules/.*
+.*/node_modules/@babel/.*
+.*/node_modules/@semantic-ui-react/.*
+.*/node_modules/body-parser/.*
+.*/node_modules/basic-auth/.*
+.*/node_modules/base64-js/.*
+.*/node_modules/buffer/.*
+.*/node_modules/array-flatten/.*
+.*/node_modules/argparse/.*
+.*/node_modules/acorn/.*
+.*/node_modules/acorn-globals/.*
+.*/node_modules/accepts/.*
 .*/build/.*
 
 [include]
