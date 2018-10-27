@@ -6,7 +6,6 @@ import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Frontload, frontloadServerRender } from 'react-frontload';
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import Loadable from 'react-loadable';
 
 import createStore from '../src/store';
@@ -51,7 +50,6 @@ export default (req: $Request, res: $Response) => {
 
             const context = {};
             const modules = [];
-            const sheet = new ServerStyleSheet();
 
             frontloadServerRender(() =>
                 renderToString(
@@ -59,9 +57,7 @@ export default (req: $Request, res: $Response) => {
                         <Provider store={store}>
                             <StaticRouter location={ req.url } context={ context }>
                                 <Frontload isServer={ true }>
-                                    <StyleSheetManager sheet={sheet.instance}>
-                                        <App />
-                                    </StyleSheetManager>
+                                    <App />
                                 </Frontload>
                             </StaticRouter>
                         </Provider>
@@ -82,12 +78,11 @@ export default (req: $Request, res: $Response) => {
                         c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
                     );
                     const helmet = Helmet.renderStatic();
-                    const styleTags = sheet.getStyleTags();
 
                     res.send(injectHTML(htmlData, {
                         html: helmet.htmlAttributes.toString(),
                         title: helmet.title.toString(),
-                        link: helmet.link.toString().concat(styleTags),
+                        link: helmet.link.toString(),
                         meta: helmet.meta.toString(),
                         body: routeMarkup,
                         scripts: extraChunks,

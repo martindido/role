@@ -22,10 +22,10 @@ export default class App extends Component<Props> {
     render() {
         return (
             <div id="app">
-                <Header
-                    isAuthenticated={ this.props.isAuthenticated }
-                    current={ this.props.location.pathname }
-                />
+                {/*<Header*/}
+                    {/*isAuthenticated={ this.props.isAuthenticated }*/}
+                    {/*current={ this.props.location.pathname }*/}
+                {/*/>*/}
                 <div id="content">
                     <Routes />
                 </div>

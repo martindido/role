@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Page from "../containers/Page";
-import { Paragraph } from "../styles";
 
 import type { User } from "../types/User";
 type Props = {
@@ -13,19 +12,19 @@ export default class Home extends Component<Props> {
 
         return (
             <Page id="Dashboard" className="dashboard" title="Dashboard" noCrawl>
-                <Paragraph>
+                <p>
                     We have a secret dashboard that only cool kids can access.<br />Notice
                     that refreshing this page will retain the logged in status!
-                </Paragraph>
-                <Paragraph>
+                </p>
+                <p>
                     <b>Name:</b> { currentUser.name }
-                </Paragraph>
-                <Paragraph>
+                </p>
+                <p>
                     <b>Email:</b> { currentUser.email }
-                </Paragraph>
-                <Paragraph>
+                </p>
+                <p>
                     <b>Password:</b> { currentUser.password }
-                </Paragraph>
+                </p>
             </Page>
         );
     }

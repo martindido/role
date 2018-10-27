@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-import { Container, Section, Link } from '../styles/index';
-import { Count, Actions, Button } from '../styles/Counter';
-
 import type { Action } from '../types/Action';
 type Props = {|
     counter: number,
@@ -14,22 +11,22 @@ type Props = {|
 export default class Counter extends Component<Props> {
     render() {
         return (
-            <Container className="Counter">
-                <Section className="Counter-section">
-                    <Count>{this.props.counter}</Count>
-                    <Actions>
-                        <Button key="increment" onClick={() => this.props.increment(1)}>
+            <div className="Counter">
+                <section className="Counter-section">
+                    <div>{this.props.counter}</div>
+                    <div>
+                        <button key="increment" onClick={() => this.props.increment(1)}>
                             +
-                        </Button>
-                        <Button key="decrement" onClick={() => this.props.decrement(1)}>
+                        </button>
+                        <button key="decrement" onClick={() => this.props.decrement(1)}>
                             -
-                        </Button>
-                    </Actions>
-                    <Link className="Counter-link" href="/">
+                        </button>
+                    </div>
+                    <a className="Counter-link" href="/">
                         Back to home
-                    </Link>
-                </Section>
-            </Container>
+                    </a>
+                </section>
+            </div>
         );
     }
 }

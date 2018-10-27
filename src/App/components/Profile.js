@@ -3,8 +3,6 @@ import Page from "../containers/Page";
 import Loading from "./Loading";
 import NotFound from "../containers/NotFound";
 
-import { Paragraph } from "../styles";
-
 import type { Profile as ProfileType } from "../types/Profile";
 import type {
     SetLoadingAction,
@@ -80,12 +78,12 @@ export default class Profile extends Component<Props> {
                 description={ `This is user profile number ${currentProfile.id}` }
                 image={ currentProfile.image }
             >
-                <Paragraph>
+                <p>
                     <b>Name:</b> { currentProfile.name }
-                </Paragraph>
-                <Paragraph>
+                </p>
+                <p>
                     <b>ID:</b> { currentProfile.id }
-                </Paragraph>
+                </p>
                 <img src={ currentProfile.image } alt={ currentProfile.name } style={{ width: '400px' }} />
             </Page>
         );

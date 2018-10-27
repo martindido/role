@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Header as StyledHeader, Title, Nav, NavLink } from '../styles/Header';
-
 const links = [{
     to: '/',
     text: 'Homepage'
@@ -65,9 +63,9 @@ class HeaderLink extends Component<LinkProps> {
         const text = this.props.text;
 
         return (
-            <NavLink className={this.isCurrent(to, current) ? 'current' : ''}>
+            <li className={this.isCurrent(to, current) ? 'current' : ''}>
                 <Link to={to}>{text}</Link>
-            </NavLink>
+            </li>
         );
     };
 }
@@ -77,9 +75,9 @@ export default class Header extends Component<Props> {
         const { isAuthenticated, current } = this.props;
 
         return (
-            <StyledHeader className="header">
-                <Title className="title">Role</Title>
-                <Nav className="links">
+            <header className="header">
+                <h1 className="title">Role</h1>
+                <ul className="links">
                     { links.map((link, index) => {
                         const headerLink = <HeaderLink key={index} current={current} {...link} />;
 
@@ -94,8 +92,8 @@ export default class Header extends Component<Props> {
                         }
                         return null;
                     }) }
-                </Nav>
-            </StyledHeader>
+                </ul>
+            </header>
         );
     }
 }

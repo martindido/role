@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import logo from '../assets/logo.svg';
-import { Container } from '../styles/index';
+import logo from '../assets/logo.png';
 
 import type { Node } from 'react';
 import type { Location } from 'react-router';
@@ -107,7 +106,11 @@ export default class Page extends Component<Props> {
         const { children, id, className, schema, location, ...rest } = this.props;
 
         return (
-            <Container id={ 'page-' + id } className={ 'page ' + className }>
+            <div id={ 'page-' + id }
+                 className={
+                     `page page-${id.toLocaleLowerCase()} ${className}`
+                 }
+            >
                 <Helmet
                     htmlAttributes={{
                         lang: 'en',
@@ -122,7 +125,7 @@ export default class Page extends Component<Props> {
                     meta={ this.getMetaTags(rest, location.pathname) }
                 />
                 {children}
-            </Container>
+            </div>
         );
     }
 }
