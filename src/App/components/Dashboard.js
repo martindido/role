@@ -17,7 +17,7 @@ export default class Home extends Component<Props> {
                     that refreshing this page will retain the logged in status!
                 </p>
                 <p>
-                    <b>Name:</b> { currentUser.name }
+                    <b>Name:</b> { currentUser.username }
                 </p>
                 <p>
                     <b>Email:</b> { currentUser.email }

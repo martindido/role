@@ -1,0 +1,20 @@
+{
+    "projectName": "role",
+    "projectPath": "/Users/martin/Workspace/martindido/role",
+    "defaultEditor": "idea14ce",
+    "frontendHandler": {
+        "javascript": "/Users/martin/.config/yarn/global/node_modules/amplify-frontend-javascript"
+    },
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "build",
+            "BuildCommand": "yarn build",
+            "StartCommand": "yarn start"
+        }
+    },
+    "providers": {
+        "awscloudformation": "/Users/martin/.config/yarn/global/node_modules/amplify-provider-awscloudformation"
+    }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Page from "../containers/Page";
 import SignUpForm from '../containers/forms/SignUp';
 import {
@@ -10,20 +10,24 @@ import {
 } from 'semantic-ui-react';
 import logo from '../assets/logo.png';
 
-import type { User } from '../types/User';
+import type { User, UnconfirmedUser } from '../types/User';
 import type { SignUpAction } from '../types/Action';
-type Props = {|
-    signUp: (user: User) => SignUpAction
-|}
+type Props = {
+    signUp: (user: User) => SignUpAction,
+    currentUnconfirmedUser?: UnconfirmedUser
+}
 
 export default class SignUp extends Component<Props> {
-    handleSubmit(test) {
-        console.log(test);
+    handleSubmit = (user: User) => {
+        this.props.signUp(user);
     }
 
     render() {
+        if (this.props.currentUnconfirmedUser) {
+            return ( <Redirect to={'/sign-up-validation'} /> );
+        }
         return (
-            <Page id="SignUp" description="Role registration">
+            <Page id="SignUp" description="Role sign up">
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>

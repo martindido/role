@@ -25,6 +25,8 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "aws-amplify": "^1.1.7",
+    "aws-amplify-react": "^2.1.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "connected-react-router": "^4.5.0",

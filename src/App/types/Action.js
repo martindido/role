@@ -1,4 +1,5 @@
-import type { User } from './User';
+import type { User, UnconfirmedUser } from './User';
+import type { SignUpValidation } from './Validations';
 import type { Profile } from './Profile';
 
 export type SetLoadingAction = {
@@ -36,6 +37,16 @@ export type SignUpAction = {
     payload: User
 };
 
+export type SignUpSuccessAction = {
+    type: 'SIGN_UP_SUCCESS',
+    payload: UnconfirmedUser
+};
+
+export type SignUpValidateAction = {
+    type: 'SIGN_UP_VALIDATE',
+    payload: SignUpValidation
+};
+
 export type LogoutAction = {
     type: 'LOGOUT'
 };
@@ -43,6 +54,10 @@ export type LogoutAction = {
 export type AuthenticateAction = {
     type: 'AUTHENTICATE',
     payload: boolean
+};
+
+export type UnsetCurrentUnconfirmedUserAction = {
+    type: 'UNSET_CURRENT_UNCONFIRMED_USER'
 };
 
 export type SetCurrentUserAction = {
@@ -80,6 +95,9 @@ export type CounterAction =
 export type AuthAction =
     | SignInAction
     | SignUpAction
+    | SignUpSuccessAction
+    | SignUpValidateAction
+    | UnsetCurrentUnconfirmedUserAction
     | LogoutAction
     | AuthenticateAction
     | SetCurrentUserAction

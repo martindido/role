@@ -1,6 +1,9 @@
 import {
     SIGN_IN,
     SIGN_UP,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_VALIDATE,
+    UNSET_CURRENT_UNCONFIRMED_USER,
     LOGOUT,
     AUTHENTICATE,
     SET_CURRENT_USER,
@@ -11,13 +14,17 @@ import {
 import type {
     SignInAction,
     SignUpAction,
+    SignUpSuccessAction,
+    SignUpValidateAction,
+    UnsetCurrentUnconfirmedUserAction,
     LogoutAction,
     AuthenticateAction,
     SetCurrentUserAction,
     UnsetCurrentUserAction,
     EstablishCurrentUserAction
 } from '../types/Action';
-import type { User } from '../types/User';
+import type { User, UnconfirmedUser } from '../types/User';
+import type { SignUpValidation } from '../types/Validations';
 
 export function signIn(user: User): SignInAction {
     return {
@@ -30,6 +37,26 @@ export function signUp(user: User): SignUpAction {
     return {
         type: SIGN_UP,
         payload: user
+    };
+};
+
+export function signUpSuccess(unconfirmedUser: UnconfirmedUser): SignUpSuccessAction {
+    return {
+        type: SIGN_UP_SUCCESS,
+        payload: unconfirmedUser
+    };
+};
+
+export function signUpValidate(validation: SignUpValidation): SignUpValidateAction {
+    return {
+        type: SIGN_UP_VALIDATE,
+        payload: validation
+    };
+};
+
+export function unsetCurrentUnconfirmedUser(): UnsetCurrentUnconfirmedUserAction {
+    return {
+        type: UNSET_CURRENT_UNCONFIRMED_USER
     };
 };
 

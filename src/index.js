@@ -1,4 +1,5 @@
 import React from 'react';
+import Amplify from 'aws-amplify';
 import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
@@ -7,6 +8,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import createStore from './store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import aws_exports from './aws-exports';
+
+Amplify.configure(aws_exports);
 
 const { store, history } = createStore();
 const Application = (
