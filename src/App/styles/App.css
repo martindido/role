@@ -1,0 +1,17 @@
+html, body {
+    background-color: black;
+    color: white;
+}
+
+#root, #app {
+    height: 100%;
+}
+
+#app .ui.buttons .or.inverted:before {
+    color: black;
+}
+
+#app .wrapper {
+    width: 90%;
+    max-width: 450px;
+}

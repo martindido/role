@@ -19,7 +19,7 @@ export default class Authenticated extends Component<Props> {
                     return rest.isAuthenticated ? (
                         <Component {...rest} />
                     ) : (
-                        <Redirect to={`/login?redirect=${rest.location.pathname}`} />
+                        <Redirect to={`/sign-in?redirect=${rest.location.pathname}`} />
                     )
                 }}
             />

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import logo from '../assets/logo.png';
 
+import '../styles/Page.css';
+
 import type { Node } from 'react';
 import type { Location } from 'react-router';
 type Rest = {
@@ -106,11 +108,7 @@ export default class Page extends Component<Props> {
         const { children, id, className, schema, location, ...rest } = this.props;
 
         return (
-            <div id={ 'page-' + id }
-                 className={
-                     `page page-${id.toLocaleLowerCase()} ${className}`
-                 }
-            >
+            <div id={ id } className={ `page ${className}` }>
                 <Helmet
                     htmlAttributes={{
                         lang: 'en',

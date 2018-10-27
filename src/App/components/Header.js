@@ -24,8 +24,8 @@ const links = [{
     text: 'Dashboard',
     auth: true
 }, {
-    to: '/login',
-    text: 'Login',
+    to: '/signIn',
+    text: 'SignIn',
     auth: false
 }, {
     to: '/logout',

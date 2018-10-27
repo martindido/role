@@ -3,6 +3,8 @@ import { isServer } from '../../store';
 import Header from '../containers/Header';
 import Routes from '../routes';
 
+import '../styles/App.css';
+
 import type { Location } from 'react-router';
 import type { EstablishCurrentUserAction } from "../types/Action";
 
@@ -26,9 +28,7 @@ export default class App extends Component<Props> {
                     {/*isAuthenticated={ this.props.isAuthenticated }*/}
                     {/*current={ this.props.location.pathname }*/}
                 {/*/>*/}
-                <div id="content">
-                    <Routes />
-                </div>
+                <Routes />
             </div>
         );
     }

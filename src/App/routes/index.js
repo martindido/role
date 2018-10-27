@@ -7,7 +7,8 @@ import { Home, path as HomePath } from './Home';
 import { About, path as AboutPath } from './About';
 import { Counter, path as CounterPath } from './Counter';
 import { Dashboard, path as DashboardPath } from './Dashboard';
-import { Login, path as LoginPath } from './Login';
+import { SignIn, path as SignInPath } from './SignIn';
+import { SignUp, path as SignUpPath } from './SignUp';
 import { Logout, path as LogoutPath } from './Logout';
 import { Profile, path as ProfilePath } from './Profile';
 import NotFount from '../containers/NotFound';
@@ -20,7 +21,8 @@ export default () => (
         <Route exact path={ ProfilePath } component={ Profile } />
         <AuthenticatedRoute exact path={ DashboardPath } component={ Dashboard } />
         <AuthenticatedRoute exact path={ LogoutPath } component={ Logout } />
-        <UnauthenticatedRoute exact path={ LoginPath } component={ Login } />
+        <UnauthenticatedRoute exact path={ SignInPath } component={ SignIn } />
+        <UnauthenticatedRoute exact path={ SignUpPath } component={ SignUp } />
         <Route component={ NotFount } />
     </Switch>
 );

@@ -5,7 +5,8 @@ export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 export const COMPLETE_UPDATE_COUNTER = 'COMPLETE_UPDATE_COUNTER';
 
-export const LOGIN = 'LOGIN';
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_UP = 'SIGN_UP';
 export const LOGOUT = 'LOGOUT';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';

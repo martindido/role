@@ -1,5 +1,6 @@
 import {
-    LOGIN,
+    SIGN_IN,
+    SIGN_UP,
     LOGOUT,
     AUTHENTICATE,
     SET_CURRENT_USER,
@@ -8,7 +9,8 @@ import {
 } from '../constants/actions';
 
 import type {
-    LoginAction,
+    SignInAction,
+    SignUpAction,
     LogoutAction,
     AuthenticateAction,
     SetCurrentUserAction,
@@ -17,9 +19,16 @@ import type {
 } from '../types/Action';
 import type { User } from '../types/User';
 
-export function login(user: User): LoginAction {
+export function signIn(user: User): SignInAction {
     return {
-        type: LOGIN,
+        type: SIGN_IN,
+        payload: user
+    };
+};
+
+export function signUp(user: User): SignUpAction {
+    return {
+        type: SIGN_UP,
         payload: user
     };
 };

@@ -26,8 +26,13 @@ export type CompleteUpdateAction = {
     payload: number
 };
 
-export type LoginAction = {
-    type: 'LOGIN',
+export type SignInAction = {
+    type: 'SIGN_IN',
+    payload: User
+};
+
+export type SignUpAction = {
+    type: 'SIGN_UP',
     payload: User
 };
 
@@ -73,7 +78,8 @@ export type CounterAction =
     | CompleteUpdateAction;
 
 export type AuthAction =
-    | LoginAction
+    | SignInAction
+    | SignUpAction
     | LogoutAction
     | AuthenticateAction
     | SetCurrentUserAction

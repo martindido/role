@@ -12,20 +12,19 @@ export default class Home extends Component<Props> {
     render() {
         return (
             <Page id="Home">
-                <Grid container centered textAlign="center" verticalAlign='middle' columns={1}>
-                    <Grid.Row centered columns={1}>
-                        <Image src={logo} id="Logo" alt="logo" wrapped spaced/>
-                    </Grid.Row>
-                    <Grid.Row centered columns={2}>
-                        <Grid.Column textAlign="center" verticalAlign='middle'>
-                            <Button as={Link} to="/login" secondary fluid>
-                                Login
-                            </Button>
+                <Grid container textAlign='center' verticalAlign='middle'>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Image src={logo} id="Logo" alt="logo" wrapped />
                         </Grid.Column>
-                        <Grid.Column  textAlign="center" verticalAlign='middle'>
-                            <Button as={Link} to="/register" secondary fluid>
-                                Register
-                            </Button>
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <Grid.Column verticalAlign='bottom'>
+                            <Button.Group fluid size='massive'>
+                                <Button as={Link} to="/sign-in" content='Sign In' inverted />
+                                <Button.Or className='inverted' />
+                                <Button as={Link} to="/sign-up" content='Sign Up' inverted />
+                            </Button.Group>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
