@@ -24,19 +24,19 @@ import type {
     EstablishCurrentUserAction
 } from '../types/Action';
 import type { User, UnconfirmedUser } from '../types/User';
-import type { SignUpConfirm } from '../types/Auth';
+import type { SignUpConfirm, Credentials } from '../types/Auth';
 
-export function signIn(user: User): SignInAction {
+export function signIn(credentials: Credentials): SignInAction {
     return {
         type: SIGN_IN,
-        payload: user
+        payload: credentials
     };
 };
 
-export function signUp(user: User): SignUpAction {
+export function signUp(credentials: Credentials): SignUpAction {
     return {
         type: SIGN_UP,
-        payload: user
+        payload: credentials
     };
 };
 

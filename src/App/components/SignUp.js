@@ -10,16 +10,17 @@ import {
 } from 'semantic-ui-react';
 import logo from '../assets/logo.png';
 
-import type { User, UnconfirmedUser } from '../types/User';
+import type { UnconfirmedUser } from '../types/User';
+import type { Credentials } from '../types/Auth';
 import type { SignUpAction } from '../types/Action';
 type Props = {
-    signUp: (user: User) => SignUpAction,
+    signUp: Credentials => SignUpAction,
     currentUnconfirmedUser?: UnconfirmedUser
 }
 
 export default class SignUp extends Component<Props> {
-    handleSubmit = (user: User) => {
-        this.props.signUp(user);
+    handleSubmit = (credentials: Credentials) => {
+        this.props.signUp(credentials);
     }
 
     render() {

@@ -5,3 +5,9 @@ export type SignUpConfirmData = {
 };
 
 export type SignUpConfirm = UnconfirmedUser & SignUpConfirmData;
+
+export type Credentials = {
+    email?: string,
+    username: string,
+    password: string
+};

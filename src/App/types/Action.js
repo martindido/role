@@ -1,5 +1,5 @@
 import type { User, UnconfirmedUser } from './User';
-import type { SignUpConfirm } from './Auth';
+import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
 
 export type SetLoadingAction = {
@@ -29,12 +29,12 @@ export type CompleteUpdateAction = {
 
 export type SignInAction = {
     type: 'SIGN_IN',
-    payload: User
+    payload: Credentials
 };
 
 export type SignUpAction = {
     type: 'SIGN_UP',
-    payload: User
+    payload: Credentials
 };
 
 export type SignUpSuccessAction = {
