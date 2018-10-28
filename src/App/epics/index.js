@@ -2,7 +2,7 @@ import { combineEpics } from 'redux-observable';
 import { increment, decrement } from './counter'
 import signIn from './auth/signIn';
 import signUp from './auth/signUp';
-import signUpValidate from './auth/signUpValidate';
+import signUpConfirm from './auth/signUpConfirm';
 import logout from './auth/logout';
 import setCurrentUser from './auth/setCurrentUser';
 import unsetCurrentUser from './auth/unsetCurrentUser';
@@ -14,7 +14,7 @@ export const epics = combineEpics(
     decrement,
     signIn,
     signUp,
-    signUpValidate,
+    signUpConfirm,
     logout,
     setCurrentUser,
     unsetCurrentUser,

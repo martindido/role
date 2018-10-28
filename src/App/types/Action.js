@@ -1,5 +1,5 @@
 import type { User, UnconfirmedUser } from './User';
-import type { SignUpValidation } from './Validations';
+import type { SignUpConfirm } from './Auth';
 import type { Profile } from './Profile';
 
 export type SetLoadingAction = {
@@ -42,9 +42,9 @@ export type SignUpSuccessAction = {
     payload: UnconfirmedUser
 };
 
-export type SignUpValidateAction = {
-    type: 'SIGN_UP_VALIDATE',
-    payload: SignUpValidation
+export type SignUpConfirmAction = {
+    type: 'SIGN_UP_CONFIRM',
+    payload: SignUpConfirm
 };
 
 export type LogoutAction = {
@@ -96,7 +96,7 @@ export type AuthAction =
     | SignInAction
     | SignUpAction
     | SignUpSuccessAction
-    | SignUpValidateAction
+    | SignUpConfirmAction
     | UnsetCurrentUnconfirmedUserAction
     | LogoutAction
     | AuthenticateAction

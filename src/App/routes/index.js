@@ -9,7 +9,7 @@ import { Counter, path as CounterPath } from './Counter';
 import { Dashboard, path as DashboardPath } from './Dashboard';
 import { SignIn, path as SignInPath } from './SignIn';
 import { SignUp, path as SignUpPath } from './SignUp';
-import { SignUpValidation, path as SignUpValidationPath } from './SignUpValidation';
+import { SignUpConfirm, path as SignUpConfirmPath } from './SignUpConfirm';
 import { Logout, path as LogoutPath } from './Logout';
 import { Profile, path as ProfilePath } from './Profile';
 import NotFount from '../containers/NotFound';
@@ -24,7 +24,7 @@ export default () => (
         <AuthenticatedRoute exact path={ LogoutPath } component={ Logout } />
         <UnauthenticatedRoute exact path={ SignInPath } component={ SignIn } />
         <UnauthenticatedRoute exact path={ SignUpPath } component={ SignUp } />
-        <UnauthenticatedRoute exact path={ SignUpValidationPath } component={ SignUpValidation } />
+        <UnauthenticatedRoute exact path={ SignUpConfirmPath } component={ SignUpConfirm } />
         <Route component={ NotFount } />
     </Switch>
 );

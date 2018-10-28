@@ -24,7 +24,7 @@ export default class SignUp extends Component<Props> {
 
     render() {
         if (this.props.currentUnconfirmedUser) {
-            return ( <Redirect to={'/sign-up-validation'} /> );
+            return ( <Redirect to={'/sign-up-confirm'} /> );
         }
         return (
             <Page id="SignUp" description="Role sign up">

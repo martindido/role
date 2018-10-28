@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Page from "../containers/Page";
-import SignUpValidationForm from '../containers/forms/SignUpValidation';
+import SignUpConfirmForm from '../containers/forms/SignUpConfirm';
 import {
     Grid,
     Header,
@@ -12,28 +12,28 @@ import logo from '../assets/logo.png';
 
 import type { UnconfirmedUser } from '../types/User';
 import type {
-    SignUpValidateAction,
+    SignUpConfirmAction,
     UnsetCurrentUnconfirmedUserAction
 } from '../types/Action';
 import type {
-    SignUpValidation as SignUpValidationType,
-    SignUpValidationData
-} from '../types/Validations';
+    SignUpConfirm as SignUpConfirmType,
+    SignUpConfirmData
+} from '../types/Auth';
 type Props = {
-    signUpValidate: SignUpValidationType => SignUpValidateAction,
+    signUpConfirm: SignUpConfirmType => SignUpConfirmAction,
     unsetCurrentUnconfirmedUser: () => UnsetCurrentUnconfirmedUserAction,
     currentUnconfirmedUser: UnconfirmedUser
 }
 
-export default class SignUpValidation extends Component<Props> {
+export default class SignUpConfirm extends Component<Props> {
     componentWillUnmount() {
         this.props.unsetCurrentUnconfirmedUser();
     }
 
-    handleSubmit = (validation: SignUpValidationData) => {
-        this.props.signUpValidate({
+    handleSubmit = (confirmation: SignUpConfirmData) => {
+        this.props.signUpConfirm({
             ...this.props.currentUnconfirmedUser,
-            ...validation
+            ...confirmation
         });
     }
 
@@ -42,13 +42,13 @@ export default class SignUpValidation extends Component<Props> {
             return ( <Redirect to={'/sign-up'} /> );
         }
         return (
-            <Page id="SignUpValidation" description="Role sign up validation">
+            <Page id="SignUpConfirm" description="Role sign up confirmation">
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>
                             <Image src={logo} /> Validate your account
                         </Header>
-                        <SignUpValidationForm onSubmit={ this.handleSubmit }/>
+                        <SignUpConfirmForm onSubmit={ this.handleSubmit }/>
                         <Message>
                             <Message.Header>Don't have a validation code?</Message.Header>
                             Check your email or <Link to='/sign-up'>Sign Up</Link> again

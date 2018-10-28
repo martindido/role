@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 
 import type { FormProps } from 'redux-form'
 
-export default class SignUpValidation extends Component<FormProps> {
+export default class SignUpConfirm extends Component<FormProps> {
     render() {
         return (
             <Form size='large' onSubmit={ this.props.handleSubmit }>
