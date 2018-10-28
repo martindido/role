@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import logo from '../assets/logo.png';
+import logo from '../images/logo.png';
 
 import '../styles/Page.css';
 

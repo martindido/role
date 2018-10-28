@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../images/logo.png';
 import Page from "../containers/Page";
 import { Grid, Button, Image } from 'semantic-ui-react';
 

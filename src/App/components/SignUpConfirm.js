@@ -8,7 +8,7 @@ import {
     Image,
     Message
 } from 'semantic-ui-react';
-import logo from '../assets/logo.png';
+import logo from '../images/logo.png';
 
 import type { UnconfirmedUser } from '../types/User';
 import type {

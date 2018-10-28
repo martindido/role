@@ -4,7 +4,7 @@ import {
     Image,
     Search
 } from "semantic-ui-react";
-import logo from "../assets/logo.png";
+import logo from "../images/logo.png";
 
 import '../styles/Header.css';
 
@@ -18,9 +18,9 @@ export default class Header extends Component<Props> {
         const { currentUser } = this.props;
 
         return (
-            <Menu id='header' fixed='top' stackable fluid>
+            <Menu id='header' fixed='top' stackable>
                 <Menu.Item header>
-                    <Image src={ logo } alt='Logo' className='logo' size='mini' /><b className='username'>{ currentUser.username }</b>
+                    <Image src={ logo } alt='Logo' className='logo' size='mini' />{ currentUser.username }
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item>

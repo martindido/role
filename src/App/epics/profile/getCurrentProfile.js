@@ -4,8 +4,7 @@ import { setNotFound } from '../../actions/routing';
 import { ofType } from 'redux-observable';
 import { delay, concatMap } from 'rxjs/operators';
 
-import pekka from '../../assets/pekka.jpg';
-import arvidsson from '../../assets/arvidsson.jpg';
+import logo from '../../images/logo.png';
 
 import type { GetCurrentProfileAction } from '../../types/Action';
 import type { ActionsObservable } from 'redux-observable';
@@ -13,12 +12,12 @@ import type { ActionsObservable } from 'redux-observable';
 const profiles = [{
     id: 1,
     name: 'Pekka Rinne',
-    image: pekka
+    image: logo
 },
 {
     id: 2,
     name: 'Viktor Arvidsson',
-    image: arvidsson
+    image: logo
 }];
 
 export default (action$: ActionsObservable<GetCurrentProfileAction>) =>

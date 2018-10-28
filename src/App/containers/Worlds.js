@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Companies from '../components/Companies';
+import Worlds from '../components/Worlds';
 
 const mapStateToProps = () => ({});
 
@@ -10,4 +10,4 @@ const mapDispatchToProps = (dispatch: *) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Companies);
+)(Worlds);
