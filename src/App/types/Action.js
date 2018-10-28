@@ -87,6 +87,15 @@ export type UnsetCurrentProfileAction = {
     type: 'UNSET_CURRENT_PROFILE'
 };
 
+export type GetWorldsAction = {
+    type: 'GET_WORLDS'
+};
+
+export type SetWorldsAction = {
+    type: 'SET_WORLDS',
+    payload: []
+};
+
 export type CounterAction =
     | IncrementAction
     | DecrementAction
@@ -109,9 +118,14 @@ export type ProfileAction =
     | SetCurrentProfileAction
     | UnsetCurrentProfileAction;
 
+export type GraphQLAction =
+    | GetWorldsAction
+    | SetWorldsAction
+
 export type Action =
     | SetLoadingAction
     | SetNotFoundAction
     | CounterAction
     | AuthAction
-    | ProfileAction;
+    | ProfileAction
+    | GraphQLAction;

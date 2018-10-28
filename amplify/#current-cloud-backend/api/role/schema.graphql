@@ -1,0 +1,12 @@
+type World @model @searchable {
+  id: ID!
+  name: String!
+  path: String!
+  games: [Game] @connection(name: "WorldGames")
+}
+type Game @model @searchable {
+  id: ID!
+  name: String!
+  path: String!
+  world: World @connection(name: "WorldGames")
+}

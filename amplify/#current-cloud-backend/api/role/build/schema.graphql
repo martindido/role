@@ -1,0 +1,264 @@
+type World {
+  id: ID!
+  name: String!
+  path: String!
+  games(filter: ModelGameFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelGameConnection
+}
+
+type Game {
+  id: ID!
+  name: String!
+  path: String!
+  world: World
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelWorldConnection {
+  items: [World]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelWorldFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  path: ModelStringFilterInput
+  and: [ModelWorldFilterInput]
+  or: [ModelWorldFilterInput]
+  not: ModelWorldFilterInput
+}
+
+type Query {
+  getWorld(id: ID!): World
+  listWorlds(filter: ModelWorldFilterInput, limit: Int, nextToken: String): ModelWorldConnection
+  getGame(id: ID!): Game
+  listGames(filter: ModelGameFilterInput, limit: Int, nextToken: String): ModelGameConnection
+  searchWorlds(filter: SearchableWorldFilterInput, sort: SearchableWorldSortInput, limit: Int, nextToken: Int): SearchableWorldConnection
+  searchGames(filter: SearchableGameFilterInput, sort: SearchableGameSortInput, limit: Int, nextToken: Int): SearchableGameConnection
+}
+
+input CreateWorldInput {
+  name: String!
+  path: String!
+}
+
+input UpdateWorldInput {
+  id: ID!
+  name: String
+  path: String
+}
+
+input DeleteWorldInput {
+  id: ID
+}
+
+type Mutation {
+  createWorld(input: CreateWorldInput!): World
+  updateWorld(input: UpdateWorldInput!): World
+  deleteWorld(input: DeleteWorldInput!): World
+  createGame(input: CreateGameInput!): Game
+  updateGame(input: UpdateGameInput!): Game
+  deleteGame(input: DeleteGameInput!): Game
+}
+
+type Subscription {
+  onCreateWorld: World @aws_subscribe(mutations: ["createWorld"])
+  onUpdateWorld: World @aws_subscribe(mutations: ["updateWorld"])
+  onDeleteWorld: World @aws_subscribe(mutations: ["deleteWorld"])
+  onCreateGame: Game @aws_subscribe(mutations: ["createGame"])
+  onUpdateGame: Game @aws_subscribe(mutations: ["updateGame"])
+  onDeleteGame: Game @aws_subscribe(mutations: ["deleteGame"])
+}
+
+type ModelGameConnection {
+  items: [Game]
+  nextToken: String
+}
+
+input ModelGameFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  path: ModelStringFilterInput
+  and: [ModelGameFilterInput]
+  or: [ModelGameFilterInput]
+  not: ModelGameFilterInput
+}
+
+input CreateGameInput {
+  name: String!
+  path: String!
+  gameWorldId: ID
+}
+
+input UpdateGameInput {
+  id: ID!
+  name: String
+  path: String
+  gameWorldId: ID
+}
+
+input DeleteGameInput {
+  id: ID
+}
+
+input SearchableStringFilterInput {
+  ne: String
+  eq: String
+  match: String
+  matchPhrase: String
+  matchPhrasePrefix: String
+  multiMatch: String
+  exists: Boolean
+  wildcard: String
+  regexp: String
+}
+
+input SearchableIDFilterInput {
+  ne: ID
+  eq: ID
+  match: ID
+  matchPhrase: ID
+  matchPhrasePrefix: ID
+  multiMatch: ID
+  exists: Boolean
+  wildcard: ID
+  regexp: ID
+}
+
+input SearchableIntFilterInput {
+  ne: Int
+  gt: Int
+  lt: Int
+  gte: Int
+  lte: Int
+  eq: Int
+  range: [Int]
+}
+
+input SearchableFloatFilterInput {
+  ne: Float
+  gt: Float
+  lt: Float
+  gte: Float
+  lte: Float
+  eq: Float
+  range: [Float]
+}
+
+input SearchableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input SearchableWorldFilterInput {
+  id: SearchableIDFilterInput
+  name: SearchableStringFilterInput
+  path: SearchableStringFilterInput
+  and: [SearchableWorldFilterInput]
+  or: [SearchableWorldFilterInput]
+  not: SearchableWorldFilterInput
+}
+
+enum SearchableSortDirection {
+  asc
+  desc
+}
+
+enum SearchableWorldSortableFields {
+  id
+  name
+  path
+}
+
+input SearchableWorldSortInput {
+  field: SearchableWorldSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableWorldConnection {
+  items: [World]
+  nextToken: String
+}
+
+input SearchableGameFilterInput {
+  id: SearchableIDFilterInput
+  name: SearchableStringFilterInput
+  path: SearchableStringFilterInput
+  and: [SearchableGameFilterInput]
+  or: [SearchableGameFilterInput]
+  not: SearchableGameFilterInput
+}
+
+enum SearchableGameSortableFields {
+  id
+  name
+  path
+}
+
+input SearchableGameSortInput {
+  field: SearchableGameSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableGameConnection {
+  items: [Game]
+  nextToken: String
+}

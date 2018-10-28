@@ -8,6 +8,7 @@ import setCurrentUser from './auth/setCurrentUser';
 import unsetCurrentUser from './auth/unsetCurrentUser';
 import establishCurrentUser from './auth/establishCurrentUser';
 import getCurrentProfile from './profile/getCurrentProfile';
+import getWorlds from './graphql/getWorlds';
 
 export const epics = combineEpics(
     increment,
@@ -19,5 +20,6 @@ export const epics = combineEpics(
     setCurrentUser,
     unsetCurrentUser,
     establishCurrentUser,
-    getCurrentProfile
+    getCurrentProfile,
+    getWorlds
 );

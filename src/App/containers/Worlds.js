@@ -1,13 +1,28 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { frontloadConnect } from "react-frontload";
 import Worlds from '../components/Worlds';
+import { getWorlds } from "../actions/graphql";
 
-const mapStateToProps = () => ({});
+import type { State } from "../types/State";
+
+const mapStateToProps = ({ graphql: { worlds } }: State) => ({
+    worlds
+});
 
 const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({}, dispatch);
+    bindActionCreators({
+        getWorlds
+    }, dispatch);
+
+const frontload = async props =>
+    await props.getWorlds();
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Worlds);
+)(
+    frontloadConnect(frontload, {
+        onUpdate: false
+    })(Worlds)
+);
