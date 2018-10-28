@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { isServer } from '../../store';
-import Header from '../containers/Header';
 import Routes from '../routes';
 
 import '../styles/App.css';
@@ -24,10 +23,6 @@ export default class App extends Component<Props> {
     render() {
         return (
             <div id="app">
-                {/*<Header*/}
-                    {/*isAuthenticated={ this.props.isAuthenticated }*/}
-                    {/*current={ this.props.location.pathname }*/}
-                {/*/>*/}
                 <Routes />
             </div>
         );

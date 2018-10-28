@@ -8,11 +8,9 @@ import {
 
 import type { State } from "../types/State";
 
-const mapStateToProps = ({ auth }: State) => {
-    return {
-        currentUnconfirmedUser: auth.currentUnconfirmedUser
-    };
-};
+const mapStateToProps = ({ auth }: State) => ({
+    currentUnconfirmedUser: auth.currentUnconfirmedUser
+});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({

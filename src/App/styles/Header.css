@@ -1,0 +1,17 @@
+#header .logo {
+  margin-right: 1em;
+}
+
+#header .ui.transparent > .ui.icon.input > input {
+  padding-left: 0 !important;
+  padding-right: 2em !important;
+}
+
+#header .ui.transparent > .ui.input > input {
+  border-color: transparent !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}

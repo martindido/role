@@ -19,9 +19,6 @@ export default class Home extends Component<Props> {
                 <p>
                     <b>Name:</b> { currentUser.username }
                 </p>
-                <p>
-                    <b>Email:</b> { currentUser.email }
-                </p>
             </Page>
         );
     }
