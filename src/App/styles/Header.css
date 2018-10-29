@@ -20,3 +20,7 @@
   box-shadow: none !important;
   border-radius: 0 !important;
 }
+
+#search {
+  margin-top: 62px;
+}

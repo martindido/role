@@ -1,9 +1,16 @@
 #Worlds > .ui.segment {
-  padding-top: 109px;
+  padding-top: 76px;
+  margin-top: 0;
 }
 
 #Worlds .ui.divided.inverted.horizontal.list>.item,
 #Worlds .ui.divided.inverted.list>.item,
 #Worlds .ui.divided.inverted.list>.list {
   border-color: white;
+}
+
+@media (max-width: 768px) {
+  #Worlds > .ui.segment {
+    padding-top: 123px;
+  }
 }

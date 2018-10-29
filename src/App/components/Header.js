@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {
+    Container,
     Menu,
     Image,
-    Search
+    Icon,
+    Search,
+    Responsive
 } from "semantic-ui-react";
 import logo from "../images/logo.png";
 
@@ -18,16 +21,26 @@ export default class Header extends Component<Props> {
         const { currentUser } = this.props;
 
         return (
-            <Menu id='header' fixed='top' stackable>
-                <Menu.Item header>
-                    <Image src={ logo } alt='Logo' className='logo' size='mini' />{ currentUser.username }
-                </Menu.Item>
-                <Menu.Menu position='right'>
-                    <Menu.Item>
+            <Container id='header'>
+                <Menu fixed='top' icon>
+                    <Menu.Item header>
+                        <Image src={ logo } alt='Logo' className='logo' size='mini' />{ currentUser.username }
+                    </Menu.Item>
+                    <Menu.Menu position='right'>
+                        <Menu.Item>
+                            <Icon name='gamepad' />
+                        </Menu.Item>
+                        <Responsive minWidth={ 768 } as={ Menu.Item } fixed='top'>
+                            <Search placeholder='Search...' size='large' className='transparent' />
+                        </Responsive>
+                    </Menu.Menu>
+                </Menu>
+                <Responsive maxWidth={ 768 } as={ Menu } id='search' fixed='top' stackable>
+                    <Menu.Item position='right'>
                         <Search placeholder='Search...' size='large' className='transparent' />
                     </Menu.Item>
-                </Menu.Menu>
-            </Menu>
+                </Responsive>
+            </Container>
         );
     }
 }
