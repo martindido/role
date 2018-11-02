@@ -3,7 +3,7 @@ import { increment, decrement } from './counter'
 import signIn from './auth/signIn';
 import signUp from './auth/signUp';
 import signUpConfirm from './auth/signUpConfirm';
-import logout from './auth/logout';
+import signOut from './auth/signOut';
 import setCurrentUser from './auth/setCurrentUser';
 import unsetCurrentUser from './auth/unsetCurrentUser';
 import establishCurrentUser from './auth/establishCurrentUser';
@@ -16,7 +16,7 @@ export const epics = combineEpics(
     signIn,
     signUp,
     signUpConfirm,
-    logout,
+    signOut,
     setCurrentUser,
     unsetCurrentUser,
     establishCurrentUser,

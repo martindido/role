@@ -12,7 +12,7 @@ import createStore from '../src/store';
 import App from '../src/app';
 // $FlowFixMe
 import manifest from '../build/asset-manifest.json';
-import { setCurrentUser, logout } from '../src/App/actions/auth';
+import { setCurrentUser, signOut } from '../src/App/actions/auth';
 import { USER } from '../src/App/constants/cookies';
 
 import type { $Request, $Response } from 'express';
@@ -45,7 +45,7 @@ export default (req: $Request, res: $Response) => {
             if ('USER' in req.cookies) {
                 store.dispatch(setCurrentUser(req.cookies[USER]));
             } else {
-                store.dispatch(logout());
+                store.dispatch(signOut());
             }
 
             const context = {};

@@ -16,9 +16,10 @@ export default (action$: ActionsObservable<SignInAction>) =>
                     return setCurrentUser(await signIn(action.payload));
                 }
                 catch (error) {
-                    console.log('signUpConfirm', 'error', error);
+                    console.log('signIn', 'error', error);
                     return setCurrentUser({
-                        username: 'error'
+                        username: 'error',
+                        isAdmin: false
                     });
                 }
             }
@@ -27,9 +28,11 @@ export default (action$: ActionsObservable<SignInAction>) =>
 
 async function signIn(user) {
     const data = await Auth.signIn(user.username, user.password);
+    const session = await Auth.currentSession();
+    const payload = session.getIdToken().decodePayload();
 
-    console.log('signIn', 'data', data);
     return {
-        username: data.username
+        username: data.username,
+        isAdmin: !!payload['cognito:groups'] && payload['cognito:groups'].includes('admins')
     };
 }

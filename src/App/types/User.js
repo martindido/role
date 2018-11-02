@@ -1,5 +1,6 @@
 export type User = {
-    username: string
+    username: string,
+    isAdmin: boolean
 };
 
 export type UnconfirmedUser = {

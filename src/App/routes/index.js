@@ -10,7 +10,7 @@ import { Worlds, path as WorldsPath } from './Worlds';
 import { SignIn, path as SignInPath } from './SignIn';
 import { SignUp, path as SignUpPath } from './SignUp';
 import { SignUpConfirm, path as SignUpConfirmPath } from './SignUpConfirm';
-import { Logout, path as LogoutPath } from './Logout';
+import { SignOut, path as SignOutPath } from './SignOut';
 import { Profile, path as ProfilePath } from './Profile';
 import NotFount from '../containers/NotFound';
 
@@ -21,7 +21,7 @@ export default () => (
         <Route exact path={ CounterPath } component={ Counter } />
         <Route exact path={ ProfilePath } component={ Profile } />
         <AuthenticatedRoute exact path={ WorldsPath } component={ Worlds } />
-        <AuthenticatedRoute exact path={ LogoutPath } component={ Logout } />
+        <AuthenticatedRoute exact path={ SignOutPath } component={ SignOut } />
         <UnauthenticatedRoute exact path={ SignInPath } component={ SignIn } />
         <UnauthenticatedRoute exact path={ SignUpPath } component={ SignUp } />
         <UnauthenticatedRoute exact path={ SignUpConfirmPath } component={ SignUpConfirm } />

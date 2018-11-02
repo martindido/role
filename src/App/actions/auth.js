@@ -17,7 +17,7 @@ import type {
     SignUpSuccessAction,
     SignUpConfirmAction,
     UnsetCurrentUnconfirmedUserAction,
-    LogoutAction,
+    SignOutAction,
     AuthenticateAction,
     SetCurrentUserAction,
     UnsetCurrentUserAction,
@@ -60,7 +60,7 @@ export function unsetCurrentUnconfirmedUser(): UnsetCurrentUnconfirmedUserAction
     };
 };
 
-export function logout(): LogoutAction {
+export function signOut(): SignOutAction {
     return {
         type: LOGOUT
     };

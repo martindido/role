@@ -21,9 +21,9 @@ export default class Home extends Component<Props> {
                     <Grid.Row centered>
                         <Grid.Column verticalAlign='bottom'>
                             <Button.Group fluid size='massive'>
-                                <Button as={Link} to="/sign-in" content='Sign In' inverted />
+                                <Button as={ Link } to="/sign-in" content='Sign In' inverted />
                                 <Button.Or className='inverted' />
-                                <Button as={Link} to="/sign-up" content='Sign Up' inverted />
+                                <Button as={ Link } to="/sign-up" content='Sign Up' inverted />
                             </Button.Group>
                         </Grid.Column>
                     </Grid.Row>

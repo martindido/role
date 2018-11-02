@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Container,
     Menu,
@@ -27,8 +28,15 @@ export default class Header extends Component<Props> {
                         <Image src={ logo } alt='Logo' className='logo' size='mini' />{ currentUser.username }
                     </Menu.Item>
                     <Menu.Menu position='right'>
-                        <Menu.Item>
-                            <Icon name='gamepad' />
+                        { currentUser.isAdmin ? (
+                            <Fragment>
+                                <Menu.Item name='add'>
+                                    <Icon name='add' />
+                                </Menu.Item>
+                            </Fragment>
+                        ) : '' }
+                        <Menu.Item as={ Link } name='sign-out' to='/sign-out'>
+                            <Icon name='sign-out' />
                         </Menu.Item>
                         <Responsive minWidth={ 768 } as={ Menu.Item } fixed='top'>
                             <Search placeholder='Search...' size='large' className='transparent' />

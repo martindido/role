@@ -47,7 +47,7 @@ export type SignUpConfirmAction = {
     payload: SignUpConfirm
 };
 
-export type LogoutAction = {
+export type SignOutAction = {
     type: 'LOGOUT'
 };
 
@@ -107,7 +107,7 @@ export type AuthAction =
     | SignUpSuccessAction
     | SignUpConfirmAction
     | UnsetCurrentUnconfirmedUserAction
-    | LogoutAction
+    | SignOutAction
     | AuthenticateAction
     | SetCurrentUserAction
     | UnsetCurrentUserAction
