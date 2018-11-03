@@ -1,5 +1,5 @@
 import { reduxForm } from 'redux-form';
-import SignIn from '../../components/forms/SignIn';
+import SignIn from '../../../components/forms/auth/SignIn';
 
 export default reduxForm({
     form: 'SignIn'

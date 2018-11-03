@@ -24,3 +24,14 @@
 #search {
   margin-top: 62px;
 }
+
+#header + .ui.segment {
+  padding-top: 76px;
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  #header + .ui.segment {
+    padding-top: 123px;
+  }
+}

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SignUp from '../components/SignUp';
+import SignUp from '../../components/auth/SignUp';
 import {
     signUp
-} from '../actions/auth';
-import type { State } from "../types/State";
+} from '../../actions/auth';
+import type { State } from "../../types/State";
 
 const mapStateToProps = ({ auth }: State) => {
     return {

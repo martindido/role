@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Page from "../containers/Page";
-import SignUpForm from '../containers/forms/SignUp';
+import Page from "../../containers/Page";
+import SignUpForm from '../../containers/forms/auth/SignUp';
 import {
     Grid,
     Header,
     Image,
     Message
 } from 'semantic-ui-react';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 
-import type { UnconfirmedUser } from '../types/User';
-import type { Credentials } from '../types/Auth';
-import type { SignUpAction } from '../types/Action';
+import type { UnconfirmedUser } from '../../types/User';
+import type { Credentials } from '../../types/Auth';
+import type { SignUpAction } from '../../types/Action';
 type Props = {
     signUp: Credentials => SignUpAction,
     currentUnconfirmedUser?: UnconfirmedUser

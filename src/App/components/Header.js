@@ -30,7 +30,7 @@ export default class Header extends Component<Props> {
                     <Menu.Menu position='right'>
                         { currentUser.isAdmin ? (
                             <Fragment>
-                                <Menu.Item name='add'>
+                                <Menu.Item as={ Link } name='admin-worlds' to='/admin/worlds'>
                                     <Icon name='add' />
                                 </Menu.Item>
                             </Fragment>

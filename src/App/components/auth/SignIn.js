@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Page from "../containers/Page";
-import SignInForm from '../containers/forms/SignIn';
+import Page from "../../containers/Page";
+import SignInForm from '../../containers/forms/auth/SignIn';
 import {
     Grid,
     Header,
     Image,
     Message
 } from 'semantic-ui-react';
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 
-import type { Credentials } from '../types/Auth';
-import type { SignInAction } from '../types/Action';
+import type { Credentials } from '../../types/Auth';
+import type { SignInAction } from '../../types/Action';
 type Props = {
     signIn: Credentials => SignInAction
 }
@@ -27,7 +27,7 @@ export default class SignIn extends Component<Props> {
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>
-                            <Image src={logo} /> Login to your account
+                            <Image src={ logo } /> Login to your account
                         </Header>
                         <SignInForm onSubmit={ this.handleSubmit }/>
                         <Message>

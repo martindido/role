@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SignOut from '../components/SignOut';
+import SignIn from '../../components/auth/SignIn';
 import {
-    signOut
-} from '../actions/auth';
+    signIn
+} from '../../actions/auth';
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({
-        signOut
+        signIn
     }, dispatch);
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SignOut);
+)(SignIn);

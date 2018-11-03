@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SignUpConfirm from '../components/SignUpConfirm';
+import SignUpConfirm from '../../components/auth/SignUpConfirm';
 import {
     signUpConfirm,
     unsetCurrentUnconfirmedUser
-} from '../actions/auth';
+} from '../../actions/auth';
 
-import type { State } from "../types/State";
+import type { State } from "../../types/State";
 
 const mapStateToProps = ({ auth }: State) => ({
     currentUnconfirmedUser: auth.currentUnconfirmedUser
