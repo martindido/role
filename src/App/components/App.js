@@ -4,7 +4,7 @@ import Routes from '../routes';
 
 import '../styles/App.css';
 
-import type { Location } from 'react-router';
+import type { Location } from 'react-router-dom';
 import type { EstablishCurrentUserAction } from "../types/Action";
 
 type Props = {

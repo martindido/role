@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import queryString from 'query-string';
 
 import type { ComponentType } from 'react';
-import type { Location } from 'react-router';
+import type { Location } from 'react-router-dom';
 type Props = {
     component: ComponentType<any>,
     isAuthenticated: boolean,

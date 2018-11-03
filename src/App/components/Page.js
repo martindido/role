@@ -5,7 +5,7 @@ import logo from '../images/logo.png';
 import '../styles/Page.css';
 
 import type { Node } from 'react';
-import type { Location } from 'react-router';
+import type { Location } from 'react-router-dom';
 type Rest = {
     title: string,
     separator: string,

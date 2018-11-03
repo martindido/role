@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import App from '../components/App';
 import {
     establishCurrentUser

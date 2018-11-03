@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import type { SignOutAction } from '../types/Action';
-import type { RouterHistory } from 'react-router';
+import type { RouterHistory } from 'react-router-dom';
 type Props = {|
     signOut: () => SignOutAction,
     history: RouterHistory
