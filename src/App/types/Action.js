@@ -1,6 +1,7 @@
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
+import type { CreateWorldInput } from './GraphQL';
 
 export type SetLoadingAction = {
     type: 'SET_LOADING',
@@ -10,6 +11,16 @@ export type SetLoadingAction = {
 export type SetNotFoundAction = {
     type: 'SET_NOT_FOUND',
     payload: boolean
+};
+
+export type SetSubmitSuccessAction = {
+    type: 'SET_SUBMIT_SUCCESS',
+    payload: {}
+};
+
+export type SetSubmitErrorAction = {
+    type: 'SET_SUBMIT_ERRORS',
+    payload: Array<{} | string>
 };
 
 export type IncrementAction = {
@@ -96,10 +107,23 @@ export type SetWorldsAction = {
     payload: []
 };
 
+export type CreateWorldAction = {
+    type: 'CREATE_WORLD',
+    payload: CreateWorldInput
+};
+
 export type CounterAction =
     | IncrementAction
     | DecrementAction
     | CompleteUpdateAction;
+
+export type RoutingAction =
+    | SetLoadingAction
+    | SetNotFoundAction;
+
+export type SubmitAction =
+    | SetSubmitSuccessAction
+    | SetSubmitErrorAction;
 
 export type AuthAction =
     | SignInAction
@@ -121,10 +145,11 @@ export type ProfileAction =
 export type GraphQLAction =
     | GetWorldsAction
     | SetWorldsAction
+    | CreateWorldAction;
 
 export type Action =
-    | SetLoadingAction
-    | SetNotFoundAction
+    | RoutingAction
+    | SubmitAction
     | CounterAction
     | AuthAction
     | ProfileAction
