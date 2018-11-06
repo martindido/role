@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable';
-import Loading from '../../components/Loading';
+import Loading from '../../containers/Loading';
 
 export const path = '/sign-up-confirm';
 export const SignUpConfirm = Loadable({
