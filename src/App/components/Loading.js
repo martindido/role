@@ -5,10 +5,32 @@ import { Grid } from 'semantic-ui-react';
 
 import '../styles/Loading.css';
 
-const spinners = Object.keys(Spinners);
-const random = Math.floor(Math.random() * spinners.length);
-const spinner = spinners[random];
-const Spinner = Spinners[spinner];
+const Spinner = getSpinner();
+
+function getSpinner() {
+    const spinners = filterSpinners(Object.keys(Spinners));
+    const random = Math.floor(Math.random() * spinners.length);
+    const spinner = spinners[random];
+
+    return Spinners[spinner];
+}
+
+function filterSpinners(spinners) {
+    const filteredSpinners = [
+        'ScalingSquaresSpinner',
+        'SwappingSquaresSpinner',
+        'TrinityRingsSpinner'
+    ];
+
+    for (const spinner of filteredSpinners) {
+        const index = spinners.indexOf(spinner);
+
+        if (index !== -1) {
+            spinners.splice(index, 1);
+        }
+    }
+    return spinners;
+}
 
 export type Props = {
     pastDelay?: boolean
