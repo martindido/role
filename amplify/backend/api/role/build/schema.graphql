@@ -96,6 +96,7 @@ type Query {
 }
 
 input CreateWorldInput {
+  id: ID
   name: String!
   path: String!
 }
@@ -143,6 +144,7 @@ input ModelGameFilterInput {
 }
 
 input CreateGameInput {
+  id: ID
   name: String!
   path: String!
   gameWorldId: ID

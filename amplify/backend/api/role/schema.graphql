@@ -1,10 +1,39 @@
-type World @model @searchable {
+type World
+  @model
+  @searchable
+  @auth(rules: [
+  { allow: groups,
+    groups: [
+      "admins"
+    ],
+    queries: [],
+    mutations: [
+      create,
+      update,
+      delete
+    ]
+  }]) {
   id: ID!
   name: String!
   path: String!
   games: [Game] @connection(name: "WorldGames")
 }
-type Game @model @searchable {
+
+type Game
+  @model
+  @searchable
+  @auth(rules: [
+  { allow: groups,
+    groups: [
+      "admins"
+    ],
+    queries: [],
+    mutations: [
+      create,
+      update,
+      delete
+    ]
+  }]) {
   id: ID!
   name: String!
   path: String!

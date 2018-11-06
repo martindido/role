@@ -370,7 +370,8 @@
                         "Ref": "WorldTable"
                     }
                 }
-            }
+            },
+            "DependsOn": "WorldIAMRole"
         },
         "GetWorldResolver": {
             "Type": "AWS::AppSync::Resolver",
@@ -995,7 +996,8 @@
                         "Ref": "GameTable"
                     }
                 }
-            }
+            },
+            "DependsOn": "GameIAMRole"
         },
         "GetGameResolver": {
             "Type": "AWS::AppSync::Resolver",

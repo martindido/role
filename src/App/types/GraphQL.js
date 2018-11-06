@@ -3,6 +3,7 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateWorldInput = {|
+  id?: ?string,
   name: string,
   path: string,
 |};
@@ -18,6 +19,7 @@ export type DeleteWorldInput = {|
 |};
 
 export type CreateGameInput = {|
+  id?: ?string,
   name: string,
   path: string,
   gameWorldId?: ?string,
