@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Page from '../containers/Page';
 import * as Spinners from 'react-epic-spinners';
 import { Grid } from 'semantic-ui-react';
 
 import '../styles/Loading.css';
 
-import type { LoadingProps } from 'react-loadable';
+const spinners = Object.keys(Spinners);
+const random = Math.floor(Math.random() * spinners.length);
+const spinner = spinners[random];
+const Spinner = Spinners[spinner];
 
-const keys = Object.keys(Spinners);
-const randomKey = keys[Math.floor(Math.random() * keys.length)];
-const RandomSpinner = Spinners[randomKey];
+export type Props = {
+    pastDelay?: boolean
+};
 
-export default function(props: LoadingProps) {
-    if (!props.pastDelay) {
-        return null;
+export default class Loading extends Component<Props> {
+    static defaultProps = {
+        pastDelay: true
     }
-    return (
-        <Page id="Loading" className="loading" title="Loading..." description="This is about really cool stuff.">
-            <Grid verticalAlign='middle'>
-                <Grid.Column>
-                    <RandomSpinner className='spinner' color='white' size={ 200 }/>
-                </Grid.Column>
-            </Grid>
-        </Page>
-    );
+
+    render() {
+        if (!this.props.pastDelay) {
+            return null;
+        }
+        return (
+            <Page id="Loading" className="loading" title="Loading..." description="This is about really cool stuff.">
+                <Grid verticalAlign='middle'>
+                    <Grid.Column>
+                        <Spinner className='spinner' color='white' size={ 200 }/>
+                    </Grid.Column>
+                </Grid>
+            </Page>
+        );
+    }
 }

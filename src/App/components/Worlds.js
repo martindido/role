@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Page from "../containers/Page";
 import Header from "../containers/Header";
-import Loading from "./Loading";
+import Loading from "../containers/Loading";
 import { Link } from "react-router-dom";
 import {
     Segment,
     List,
     Image
-} from "semantic-ui-react";
+} from 'semantic-ui-react';
 
 import '../styles/Worlds.css';
 

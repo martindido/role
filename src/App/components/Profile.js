@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from "../containers/Page";
-import Loading from "./Loading";
+import Loading from "../containers/Loading";
 import NotFound from "../containers/NotFound";
 
 import type { Profile as ProfileType } from "../types/Profile";

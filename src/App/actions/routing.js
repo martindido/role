@@ -8,7 +8,7 @@ import type {
     SetNotFoundAction
 } from '../types/Action';
 
-export function setLoading(loading:  boolean): SetLoadingAction {
+export function setLoading(loading: boolean): SetLoadingAction {
     return {
         type: SET_LOADING,
         payload: loading
