@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Page from "../containers/Page";
+import Page from "../containers/pages/Worlds";
 import Header from "../containers/Header";
-import Loading from "../containers/Loading";
+import Loading from "../containers/pages/Loading";
 import { Link } from "react-router-dom";
 import {
     Segment,
@@ -11,22 +11,41 @@ import {
 
 import '../styles/Worlds.css';
 
+import type { World } from '../types/World';
+import type { SetLoadingAction } from '../types/Action';
 type Props = {
-    worlds: []
+    worlds: Array<World>,
+    setLoading: boolean => SetLoadingAction,
+    isLoading: boolean
 };
 
 export default class Worlds extends Component<Props> {
+    componentDidUpdate(prevProps: Props) {
+        const hasWorldsChanged = this.props.worlds !== prevProps.worlds || this.props.worlds.length !== prevProps.worlds.length;
+
+        if (hasWorldsChanged && this.props.isLoading) {
+            this.props.setLoading(false);
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.isLoading) {
+            this.props.setLoading(false);
+        }
+    }
+
     render() {
+        const PageContainer = this.getPageContainer();
+
         return (
-            <Page id="Worlds" title="Worlds">
+            <PageContainer>
                 <Header/>
                 {this.props.worlds.length ? (
                     <Segment basic>
                         <List animated divided selection verticalAlign='middle' size='massive' inverted>
                             { this.props.worlds.map(world => (
-                                <List.Item as={ Link } to={ `/worlds/${world.path}` } key={ world.id } >
+                                <List.Item as={ Link } to={ `/worlds/${world.id}` } key={ world.id } >
                                     <Image avatar src={
-                                        // $FlowFixMe
                                         require(`../images/worlds/dungeons-and-dragons-logo.png`)
                                     } />
                                     <List.Content>
@@ -36,10 +55,15 @@ export default class Worlds extends Component<Props> {
                             )) }
                         </List>
                     </Segment>
-                ) : (
-                    <Loading />
-                )}
-            </Page>
+                ) : null}
+            </PageContainer>
         );
+    }
+
+    getPageContainer() {
+        if (this.props.isLoading) {
+            return Loading;
+        }
+        return Page;
     }
 }

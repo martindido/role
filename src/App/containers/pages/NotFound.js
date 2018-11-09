@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import NotFound from '../components/NotFound';
+import NotFound from '../../components/pages/NotFound';
 
 const mapStateToProps = () => ({});
 

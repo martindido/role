@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Page from "../containers/Page";
-import Loading from "../containers/Loading";
-import NotFound from "../containers/NotFound";
+import Page from "../containers/pages/Page";
+import Loading from "../containers/pages/Loading";
+import NotFound from "../containers/pages/NotFound";
 
 import type { Profile as ProfileType } from "../types/Profile";
 import type {

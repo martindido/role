@@ -1,8 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Loading from '../components/Loading';
+import World from '../../components/pages/World';
 
-const mapStateToProps = () => ({});
+import type { State } from '../../types/State';
+
+const mapStateToProps = ({ graphql }: State) => ({
+    world: graphql.world
+});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({}, dispatch);
@@ -10,4 +14,4 @@ const mapDispatchToProps = (dispatch: *) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Loading);
+)(World);

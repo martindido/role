@@ -1,5 +1,4 @@
 import { combineEpics } from 'redux-observable';
-import { increment, decrement } from './counter'
 import signIn from './auth/signIn';
 import signUp from './auth/signUp';
 import signUpConfirm from './auth/signUpConfirm';
@@ -10,10 +9,9 @@ import establishCurrentUser from './auth/establishCurrentUser';
 import getCurrentProfile from './profile/getCurrentProfile';
 import getWorlds from './graphql/getWorlds';
 import createWorld from './graphql/createWorld';
+import getWorld from './graphql/getWorld';
 
 export const epics = combineEpics(
-    increment,
-    decrement,
     signIn,
     signUp,
     signUpConfirm,
@@ -23,5 +21,6 @@ export const epics = combineEpics(
     establishCurrentUser,
     getCurrentProfile,
     getWorlds,
-    createWorld
+    createWorld,
+    getWorld
 );

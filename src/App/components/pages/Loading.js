@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import Page from '../containers/Page';
+import Page from '../../containers/pages/Page';
 import * as Spinners from 'react-epic-spinners';
 import { Grid } from 'semantic-ui-react';
 
-import '../styles/Loading.css';
+import '../../styles/Loading.css';
+
+import type { Node } from 'react';
+export type Props = {
+    pastDelay?: boolean,
+    children?: Node
+};
 
 const Spinner = getSpinner();
 
@@ -32,10 +38,6 @@ function filterSpinners(spinners) {
     return spinners;
 }
 
-export type Props = {
-    pastDelay?: boolean
-};
-
 export default class Loading extends Component<Props> {
     static defaultProps = {
         pastDelay: true
@@ -47,6 +49,7 @@ export default class Loading extends Component<Props> {
         }
         return (
             <Page id="Loading" className="loading" title="Loading..." description="This is about really cool stuff.">
+                { this.props.children }
                 <Grid verticalAlign='middle'>
                     <Grid.Column>
                         <Spinner className='spinner' color='white' size={ 200 }/>

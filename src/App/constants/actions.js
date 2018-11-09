@@ -4,10 +4,6 @@ export const SET_NOT_FOUND = 'SET_NOT_FOUND';
 export const SET_SUBMIT_SUCCESS = 'SET_SUBMIT_SUCCESS';
 export const SET_SUBMIT_ERRORS = 'SET_SUBMIT_ERRORS';
 
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
-export const COMPLETE_UPDATE_COUNTER = 'COMPLETE_UPDATE_COUNTER';
-
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -26,3 +22,6 @@ export const UNSET_CURRENT_PROFILE = 'UNSET_CURRENT_PROFILE';
 export const GET_WORLDS = 'GET_WORLDS';
 export const SET_WORLDS = 'SET_WORLDS';
 export const CREATE_WORLD = 'CREATE_WORLD';
+export const GET_WORLD = 'GET_WORLD';
+export const SET_WORLD = 'SET_WORLD';
+export const UNSET_WORLD = 'UNSET_WORLD';

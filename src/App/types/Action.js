@@ -1,7 +1,8 @@
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
-import type { CreateWorldInput } from './GraphQL';
+import type { CreateWorldInput, GetWorldQueryVariables } from './GraphQL';
+import type { World } from './World';
 
 export type SetLoadingAction = {
     type: 'SET_LOADING',
@@ -21,21 +22,6 @@ export type SetSubmitSuccessAction = {
 export type SetSubmitErrorAction = {
     type: 'SET_SUBMIT_ERRORS',
     payload: Array<{} | string>
-};
-
-export type IncrementAction = {
-    type: 'INCREMENT_COUNTER',
-    payload: number
-};
-
-export type DecrementAction = {
-    type: 'DECREMENT_COUNTER',
-    payload: number
-};
-
-export type CompleteUpdateAction = {
-    type: 'COMPLETE_UPDATE_COUNTER',
-    payload: number
 };
 
 export type SignInAction = {
@@ -104,7 +90,7 @@ export type GetWorldsAction = {
 
 export type SetWorldsAction = {
     type: 'SET_WORLDS',
-    payload: []
+    payload: Array<World>
 };
 
 export type CreateWorldAction = {
@@ -112,10 +98,19 @@ export type CreateWorldAction = {
     payload: CreateWorldInput
 };
 
-export type CounterAction =
-    | IncrementAction
-    | DecrementAction
-    | CompleteUpdateAction;
+export type GetWorldAction = {
+    type: 'GET_WORLD',
+    payload: GetWorldQueryVariables
+};
+
+export type SetWorldAction = {
+    type: 'SET_WORLD',
+    payload: World
+};
+
+export type UnsetWorldAction = {
+    type: 'UNSET_WORLD'
+};
 
 export type RoutingAction =
     | SetLoadingAction
@@ -145,12 +140,14 @@ export type ProfileAction =
 export type GraphQLAction =
     | GetWorldsAction
     | SetWorldsAction
-    | CreateWorldAction;
+    | CreateWorldAction
+    | GetWorldAction
+    | SetWorldAction
+    | UnsetWorldAction;
 
 export type Action =
     | RoutingAction
     | SubmitAction
-    | CounterAction
     | AuthAction
     | ProfileAction
     | GraphQLAction;

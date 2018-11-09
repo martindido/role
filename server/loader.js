@@ -72,8 +72,8 @@ export default (req: $Request, res: $Response) => {
                 } else {
                     const extractAssets = (assets, chunks) =>
                         Object.keys(assets)
-                        .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-                        .map(k => assets[k]);
+                            .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
+                            .map(k => assets[k]);
                     const extraChunks = extractAssets(manifest, modules).map(
                         c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
                     );

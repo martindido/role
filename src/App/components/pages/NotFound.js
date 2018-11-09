@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import Page from '../containers/Page';
+import Page from '../../containers/pages/Page';
+import { Segment } from 'semantic-ui-react';
 
-type Props = {};
+import type { Node } from 'react';
+type Props = {
+    children?: Node
+};
 
 export default class NotFound extends Component<Props> {
     render() {
@@ -13,7 +17,10 @@ export default class NotFound extends Component<Props> {
                 description="This is embarrassing."
                 noCrawl
             >
-                <p>Super embarrassing.</p>
+                { this.props.children }
+                <Segment basic>
+                    <p>Super embarrassing.</p>
+                </Segment>
             </Page>
         );
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 
-import '../styles/Page.css';
+import '../../styles/Page.css';
 
 import type { Node } from 'react';
 import type { Location } from 'react-router-dom';

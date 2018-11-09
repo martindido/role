@@ -1,10 +1,14 @@
 import {
-    SET_WORLDS
+    SET_WORLDS,
+    SET_WORLD,
+    UNSET_WORLD
 } from '../constants/actions';
 
 import type { GraphQLAction } from "../types/Action";
+import type { World } from "../types/World";
 type State = {
-    worlds: []
+    worlds: Array<World>,
+    world?: World
 };
 
 export const initialState = {
@@ -16,6 +20,16 @@ export const graphql = (state: State = initialState, action: GraphQLAction) => {
             return {
                 ...state,
                 worlds: action.payload
+            };
+        case SET_WORLD:
+            return {
+                ...state,
+                world: action.payload
+            };
+        case UNSET_WORLD:
+            return {
+                ...state,
+                world: undefined
             };
         default:
             return state;

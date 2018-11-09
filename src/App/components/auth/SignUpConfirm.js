@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Page from "../../containers/Page";
+import Page from "../../containers/pages/Page";
 import SignUpConfirmForm from '../../containers/forms/auth/SignUpConfirm';
 import {
     Grid,

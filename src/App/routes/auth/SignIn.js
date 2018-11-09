@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable';
-import Loading from '../../containers/Loading';
+import Loading from '../../containers/pages/Loading';
 
 export const path = '/sign-in';
 export const SignIn = Loadable({

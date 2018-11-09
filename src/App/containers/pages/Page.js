@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route } from 'react-router-dom';
-import Page from '../components/Page';
+import Page from '../../components/pages/Page';
 
 const mapStateToProps = () => ({});
 
