@@ -5,7 +5,7 @@ import Routes from '../routes';
 import '../styles/App.css';
 
 import type { Location } from 'react-router-dom';
-import type { EstablishCurrentUserAction } from "../types/Action";
+import type { EstablishCurrentUserAction } from '../types/Action';
 
 type Props = {
     isAuthenticated: boolean,
@@ -22,7 +22,7 @@ export default class App extends Component<Props> {
 
     render() {
         return (
-            <div id="app">
+            <div id='app'>
                 <Routes />
             </div>
         );

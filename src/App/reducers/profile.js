@@ -3,8 +3,8 @@ import {
     UNSET_CURRENT_PROFILE
 } from '../constants/actions';
 
-import type { ProfileAction } from "../types/Action";
-import type { Profile } from "../types/Profile";
+import type { ProfileAction } from '../types/Action';
+import type { Profile } from '../types/Profile';
 
 type State = {
     currentProfile?: Profile

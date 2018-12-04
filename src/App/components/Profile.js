@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Page from "../containers/pages/Page";
-import Loading from "../containers/pages/Loading";
-import NotFound from "../containers/pages/NotFound";
+import Page from '../containers/pages/Page';
+import Loading from '../containers/pages/Loading';
+import NotFound from '../containers/pages/NotFound';
 
-import type { Profile as ProfileType } from "../types/Profile";
+import type { Profile as ProfileType } from '../types/Profile';
 import type {
     SetLoadingAction,
     SetNotFoundAction,
     GetCurrentProfileAction,
     UnsetCurrentProfileAction
-} from "../types/Action";
+} from '../types/Action';
 
 type Props = {
     currentProfile: ProfileType,
@@ -72,8 +72,8 @@ export default class Profile extends Component<Props> {
         }
         return (
             <Page
-                id="Profile"
-                className="profile"
+                id='Profile'
+                className='profile'
                 title={ currentProfile.name }
                 description={ `This is user profile number ${currentProfile.id}` }
                 image={ currentProfile.image }

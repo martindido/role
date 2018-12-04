@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { frontloadConnect } from "react-frontload";
+import { frontloadConnect } from 'react-frontload';
 import Worlds from '../components/Worlds';
 import { getWorlds } from '../actions/graphql';
 import { setLoading } from '../actions/routing';

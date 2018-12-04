@@ -10,7 +10,7 @@ import type {
     UnsetCurrentProfileAction
 } from '../types/Action';
 
-import type { Profile } from "../types/Profile";
+import type { Profile } from '../types/Profile';
 
 export function getCurrentProfile(id: number): GetCurrentProfileAction {
     return {

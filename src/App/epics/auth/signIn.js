@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 
 import type { SignInAction } from '../../types/Action';
 import type { ActionsObservable } from 'redux-observable';
-import { Auth } from "aws-amplify";
+import { Auth } from 'aws-amplify';
 
 export default (action$: ActionsObservable<SignInAction>) =>
     action$.pipe(

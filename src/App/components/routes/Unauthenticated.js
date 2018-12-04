@@ -35,7 +35,7 @@ export default class Unauthenticated extends Component<Props> {
                     return rest.isAuthenticated ? (
                         <Redirect to={redirect || '/'} />
                     ) : (
-                        <Component {...rest} />
+                        <Component { ...rest } />
                     )
                 }}
             />

@@ -122,7 +122,7 @@ export default class Page extends Component<Props> {
                     }]}
                     meta={ this.getMetaTags(rest, location.pathname) }
                 />
-                {children}
+                { children }
             </div>
         );
     }

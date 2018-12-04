@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch: *) =>
 
 const PageWithRoute = (props) => (
     <Route render={(routeProps) => (
-        <Page {...props} {...routeProps} />
+        <Page { ...props } { ...routeProps } />
     )}/>
 );
 

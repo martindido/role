@@ -8,7 +8,7 @@ import {
     unsetCurrentProfile
 } from '../actions/profile';
 
-import type { State } from "../types/State";
+import type { State } from '../types/State';
 
 const mapStateToProps = ({ routing, profile }: State) => {
     return {

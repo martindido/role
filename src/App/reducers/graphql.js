@@ -4,8 +4,8 @@ import {
     UNSET_WORLD
 } from '../constants/actions';
 
-import type { GraphQLAction } from "../types/Action";
-import type { World } from "../types/World";
+import type { GraphQLAction } from '../types/Action';
+import type { World } from '../types/World';
 type State = {
     worlds: Array<World>,
     world?: World

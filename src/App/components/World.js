@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Page from '../containers/pages/World';
-import Header from "../containers/Header";
-import Loading from "../containers/pages/Loading";
+import Header from '../containers/Header';
+import Loading from '../containers/pages/Loading';
 import NotFound from '../containers/pages/NotFound';
 import {
     Segment,

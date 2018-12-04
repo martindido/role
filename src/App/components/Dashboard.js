@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Page from "../containers/pages/Page";
+import Page from '../containers/pages/Page';
 
-import type { User } from "../types/User";
+import type { User } from '../types/User';
 type Props = {
     currentUser: User
 };
@@ -11,7 +11,7 @@ export default class Home extends Component<Props> {
         const { currentUser } = this.props;
 
         return (
-            <Page id="Dashboard" className="dashboard" title="Dashboard" noCrawl>
+            <Page id='Dashboard' className='dashboard' title='Dashboard' noCrawl>
                 <p>
                     We have a secret dashboard that only cool kids can access.<br />Notice
                     that refreshing this page will retain the logged in status!

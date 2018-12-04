@@ -3,7 +3,7 @@ import {
     SET_NOT_FOUND
 } from '../constants/actions';
 
-import type { SetLoadingAction } from "../types/Action";
+import type { SetLoadingAction } from '../types/Action';
 type State = {
     isLoading: boolean,
     isNotFound: boolean

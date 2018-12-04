@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Page from "../containers/pages/Worlds";
-import Header from "../containers/Header";
-import Loading from "../containers/pages/Loading";
-import { Link } from "react-router-dom";
+import Page from '../containers/pages/Worlds';
+import Header from '../containers/Header';
+import Loading from '../containers/pages/Loading';
+import { Link } from 'react-router-dom';
 import {
     Segment,
     List,

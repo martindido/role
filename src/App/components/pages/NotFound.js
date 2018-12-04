@@ -11,10 +11,10 @@ export default class NotFound extends Component<Props> {
     render() {
         return (
             <Page
-                id="not-found"
-                className="not-found"
-                title="Not Found"
-                description="This is embarrassing."
+                id='not-found'
+                className='not-found'
+                title='Not Found'
+                description='This is embarrassing.'
                 noCrawl
             >
                 { this.props.children }

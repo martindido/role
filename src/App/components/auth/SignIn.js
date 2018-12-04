@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import Page from "../../containers/pages/Page";
+import { Link } from 'react-router-dom';
+import Page from '../../containers/pages/Page';
 import SignInForm from '../../containers/forms/auth/SignIn';
 import {
     Grid,
@@ -8,7 +8,7 @@ import {
     Image,
     Message
 } from 'semantic-ui-react';
-import logo from "../../images/logo.png";
+import logo from '../../images/logo.png';
 
 import type { Credentials } from '../../types/Auth';
 import type { SignInAction } from '../../types/Action';
@@ -23,7 +23,7 @@ export default class SignIn extends Component<Props> {
 
     render() {
         return (
-            <Page id="SignIn" description="Role sign in">
+            <Page id='SignIn' description='Role sign in'>
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>

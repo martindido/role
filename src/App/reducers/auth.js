@@ -6,8 +6,8 @@ import {
     UNSET_CURRENT_USER
 } from '../constants/actions';
 
-import type { AuthAction } from "../types/Action";
-import type { User, UnconfirmedUser } from "../types/User";
+import type { AuthAction } from '../types/Action';
+import type { User, UnconfirmedUser } from '../types/User';
 
 type State = {
     isAuthenticated: boolean,

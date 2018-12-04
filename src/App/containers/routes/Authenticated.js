@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import Authenticated from '../../components/routes/Authenticated';
 
-import type { State } from "../../types/State";
+import type { State } from '../../types/State';
 
 const mapStateToProps = ({ auth: { isAuthenticated } }: State) => ({
     isAuthenticated

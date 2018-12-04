@@ -6,7 +6,7 @@ import {
     unsetCurrentUnconfirmedUser
 } from '../../actions/auth';
 
-import type { State } from "../../types/State";
+import type { State } from '../../types/State';
 
 const mapStateToProps = ({ auth }: State) => ({
     currentUnconfirmedUser: auth.currentUnconfirmedUser

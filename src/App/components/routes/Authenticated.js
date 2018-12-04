@@ -24,7 +24,7 @@ export default class Authenticated extends Component<Props> {
             <Route
                 render={() => {
                     return this.props.isAuthenticated && this.props.canAccess ? (
-                        <Component {...rest} />
+                        <Component { ...rest } />
                     ) : (
                         <Redirect to={ this.props.to
                             ? this.props.to

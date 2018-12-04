@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Page from "../../containers/pages/Page";
-import Header from "../../containers/Header";
+import Page from '../../containers/pages/Page';
+import Header from '../../containers/Header';
 import WorldsForm from '../../containers/forms/admin/Worlds';
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import {
     Segment,
     Header as FormHeader
-} from "semantic-ui-react";
+} from 'semantic-ui-react';
 
 import type { CreateWorldInput } from '../../types/GraphQL';
 import type { SetLoadingAction, CreateWorldAction } from '../../types/Action';
@@ -35,10 +35,10 @@ export default class Worlds extends Component<Props> {
         const { isLoading, success } = this.props;
 
         if (!isLoading && success) {
-            return ( <Redirect to={'/'} /> );
+            return ( <Redirect to={ '/' } /> );
         }
         return (
-            <Page id="admin-Worlds" title="Admin Worlds">
+            <Page id='admin-Worlds' title='Admin Worlds'>
                 <Header/>
                 <Segment basic>
                     <FormHeader as='h2' color='black' textAlign='center' inverted>

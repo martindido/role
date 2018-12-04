@@ -4,7 +4,7 @@ import App from './index';
 import { Provider } from 'react-redux';
 import { Frontload } from 'react-frontload';
 import { ConnectedRouter } from 'connected-react-router';
-import createStore from "../store";
+import createStore from '../store';
 
 const { store, history } = createStore();
 

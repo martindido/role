@@ -4,7 +4,7 @@ import SignUp from '../../components/auth/SignUp';
 import {
     signUp
 } from '../../actions/auth';
-import type { State } from "../../types/State";
+import type { State } from '../../types/State';
 
 const mapStateToProps = ({ auth }: State) => {
     return {

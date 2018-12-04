@@ -23,9 +23,9 @@ export default class Dual extends Component<Props> {
         } = this.props;
 
         return this.props.isAuthenticated ? (
-                <AuthenticatedRoute component={ authenticatedComponent } {...rest} />
+                <AuthenticatedRoute component={ authenticatedComponent } { ...rest } />
             ) : (
-                <UnauthenticatedRoute component={ unauthenticatedComponent } {...rest} />
+                <UnauthenticatedRoute component={ unauthenticatedComponent } { ...rest } />
             )
         };
 }

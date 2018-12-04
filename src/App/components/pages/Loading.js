@@ -48,7 +48,7 @@ export default class Loading extends Component<Props> {
             return null;
         }
         return (
-            <Page id="Loading" className="loading" title="Loading..." description="This is about really cool stuff.">
+            <Page id='Loading' className='loading' title='Loading...' description='This is about really cool stuff.'>
                 { this.props.children }
                 <Grid verticalAlign='middle'>
                     <Grid.Column>

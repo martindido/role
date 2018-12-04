@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { frontloadConnect } from "react-frontload";
+import { frontloadConnect } from 'react-frontload';
 import World from '../components/World';
-import { getWorld, unsetWorld } from "../actions/graphql";
-import { setLoading, setNotFound } from "../actions/routing";
+import { getWorld, unsetWorld } from '../actions/graphql';
+import { setLoading, setNotFound } from '../actions/routing';
 
-import type { State } from "../types/State";
+import type { State } from '../types/State';
 
 const mapStateToProps = ({ graphql, routing }: State) => ({
     world: graphql.world,
