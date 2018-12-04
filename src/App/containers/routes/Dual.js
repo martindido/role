@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Header from '../components/Header';
+import { bindActionCreators } from 'redux';
+import Dual from '../../components/routes/Dual';
 
-import type { State } from "../types/State";
+import type { State } from '../../types/State';
 
-const mapStateToProps = ({ auth }: State) => ({
-    currentUser: auth.currentUser
+const mapStateToProps = ({ auth: { isAuthenticated } }: State) => ({
+    isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch: *) =>
@@ -16,5 +16,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(Header)
+    )(Dual)
 );

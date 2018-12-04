@@ -35,7 +35,7 @@ export default class Worlds extends Component<Props> {
         const { isLoading, success } = this.props;
 
         if (!isLoading && success) {
-            return ( <Redirect to={'/worlds'} /> );
+            return ( <Redirect to={'/'} /> );
         }
         return (
             <Page id="admin-Worlds" title="Admin Worlds">

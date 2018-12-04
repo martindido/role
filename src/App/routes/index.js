@@ -2,11 +2,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import UnauthenticatedRoute from '../containers/routes/Unauthenticated';
 import AuthenticatedRoute from '../containers/routes/Authenticated';
+import DualRoute from '../containers/routes/Dual';
 import AdminRoute from '../containers/routes/Admin';
 
 import { Home, path as HomePath } from './Home';
 import { About, path as AboutPath } from './About';
-import { Worlds, path as WorldsPath } from './Worlds';
+import { Worlds } from './Worlds';
 import { World, path as WorldPath } from './World';
 import { SignIn, path as SignInPath } from './auth/SignIn';
 import { SignUp, path as SignUpPath } from './auth/SignUp';
@@ -18,10 +19,9 @@ import NotFount from '../containers/pages/NotFound';
 
 export default () => (
     <Switch>
-        <Route exact path={ HomePath } component={ Home } />
+        <DualRoute exact path={ HomePath } unauthenticatedComponent={ Home } authenticatedComponent={ Worlds } />
         <Route exact path={ AboutPath } component={ About } />
         <Route exact path={ ProfilePath } component={ Profile } />
-        <AuthenticatedRoute exact path={ WorldsPath } component={ Worlds } />
         <AuthenticatedRoute exact path={ WorldPath } component={ World } />
         <AuthenticatedRoute exact path={ SignOutPath } component={ SignOut } />
         <AdminRoute exact path={ AdminWorldsPath } component={ AdminWorlds } />

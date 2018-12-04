@@ -33,7 +33,7 @@ export default class Unauthenticated extends Component<Props> {
                     const redirect = this.getRedirect(query);
 
                     return rest.isAuthenticated ? (
-                        <Redirect to={redirect || '/worlds'} />
+                        <Redirect to={redirect || '/'} />
                     ) : (
                         <Component {...rest} />
                     )
