@@ -25,3 +25,8 @@ export const CREATE_WORLD = 'CREATE_WORLD';
 export const GET_WORLD = 'GET_WORLD';
 export const SET_WORLD = 'SET_WORLD';
 export const UNSET_WORLD = 'UNSET_WORLD';
+export const SEARCH_ALL = 'SEARCH_ALL';
+
+export const SET_SEARCH_LOADING = 'SET_SEARCH_LOADING';
+export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
+export const UNSET_SEARCH_RESULTS = 'UNSET_SEARCH_RESULTS';

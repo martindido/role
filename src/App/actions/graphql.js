@@ -4,7 +4,8 @@ import {
     CREATE_WORLD,
     GET_WORLD,
     SET_WORLD,
-    UNSET_WORLD
+    UNSET_WORLD,
+    SEARCH_ALL
 } from '../constants/actions';
 
 import type {
@@ -13,7 +14,8 @@ import type {
     CreateWorldAction,
     GetWorldAction,
     SetWorldAction,
-    UnsetWorldAction
+    UnsetWorldAction,
+    SearchAllAction
 } from '../types/Action';
 import type { CreateWorldInput } from '../types/GraphQL';
 import type { World } from '../types/World';
@@ -57,5 +59,12 @@ export function setWorld(world: World): SetWorldAction {
 export function unsetWorld(): UnsetWorldAction {
     return {
         type: UNSET_WORLD
+    };
+};
+
+export function searchAll(value: string): SearchAllAction {
+    return {
+        type: SEARCH_ALL,
+        payload: value
     };
 };

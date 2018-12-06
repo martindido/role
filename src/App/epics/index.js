@@ -10,6 +10,7 @@ import getCurrentProfile from './profile/getCurrentProfile';
 import getWorlds from './graphql/getWorlds';
 import createWorld from './graphql/createWorld';
 import getWorld from './graphql/getWorld';
+import search from './graphql/search';
 
 export const epics = combineEpics(
     signIn,
@@ -22,5 +23,6 @@ export const epics = combineEpics(
     getCurrentProfile,
     getWorlds,
     createWorld,
-    getWorld
+    getWorld,
+    search
 );

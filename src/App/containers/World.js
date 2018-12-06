@@ -26,8 +26,6 @@ const frontload = async props => {
     await props.getWorld(props.computedMatch.params.id);
 };
 
-
-
 export default connect(
     mapStateToProps,
     mapDispatchToProps

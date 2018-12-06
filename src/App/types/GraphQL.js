@@ -119,7 +119,7 @@ export type SearchableWorldSortInput = {|
 |};
 
 export type SearchableWorldSortableFields =
-  'id" |
+  "id" |
   "name" |
   "path";
 

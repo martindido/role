@@ -3,6 +3,7 @@ import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
 import type { CreateWorldInput, GetWorldQueryVariables } from './GraphQL';
 import type { World } from './World';
+import type { SearchResults } from './Search';
 
 export type SetLoadingAction = {
     type: 'SET_LOADING',
@@ -112,6 +113,25 @@ export type UnsetWorldAction = {
     type: 'UNSET_WORLD'
 };
 
+export type SearchAllAction = {
+    type: 'SEARCH_ALL',
+    payload: string
+};
+
+export type SetSearchLoadingAction = {
+    type: 'SET_SEARCH_LOADING',
+    payload: boolean
+};
+
+export type SetSearchResultsAction = {
+    type: 'SET_SEARCH_RESULTS',
+    payload: SearchResults
+};
+
+export type UnsetSearchResultsAction = {
+    type: 'UNSET_SEARCH_RESULTS'
+};
+
 export type RoutingAction =
     | SetLoadingAction
     | SetNotFoundAction;
@@ -143,11 +163,18 @@ export type GraphQLAction =
     | CreateWorldAction
     | GetWorldAction
     | SetWorldAction
-    | UnsetWorldAction;
+    | UnsetWorldAction
+    | SearchAllAction;
+
+export type SearchAction =
+    | SetSearchLoadingAction
+    | SetSearchResultsAction
+    | UnsetSearchResultsAction;
 
 export type Action =
     | RoutingAction
     | SubmitAction
     | AuthAction
     | ProfileAction
-    | GraphQLAction;
+    | GraphQLAction
+    | SearchAction;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from '../containers/pages/Worlds';
-import Header from '../containers/Header';
+import Header from '../containers/header/Header';
 import Loading from '../containers/pages/Loading';
 import { Link } from 'react-router-dom';
 import {

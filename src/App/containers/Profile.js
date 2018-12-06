@@ -1,12 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Profile from '../components/Profile';
 import { frontloadConnect } from 'react-frontload';
+import Profile from '../components/Profile';
 import { setLoading, setNotFound } from '../actions/routing';
-import {
-    getCurrentProfile,
-    unsetCurrentProfile
-} from '../actions/profile';
+import { getCurrentProfile, unsetCurrentProfile } from '../actions/profile';
 
 import type { State } from '../types/State';
 

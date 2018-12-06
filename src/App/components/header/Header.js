@@ -5,19 +5,22 @@ import {
     Menu,
     Image,
     Icon,
-    Search,
     Responsive
 } from 'semantic-ui-react';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
+import Search from '../../containers/header/Search';
 
-import '../styles/Header.css';
+import '../../styles/Header.css';
 
-import type { User } from '../types/User';
+import type { User } from '../../types/User';
+import type { Props as SearchProps } from './Search';
 import type { RouterHistory, Location } from 'react-router-dom';
-type Props = {
+
+export type Props = {
     currentUser: User,
     history: RouterHistory,
-    location: Location
+    location: Location,
+    search: SearchProps
 };
 
 export default class Header extends Component<Props> {
@@ -27,6 +30,7 @@ export default class Header extends Component<Props> {
 
     render() {
         const { currentUser, location } = this.props;
+        const search = ( <Search /> );
 
         return (
             <Container id='header'>
@@ -48,16 +52,20 @@ export default class Header extends Component<Props> {
                         <Menu.Item as={ Link } name='sign-out' to='/sign-out'>
                             <Icon name='sign-out' />
                         </Menu.Item>
-                        <Responsive minWidth={ 768 } as={ Menu.Item } fixed='top'>
-                            <Search placeholder='Search...' size='large' className='transparent' />
-                        </Responsive>
+                        { search ? (
+                            <Responsive minWidth={ 768 } as={ Menu.Item } fixed='top'>
+                                { search }
+                            </Responsive>
+                        ) : '' }
                     </Menu.Menu>
                 </Menu>
-                <Responsive maxWidth={ 768 } as={ Menu } id='search' fixed='top' stackable>
-                    <Menu.Item position='right'>
-                        <Search placeholder='Search...' size='large' className='transparent' />
-                    </Menu.Item>
-                </Responsive>
+                { search ? (
+                    <Responsive maxWidth={ 768 } as={ Menu } id='search' fixed='top' stackable>
+                        <Menu.Item position='right'>
+                            { search }
+                        </Menu.Item>
+                    </Responsive>
+                ) : '' }
             </Container>
         );
     }

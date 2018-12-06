@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from '../../containers/pages/Page';
-import Header from '../../containers/Header';
+import Header from '../../containers/header/Header';
 import WorldsForm from '../../containers/forms/admin/Worlds';
 import { Redirect } from 'react-router-dom';
 import {
