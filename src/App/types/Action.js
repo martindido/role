@@ -1,3 +1,4 @@
+import type { Location } from 'react-router-dom';
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
@@ -13,6 +14,11 @@ export type SetLoadingAction = {
 export type SetNotFoundAction = {
     type: 'SET_NOT_FOUND',
     payload: boolean
+};
+
+export type SetPreviousLocationAction = {
+    type: 'SET_PREVIOUS_LOCATION',
+    payload: Location
 };
 
 export type SetSubmitSuccessAction = {
@@ -134,7 +140,8 @@ export type UnsetSearchResultsAction = {
 
 export type RoutingAction =
     | SetLoadingAction
-    | SetNotFoundAction;
+    | SetNotFoundAction
+    | SetPreviousLocationAction;
 
 export type SubmitAction =
     | SetSubmitSuccessAction

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Search as SemanticSearch } from 'semantic-ui-react';
 
-import '../../styles/Header.css';
-
 import type { SearchAllAction, SetSearchLoadingAction, UnsetSearchResultsAction } from '../../types/Action';
 import type { SearchResults, SearchResult } from '../../types/Search';
 import type { RouterHistory } from 'react-router-dom';
@@ -20,7 +18,7 @@ export type Value = {
 };
 export type Result = {
     result: SearchResult
-}
+};
 
 export default class Search extends Component<Props> {
     componentWillUnmount() {

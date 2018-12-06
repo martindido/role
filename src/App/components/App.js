@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isServer } from '../../store';
-import Routes from '../routes';
+import Routes from '../containers/Routes';
 
 import '../styles/App.css';
 
@@ -8,7 +8,6 @@ import type { Location } from 'react-router-dom';
 import type { EstablishCurrentUserAction } from '../types/Action';
 
 type Props = {
-    isAuthenticated: boolean,
     location: Location,
     establishCurrentUser: () => EstablishCurrentUserAction,
 };

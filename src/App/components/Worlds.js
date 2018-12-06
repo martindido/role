@@ -39,7 +39,15 @@ export default class Worlds extends Component<Props> {
 
         return (
             <PageContainer>
-                <Header/>
+                <Header menu={ {
+                    admin: {
+                        items: [{
+                            key: 'worlds',
+                            path: '/worlds',
+                            icon: 'add'
+                        }]
+                    }
+                } } />
                 {this.props.worlds.length ? (
                     <Segment basic>
                         <List animated divided selection verticalAlign='middle' size='massive' inverted>

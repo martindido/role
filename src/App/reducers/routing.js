@@ -1,19 +1,21 @@
 import {
     SET_LOADING,
-    SET_NOT_FOUND
+    SET_NOT_FOUND,
+    SET_PREVIOUS_LOCATION
 } from '../constants/actions';
 
-import type { SetLoadingAction } from '../types/Action';
+import type { RoutingAction } from '../types/Action';
 type State = {
     isLoading: boolean,
-    isNotFound: boolean
+    isNotFound: boolean,
+    previousLocation?: Location
 };
 
 export const initialState = {
     isLoading: false,
     isNotFound: false
 };
-export const routing = (state: State = initialState, action: SetLoadingAction) => {
+export const routing = (state: State = initialState, action: RoutingAction) => {
     switch (action.type) {
         case SET_LOADING:
             return {
@@ -24,6 +26,11 @@ export const routing = (state: State = initialState, action: SetLoadingAction) =
             return {
                 ...state,
                 isNotFound: action.payload
+            };
+        case SET_PREVIOUS_LOCATION:
+            return {
+                ...state,
+                previousLocation: action.payload
             };
         default:
             return state;

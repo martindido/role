@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 import Header from '../../components/header/Header';
 
 import type { State } from '../../types/State';
@@ -12,9 +11,7 @@ const mapStateToProps = ({ auth }: State) => ({
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({}, dispatch);
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Header)
-);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

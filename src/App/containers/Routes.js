@@ -1,21 +1,19 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import App from '../components/App';
-import {
-    establishCurrentUser
-} from '../actions/auth';
+import Routes from '../components/Routes';
+import { setPreviousLocation } from '../actions/routing';
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({
-        establishCurrentUser
+        setPreviousLocation
     }, dispatch);
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(App)
+    )(Routes)
 );

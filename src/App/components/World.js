@@ -73,10 +73,16 @@ export default class World extends Component<Props> {
 
     render() {
         const PageContainer = this.getPageContainer();
+        const menu = {
+            up: '/',
+            admin: {
+                items: []
+            }
+        };
 
         return (
             <PageContainer>
-                <Header/>
+                <Header menu={ menu } />
                 { this.props.world && !this.props.isLoading ? (
                     <Segment basic>
                         <SemanticHeader as='h2' inverted>
