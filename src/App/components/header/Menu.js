@@ -19,7 +19,6 @@ export type MenuProps = {
 };
 export type Props = {
     history: RouterHistory,
-    location: Location,
     previousLocation: Location,
     currentUser: User,
 } & MenuProps;
@@ -36,17 +35,16 @@ export default class Menu extends Component<Props> {
     }
 
     render() {
-        const { location, previousLocation, currentUser, up, admin } = this.props;
-        const upIsNotBack = !!up && (!previousLocation || previousLocation.pathname !== up);
+        const { previousLocation, currentUser, up, admin } = this.props;
 
         return (
             <Fragment>
-                { location.pathname === '/' ? '' : (
+                { previousLocation ? (!up || up !== previousLocation.pathname ? (
                     <SemanticMenu.Item name='back' onClick={ this.handleClickBack } >
                         <Icon name='backward' />
                     </SemanticMenu.Item>
-                ) }
-                { upIsNotBack ? (
+                ) : '') : '' }
+                { up ? (
                     <SemanticMenu.Item as={ Link } name='up' to={ up }>
                         <Icon name='level up' />
                     </SemanticMenu.Item>

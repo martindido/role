@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import {
     Container,
     Menu as SemanticMenu,
@@ -31,7 +32,7 @@ export default class Header extends Component<Props> {
         return (
             <Container id='header'>
                 <SemanticMenu fixed='top' icon>
-                    <SemanticMenu.Item header>
+                    <SemanticMenu.Item as={ Link } to='/' header>
                         <Image src={ logo } alt='Logo' className='logo' size='mini' />{ currentUser.username }
                     </SemanticMenu.Item>
                     <SemanticMenu.Menu position='right'>
