@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import About from '../components/About';
+import Loading from '../components/Loading';
 
 const mapStateToProps = () => ({});
 
@@ -10,4 +10,4 @@ const mapDispatchToProps = (dispatch: *) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(About);
+)(Loading);

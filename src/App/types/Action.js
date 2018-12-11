@@ -2,9 +2,10 @@ import type { Location } from 'react-router-dom';
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
-import type { CreateWorldInput, GetWorldQueryVariables } from './GraphQL';
+import type { CreateWorldInput, UpdateWorldInput, GetWorldQueryVariables } from './GraphQL';
 import type { World } from './World';
 import type { SearchResults } from './Search';
+import type { Errors, SubmitMeta } from './Submit';
 
 export type SetLoadingAction = {
     type: 'SET_LOADING',
@@ -28,7 +29,23 @@ export type SetSubmitSuccessAction = {
 
 export type SetSubmitErrorAction = {
     type: 'SET_SUBMIT_ERRORS',
-    payload: Array<{} | string>
+    payload: Errors
+};
+
+export type UnsetSubmitAction = {
+    type: 'UNSET_SUBMIT'
+};
+
+export type CreateWorldSubmitAction = {
+    type: 'CREATE_WORLD_SUBMIT',
+    payload: CreateWorldInput,
+    meta: SubmitMeta
+};
+
+export type UpdateWorldSubmitAction = {
+    type: 'UPDATE_WORLD_SUBMIT',
+    payload: UpdateWorldInput,
+    meta: SubmitMeta
 };
 
 export type SignInAction = {
@@ -105,6 +122,21 @@ export type CreateWorldAction = {
     payload: CreateWorldInput
 };
 
+export type UpdateWorldAction = {
+    type: 'UPDATE_WORLD',
+    payload: UpdateWorldInput
+};
+
+export type UpdateWorldSuccessAction = {
+    type: 'UPDATE_WORLD_SUCCESS',
+    payload: World
+};
+
+export type UpdateWorldErrorAction = {
+    type: 'UPDATE_WORLD_ERROR',
+    payload: Errors
+};
+
 export type GetWorldAction = {
     type: 'GET_WORLD',
     payload: GetWorldQueryVariables
@@ -145,7 +177,9 @@ export type RoutingAction =
 
 export type SubmitAction =
     | SetSubmitSuccessAction
-    | SetSubmitErrorAction;
+    | SetSubmitErrorAction
+    | UnsetSubmitAction
+    | UpdateWorldSubmitAction;
 
 export type AuthAction =
     | SignInAction
@@ -168,6 +202,9 @@ export type GraphQLAction =
     | GetWorldsAction
     | SetWorldsAction
     | CreateWorldAction
+    | UpdateWorldAction
+    | UpdateWorldSuccessAction
+    | UpdateWorldErrorAction
     | GetWorldAction
     | SetWorldAction
     | UnsetWorldAction

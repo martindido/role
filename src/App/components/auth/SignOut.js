@@ -1,11 +1,12 @@
 import { Component } from 'react';
 
-import type { SignOutAction } from '../../types/Action';
 import type { RouterHistory } from 'react-router-dom';
-type Props = {|
-    signOut: () => SignOutAction,
+import type { SignOutActionCreator } from '../../types/ActionCreator';
+
+type Props = {
+    signOut: SignOutActionCreator,
     history: RouterHistory
-|}
+}
 
 export default class SignOut extends Component<Props> {
     componentWillMount() {

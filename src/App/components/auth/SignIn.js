@@ -11,9 +11,10 @@ import {
 import logo from '../../images/logo.png';
 
 import type { Credentials } from '../../types/Auth';
-import type { SignInAction } from '../../types/Action';
+import type { SignInActionCreator } from '../../types/ActionCreator';
+
 type Props = {
-    signIn: Credentials => SignInAction
+    signIn: SignInActionCreator
 }
 
 export default class SignIn extends Component<Props> {
@@ -23,11 +24,11 @@ export default class SignIn extends Component<Props> {
 
     render() {
         return (
-            <Page id='SignIn' description='Role sign in'>
+            <Page id='SignIn' description='Role sign in' withHeader={ false }>
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>
-                            <Image src={ logo } /> Login to your account
+                            <Image src={ logo }/> Login to your account
                         </Header>
                         <SignInForm onSubmit={ this.handleSubmit }/>
                         <Message>

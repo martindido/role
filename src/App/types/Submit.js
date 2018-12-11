@@ -1,12 +1,22 @@
-export type SubmitSuccess = {
-    success: {}
-};
+import { SubmissionError } from 'redux-form';
 
-export type SubmitError = {
-    errors: Array<{} | string>
-};
+import type { World } from './World';
+
+export type Error = {} | string;
+
+export type Errors = Array<Error>;
 
 export type Submit = {
     success?: {},
-    errors?: Array<{} | string>
+    errors?: Errors
 };
+
+export type UpdateWorldSubmit = {
+    success?: World,
+    errors?: Errors
+}
+
+export type SubmitMeta = {
+    resolve: {} => void,
+    reject: (typeof SubmissionError) => void
+}

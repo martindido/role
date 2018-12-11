@@ -5,11 +5,11 @@ import Routes from '../containers/Routes';
 import '../styles/App.css';
 
 import type { Location } from 'react-router-dom';
-import type { EstablishCurrentUserAction } from '../types/Action';
+import type { EstablishCurrentUserActionCreator } from '../types/ActionCreator';
 
 type Props = {
     location: Location,
-    establishCurrentUser: () => EstablishCurrentUserAction,
+    establishCurrentUser: EstablishCurrentUserActionCreator,
 };
 
 export default class App extends Component<Props> {
@@ -22,7 +22,7 @@ export default class App extends Component<Props> {
     render() {
         return (
             <div id='app'>
-                <Routes />
+                <Routes/>
             </div>
         );
     }

@@ -6,11 +6,12 @@ import signOut from './auth/signOut';
 import setCurrentUser from './auth/setCurrentUser';
 import unsetCurrentUser from './auth/unsetCurrentUser';
 import establishCurrentUser from './auth/establishCurrentUser';
-import getCurrentProfile from './profile/getCurrentProfile';
 import getWorlds from './graphql/getWorlds';
 import createWorld from './graphql/createWorld';
+import updateWorld from './graphql/updateWorld';
 import getWorld from './graphql/getWorld';
 import search from './graphql/search';
+import updateWorldSubmit from './submit/graphql/updateWorld';
 
 export const epics = combineEpics(
     signIn,
@@ -20,9 +21,10 @@ export const epics = combineEpics(
     setCurrentUser,
     unsetCurrentUser,
     establishCurrentUser,
-    getCurrentProfile,
     getWorlds,
     createWorld,
+    updateWorld,
     getWorld,
-    search
+    search,
+    updateWorldSubmit
 );

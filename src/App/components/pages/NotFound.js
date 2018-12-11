@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import Page from '../../containers/pages/Page';
-import { Segment } from 'semantic-ui-react';
 
-import type { Node } from 'react';
+import type { User } from '../../types/User';
+
 type Props = {
-    children?: Node
+    currentUser?: User
 };
 
 export default class NotFound extends Component<Props> {
     render() {
+        const {currentUser} = this.props;
+
         return (
-            <Page
-                id='not-found'
-                className='not-found'
-                title='Not Found'
-                description='This is embarrassing.'
-                noCrawl
-            >
-                { this.props.children }
-                <Segment basic>
-                    <p>Super embarrassing.</p>
-                </Segment>
-            </Page>
+            <Page withHeader={ !!currentUser } forceNotFound={ true } noCrawl/>
         );
     }
 };

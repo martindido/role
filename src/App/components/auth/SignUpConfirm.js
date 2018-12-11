@@ -12,16 +12,13 @@ import logo from '../../images/logo.png';
 
 import type { UnconfirmedUser } from '../../types/User';
 import type {
-    SignUpConfirmAction,
-    UnsetCurrentUnconfirmedUserAction
-} from '../../types/Action';
-import type {
-    SignUpConfirm as SignUpConfirmType,
     SignUpConfirmData
 } from '../../types/Auth';
+import type { SignUpConfirmActionCreator, UnsetCurrentUnconfirmedUserActionCreator } from '../../types/ActionCreator';
+
 type Props = {
-    signUpConfirm: SignUpConfirmType => SignUpConfirmAction,
-    unsetCurrentUnconfirmedUser: () => UnsetCurrentUnconfirmedUserAction,
+    signUpConfirm: SignUpConfirmActionCreator,
+    unsetCurrentUnconfirmedUser: UnsetCurrentUnconfirmedUserActionCreator,
     currentUnconfirmedUser: UnconfirmedUser
 }
 
@@ -39,14 +36,14 @@ export default class SignUpConfirm extends Component<Props> {
 
     render() {
         if (!this.props.currentUnconfirmedUser) {
-            return ( <Redirect to={ '/sign-up' } /> );
+            return (<Redirect to={ '/sign-up' }/>);
         }
         return (
-            <Page id='SignUpConfirm' description='Role sign up confirmation'>
+            <Page id='SignUpConfirm' description='Role sign up confirmation' withHeader={ false }>
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>
-                            <Image src={ logo } /> Validate your account
+                            <Image src={ logo }/> Validate your account
                         </Header>
                         <SignUpConfirmForm onSubmit={ this.handleSubmit }/>
                         <Message>

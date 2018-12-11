@@ -5,9 +5,10 @@ import Menu from '../../components/header/Menu';
 
 import type { State } from '../../types/State';
 
-const mapStateToProps = ({ auth, routing }: State) => ({
+const mapStateToProps = ({auth, routing}: State) => ({
     currentUser: auth.currentUser,
-    previousLocation: routing.previousLocation
+    previousLocation: routing.previousLocation,
+    isLoading: routing.isLoading
 });
 
 const mapDispatchToProps = (dispatch: *) =>

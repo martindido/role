@@ -18,13 +18,17 @@ export type MenuProps = {
     admin?: AdminProps
 };
 export type Props = {
+    isLoading: boolean,
+    forceLoading?: boolean,
     history: RouterHistory,
+    location: Location,
     previousLocation: Location,
     currentUser: User,
 } & MenuProps;
 
 export default class Menu extends Component<Props> {
     static defaultProps = {
+        forceLoading: false,
         admin: {
             items: []
         }
@@ -35,25 +39,35 @@ export default class Menu extends Component<Props> {
     }
 
     render() {
-        const { previousLocation, currentUser, up, admin } = this.props;
+        const {isLoading, forceLoading, previousLocation, location: {pathname}, currentUser, up, admin} = this.props;
+        const loading = forceLoading || isLoading;
+        const withBack = !loading
+            && !!previousLocation
+            && previousLocation.pathname !== pathname
+            && previousLocation.pathname !== '/sign-in'
+            && previousLocation.pathname !== '/sign-up'
+            && previousLocation.pathname !== '/sign-up-confirm';
+        const backEqualsUp = !!up && !!previousLocation && up === previousLocation.pathname;
+        const withUp = !loading && !!up;
+        const withAdmin = !loading && !!currentUser.isAdmin;
 
         return (
             <Fragment>
-                { previousLocation ? (!up || up !== previousLocation.pathname ? (
-                    <SemanticMenu.Item name='back' onClick={ this.handleClickBack } >
-                        <Icon name='backward' />
+                { withBack ? (!backEqualsUp ? (
+                    <SemanticMenu.Item name='back' onClick={ this.handleClickBack }>
+                        <Icon name='backward'/>
                     </SemanticMenu.Item>
                 ) : '') : '' }
-                { up ? (
+                { withUp ? (
                     <SemanticMenu.Item as={ Link } name='up' to={ up }>
-                        <Icon name='level up' />
+                        <Icon name='level up'/>
                     </SemanticMenu.Item>
                 ) : '' }
-                { currentUser.isAdmin ? (
+                { withAdmin ? (
                     <AdminMenu { ...admin } />
                 ) : '' }
                 <SemanticMenu.Item as={ Link } name='sign-out' to='/sign-out'>
-                    <Icon name='sign-out' />
+                    <Icon name='sign-out'/>
                 </SemanticMenu.Item>
             </Fragment>
         );
@@ -63,8 +77,8 @@ export default class Menu extends Component<Props> {
 class AdminMenu extends Component<AdminProps> {
     render() {
         return this.props.items.map(item => (
-            <SemanticMenu.Item as={ Link } key={ `admin-${item.key}` } to={ `/admin${item.path}` }>
-                <Icon name={ item.icon } />
+            <SemanticMenu.Item as={ Link } key={ `admin-${ item.key }` } to={ `/admin${ item.path }` }>
+                <Icon name={ item.icon }/>
             </SemanticMenu.Item>
         ));
     }

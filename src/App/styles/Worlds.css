@@ -1,5 +1,5 @@
-#Worlds .ui.divided.inverted.horizontal.list>.item,
-#Worlds .ui.divided.inverted.list>.item,
-#Worlds .ui.divided.inverted.list>.list {
-  border-color: white;
+#worlds .ui.divided.inverted.horizontal.list > .item,
+#worlds .ui.divided.inverted.list > .item,
+#worlds .ui.divided.inverted.list > .list {
+    border-color: white;
 }

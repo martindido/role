@@ -4,7 +4,7 @@ import createMemoryHistory from 'history/createMemoryHistory';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createEpicMiddleware } from 'redux-observable';
 import reducers, { initialState as reducersInitialState } from './App/reducers/index';
-import { epics } from './App/epics/index';
+import { epics } from './App/epics';
 
 export default (url: string = '/') => {
     const history = getHistory(url);

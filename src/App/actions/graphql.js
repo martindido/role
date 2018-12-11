@@ -2,6 +2,9 @@ import {
     GET_WORLDS,
     SET_WORLDS,
     CREATE_WORLD,
+    UPDATE_WORLD,
+    UPDATE_WORLD_SUCCESS,
+    UPDATE_WORLD_ERROR,
     GET_WORLD,
     SET_WORLD,
     UNSET_WORLD,
@@ -12,13 +15,20 @@ import type {
     GetWorldsAction,
     SetWorldsAction,
     CreateWorldAction,
+    UpdateWorldAction,
+    UpdateWorldSuccessAction,
+    UpdateWorldErrorAction,
     GetWorldAction,
     SetWorldAction,
     UnsetWorldAction,
     SearchAllAction
 } from '../types/Action';
-import type { CreateWorldInput } from '../types/GraphQL';
+import type {
+    CreateWorldInput,
+    UpdateWorldInput
+} from '../types/GraphQL';
 import type { World } from '../types/World';
+import type { Errors } from '../types/Submit';
 
 export function getWorlds(): GetWorldsAction {
     return {
@@ -37,6 +47,27 @@ export function createWorld(world: CreateWorldInput): CreateWorldAction {
     return {
         type: CREATE_WORLD,
         payload: world
+    };
+};
+
+export function updateWorld(world: UpdateWorldInput): UpdateWorldAction {
+    return {
+        type: UPDATE_WORLD,
+        payload: world
+    };
+};
+
+export function updateWorldSuccess(world: World): UpdateWorldSuccessAction {
+    return {
+        type: UPDATE_WORLD_SUCCESS,
+        payload: world
+    };
+};
+
+export function updateWorldError(errors: Errors): UpdateWorldErrorAction {
+    return {
+        type: UPDATE_WORLD_ERROR,
+        payload: errors
     };
 };
 

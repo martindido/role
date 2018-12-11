@@ -1,7 +1,7 @@
-#Loading > .ui.grid > .column {
+.loading > .ui.grid > .column {
     display: flex;
 }
 
-#Loading > .ui.grid > .column > .spinner {
+.loading > .ui.grid > .column > .spinner {
     align-self: center;
 }
