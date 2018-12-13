@@ -35,33 +35,47 @@ export default (action$: ActionsObservable<SearchAllAction>) =>
     );
 
 async function searchWorldsFork(value) {
-    return searchFork('worlds', searchWorlds, value);
-}
-
-async function searchGamesFork(value) {
-    return searchFork('games', searchGames, value);
-}
-
-async function searchFork(name, search, value) {
     const category = {
-        name,
+        name: 'worlds',
         results: []
     };
 
     try {
-        const results = await search(value);
+        const results = await searchWorlds(value);
 
         results.forEach(result =>
             category.results.push({
                 title: result.name,
-                path: `/${name}/${result.id}`
+                path: `/worlds/${ result.id }`
             })
         );
     }
     catch (error) {
-        console.log('searchAll', name, 'error', error);
+        console.log('searchAll', 'world', 'error', error);
     }
-    return category
+    return category;
+}
+
+async function searchGamesFork(value) {
+    const category = {
+        name: 'games',
+        results: []
+    };
+
+    try {
+        const results = await searchGames(value);
+
+        results.forEach(result =>
+            category.results.push({
+                title: result.name,
+                path: `/worlds/${ result.world.id }/games/${ result.id }`
+            })
+        );
+    }
+    catch (error) {
+        console.log('searchAll', 'game', 'error', error);
+    }
+    return category;
 }
 
 async function searchWorlds(value) {
