@@ -2,8 +2,16 @@ import type { Location } from 'react-router-dom';
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
-import type { CreateWorldInput, UpdateWorldInput, GetWorldQueryVariables } from './GraphQL';
+import type {
+    CreateWorldInput,
+    UpdateWorldInput,
+    GetWorldQueryVariables,
+    CreateGameInput,
+    UpdateGameInput,
+    GetGameQueryVariables
+} from './GraphQL';
 import type { World } from './World';
+import type { Game } from './Game';
 import type { SearchResults } from './Search';
 import type { Errors, SubmitMeta } from './Submit';
 import type {
@@ -14,6 +22,8 @@ import type {
     UnsetWorldAction,
     SetWorldAction,
     GetWorldAction,
+    SetGameAction,
+    GetGameAction,
     UpdateWorldErrorAction,
     UpdateWorldSuccessAction,
     UpdateWorldAction,
@@ -35,6 +45,8 @@ import type {
     SignInAction,
     CreateWorldSubmitAction,
     UpdateWorldSubmitAction,
+    CreateGameSubmitAction,
+    UpdateGameSubmitAction,
     UnsetSubmitAction,
     SetSubmitErrorAction,
     SetSubmitSuccessAction,
@@ -51,6 +63,8 @@ export type SetSubmitErrorActionCreator = Errors => SetSubmitErrorAction;
 export type UnsetSubmitActionCreator = () => UnsetSubmitAction;
 export type CreateWorldSubmitActionCreator = (CreateWorldInput, SubmitMeta) => CreateWorldSubmitAction;
 export type UpdateWorldSubmitActionCreator = (UpdateWorldInput, SubmitMeta) => UpdateWorldSubmitAction;
+export type CreateGameSubmitActionCreator = (CreateGameInput, SubmitMeta) => CreateGameSubmitAction;
+export type UpdateGameSubmitActionCreator = (UpdateGameInput, SubmitMeta) => UpdateGameSubmitAction;
 export type SignInActionCreator = Credentials => SignInAction;
 export type SignUpActionCreator = Credentials => SignUpAction;
 export type SignUpSuccessActionCreator = UnconfirmedUser => SignUpSuccessAction;
@@ -72,6 +86,8 @@ export type UpdateWorldSuccessActionCreator = World => UpdateWorldSuccessAction;
 export type UpdateWorldErrorActionCreator = Errors => UpdateWorldErrorAction;
 export type GetWorldActionCreator = GetWorldQueryVariables => GetWorldAction;
 export type SetWorldActionCreator = World => SetWorldAction;
+export type GetGameActionCreator = GetGameQueryVariables => GetGameAction;
+export type SetGameActionCreator = Game => SetGameAction;
 export type UnsetWorldActionCreator = () => UnsetWorldAction;
 export type SearchAllActionCreator = string => SearchAllAction;
 export type SetSearchLoadingActionCreator = boolean => SetSearchLoadingAction;

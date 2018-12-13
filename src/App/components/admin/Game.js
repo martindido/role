@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import Page from '../../containers/pages/Page';
-import Form from '../../containers/forms/admin/World';
+import Form from '../../containers/forms/admin/Game';
 import { Header } from 'semantic-ui-react';
 
-import type { World as WorldType } from '../../types/World';
-import type { UpdateWorldInput, CreateWorldInput } from '../../types/GraphQL';
+import type { World } from '../../types/World';
+import type { Game as GameType } from '../../types/Game';
+import type { UpdateGameInput, CreateGameInput } from '../../types/GraphQL';
 import type {
-    CreateWorldSubmitActionCreator,
-    UpdateWorldSubmitActionCreator,
-    SetWorldActionCreator,
+    CreateGameSubmitActionCreator,
+    UpdateGameSubmitActionCreator,
+    SetGameActionCreator,
     UnsetSubmitActionCreator,
     SetNotFoundActionCreator,
     SetLoadingActionCreator
@@ -19,33 +20,37 @@ export type Props = {
     setLoading: SetLoadingActionCreator,
     setNotFound: SetNotFoundActionCreator,
     unsetSubmit: UnsetSubmitActionCreator,
-    setWorld: SetWorldActionCreator,
-    createWorldSubmit: CreateWorldSubmitActionCreator,
-    updateWorldSubmit: UpdateWorldSubmitActionCreator,
+    createGameSubmit: CreateGameSubmitActionCreator,
+    updateGameSubmit: UpdateGameSubmitActionCreator,
+    setGame: SetGameActionCreator,
     computedMatch: {
         params: {
-            worldId: string
+            worldId: string,
+            gameId: string
         }
     },
     history: RouterHistory,
     isLoading: boolean,
     isNotFound: boolean,
-    world?: WorldType
+    world?: World,
+    game?: GameType
 };
 
-export default class World extends Component<Props> {
+export default class Game extends Component<Props> {
     componentDidUpdate(prevProps: Props) {
-        const {isLoading, isNotFound, world, computedMatch} = this.props;
+        const {isLoading, isNotFound, world, game, computedMatch} = this.props;
         const worldId = !!world && world.id;
-        const pathId = computedMatch.params.worldId;
-        const hasLoadFinished = isNotFound || worldId === pathId;
-        const hasWorldChanged = prevProps.world !== world;
+        const gameId = !!game && game.id;
+        const pathWorldId = computedMatch.params.worldId;
+        const pathGameId = computedMatch.params.gameId;
+        const hasLoadFinished = isNotFound || worldId === pathWorldId || gameId === pathGameId;
+        const hasGameChanged = prevProps.game !== game;
 
         if (isLoading && hasLoadFinished) {
             return this.handleLoadFinished();
         }
-        if (hasWorldChanged) {
-            return this.handleWorldChanged()
+        if (hasGameChanged) {
+            return this.handleGameChanged()
         }
     }
 
@@ -59,14 +64,14 @@ export default class World extends Component<Props> {
         this.props.setLoading(false);
     }
 
-    handleWorldChanged() {
+    handleGameChanged() {
         this.props.history.push(this.getUp());
     }
 
-    handleSubmitCreate = async (world: CreateWorldInput) => {
+    handleSubmitCreate = async (game: CreateGameInput) => {
         try {
             await new Promise((resolve, reject) => {
-                this.props.createWorldSubmit(world, {
+                this.props.createGameSubmit(game, {
                     resolve,
                     reject
                 });
@@ -78,10 +83,10 @@ export default class World extends Component<Props> {
         }
     }
 
-    handleSubmitUpdate = async (world: UpdateWorldInput) => {
+    handleSubmitUpdate = async (game: UpdateGameInput) => {
         try {
             await new Promise((resolve, reject) => {
-                this.props.updateWorldSubmit(world, {
+                this.props.updateGameSubmit(game, {
                     resolve,
                     reject
                 });
@@ -94,14 +99,15 @@ export default class World extends Component<Props> {
     }
 
     getUp() {
-        const {computedMatch: {params: {worldId}}, isNotFound} = this.props;
+        const {computedMatch: {params: {worldId, gameId}}, isNotFound} = this.props;
+        const up = `/worlds/${ worldId }`;
 
-        return isNotFound || !worldId ? '/' : `/worlds/${ worldId }`;
+        return isNotFound ? up : `${ up }${ gameId ? `/games/${ gameId }` : '' }`;
     }
 
     render() {
-        const {computedMatch: {params: {worldId}}, world} = this.props;
-        const handleSubmit = worldId ? this.handleSubmitUpdate : this.handleSubmitCreate;
+        const {computedMatch: {params: {gameId}}, game} = this.props;
+        const handleSubmit = gameId ? this.handleSubmitUpdate : this.handleSubmitCreate;
         const header = {
             menu: {
                 up: this.getUp()
@@ -109,10 +115,10 @@ export default class World extends Component<Props> {
         };
 
         return (
-            <Page title='World Admin' className='admin new-world' header={ header }>
+            <Page title='Game Admin' className='admin new-game' header={ header }>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        { world ? `Edit ${ world.name }` : 'Add a new world' }
+                        { game ? `Edit ${ game.name }` : 'Add a new game' }
                     </Header>
                     <Form onSubmit={ handleSubmit }></Form>
                 </Fragment>

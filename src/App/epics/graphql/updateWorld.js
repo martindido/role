@@ -31,6 +31,8 @@ async function updateWorld(world: UpdateWorldInput) {
     const response = await API.graphql(graphqlOperation(updateWorldMutation, {
         input: world
     }));
+    const updatedWorld = response.data.updateWorld;
 
-    return response.data.updateWorld;
+    updatedWorld.games = updatedWorld.games.items;
+    return updatedWorld;
 }

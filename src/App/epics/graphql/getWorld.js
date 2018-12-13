@@ -29,6 +29,8 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
 
 async function getWorld(variables: GetWorldQueryVariables) {
     const response = await API.graphql(graphqlOperation(getWorldQuery, variables));
+    const world = response.data.getWorld;
 
-    return response.data.getWorld;
+    world.games = world.games.items;
+    return world;
 }

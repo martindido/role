@@ -3,7 +3,9 @@ import {
     SET_SUBMIT_ERRORS,
     UNSET_SUBMIT,
     CREATE_WORLD_SUBMIT,
-    UPDATE_WORLD_SUBMIT
+    UPDATE_WORLD_SUBMIT,
+    CREATE_GAME_SUBMIT,
+    UPDATE_GAME_SUBMIT
 } from '../constants/actions';
 
 import type {
@@ -11,10 +13,12 @@ import type {
     SetSubmitErrorAction,
     UnsetSubmitAction,
     UpdateWorldSubmitAction,
-    CreateWorldSubmitAction
+    CreateWorldSubmitAction,
+    UpdateGameSubmitAction,
+    CreateGameSubmitAction
 } from '../types/Action';
 import type { Errors, SubmitMeta } from '../types/Submit';
-import type { UpdateWorldInput, CreateWorldInput } from '../types/GraphQL';
+import type { UpdateWorldInput, CreateWorldInput, CreateGameInput, UpdateGameInput } from '../types/GraphQL';
 
 export function setSubmitSuccess(success: {}): SetSubmitSuccessAction {
     return {
@@ -47,6 +51,22 @@ export function createWorldSubmit(payload: CreateWorldInput, meta: SubmitMeta): 
 export function updateWorldSubmit(payload: UpdateWorldInput, meta: SubmitMeta): UpdateWorldSubmitAction {
     return {
         type: UPDATE_WORLD_SUBMIT,
+        payload,
+        meta
+    };
+}
+
+export function createGameSubmit(payload: CreateGameInput, meta: SubmitMeta): CreateGameSubmitAction {
+    return {
+        type: CREATE_GAME_SUBMIT,
+        payload,
+        meta
+    };
+}
+
+export function updateGameSubmit(payload: UpdateGameInput, meta: SubmitMeta): UpdateGameSubmitAction {
+    return {
+        type: UPDATE_GAME_SUBMIT,
         payload,
         meta
     };

@@ -14,6 +14,7 @@ import { SignUpConfirm, path as SignUpConfirmPath } from '../routes/auth/SignUpC
 import { SignOut, path as SignOutPath } from '../routes/auth/SignOut';
 import { AdminWorlds, path as AdminWorldsPath } from '../routes/admin/Worlds';
 import { AdminWorld, path as AdminWorldPath } from '../routes/admin/World';
+import { AdminGames, path as AdminGamesPath } from '../routes/admin/Games';
 import NotFount from '../containers/pages/NotFound';
 
 import type { Location } from 'react-router-dom';
@@ -39,6 +40,7 @@ export default class Routes extends Component<Props> {
                 <AuthenticatedRoute exact path={ SignOutPath } component={ SignOut }/>
                 <AdminRoute exact path={ AdminWorldsPath } component={ AdminWorlds }/>
                 <AdminRoute exact path={ AdminWorldPath } component={ AdminWorld }/>
+                <AdminRoute exact path={ AdminGamesPath } component={ AdminGames }/>
                 <UnauthenticatedRoute exact path={ SignInPath } component={ SignIn }/>
                 <UnauthenticatedRoute exact path={ SignUpPath } component={ SignUp }/>
                 <UnauthenticatedRoute exact path={ SignUpConfirmPath } component={ SignUpConfirm }/>

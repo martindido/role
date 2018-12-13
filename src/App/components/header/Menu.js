@@ -77,7 +77,7 @@ export default class Menu extends Component<Props> {
 class AdminMenu extends Component<AdminProps> {
     render() {
         return this.props.items.map(item => (
-            <SemanticMenu.Item as={ Link } key={ `admin-${ item.key }` } to={ `/admin${ item.path }` }>
+            <SemanticMenu.Item as={ Link } key={ `${ item.key }-admin` } to={ `${ item.path }/admin` }>
                 <Icon name={ item.icon }/>
             </SemanticMenu.Item>
         ));

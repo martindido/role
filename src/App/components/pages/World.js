@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Page from '../../containers/pages/Page';
 import {
+    List,
     Image,
     Header as SemanticHeader
 } from 'semantic-ui-react';
@@ -14,6 +15,7 @@ import type {
     SetLoadingActionCreator,
     SetNotFoundActionCreator
 } from '../../types/ActionCreator';
+import { Link } from 'react-router-dom';
 
 export type Props = {
     world?: WorldType,
@@ -25,7 +27,7 @@ export type Props = {
     isNotFound: boolean,
     computedMatch: {
         params: {
-            id: string
+            worldId: string
         }
     }
 };
@@ -33,8 +35,8 @@ export type Props = {
 export default class World extends Component<Props> {
     componentDidUpdate(prevProps: Props) {
         const {isLoading, isNotFound, world} = this.props;
-        const id = this.props.computedMatch.params.id;
-        const isSameId = id === prevProps.computedMatch.params.id;
+        const id = this.props.computedMatch.params.worldId;
+        const isSameId = id === prevProps.computedMatch.params.worldId;
         const isSameWorld = !!world && world.id === id;
 
         if (isNotFound) {
@@ -84,18 +86,35 @@ export default class World extends Component<Props> {
             });
             header.menu.admin.items.push({
                 key: 'games',
-                path: '/games',
+                path: `/worlds/${ world.id }/games`,
                 icon: 'add'
             });
         }
         return (
             <Page title={ title } header={ header }>
                 { world ? (
-                    <SemanticHeader as='h2' inverted>
-                        <Image circular src={
-                            require(`../../images/worlds/dungeons-and-dragons-logo.png`)
-                        }/> { world.name }
-                    </SemanticHeader>
+                    <Fragment>
+                        <SemanticHeader as='h2' inverted>
+                            <Image circular src={
+                                require(`../../images/worlds/dungeons-and-dragons-logo.png`)
+                            }/> { world.name }
+                        </SemanticHeader>
+                        { world.games.length ? (
+                            <List animated divided selection verticalAlign='middle' size='massive' inverted>
+                                { world.games.map(game => (
+                                    <List.Item as={ Link } to={ `/worlds/${ world.id }/games/${ game.id }` }
+                                               key={ game.id }>
+                                        <Image avatar src={
+                                            require(`../../images/worlds/dungeons-and-dragons-logo.png`)
+                                        }/>
+                                        <List.Content>
+                                            <List.Header>{ game.name }</List.Header>
+                                        </List.Content>
+                                    </List.Item>
+                                )) }
+                            </List>
+                        ) : null }
+                    </Fragment>
                 ) : null }
             </Page>
         );

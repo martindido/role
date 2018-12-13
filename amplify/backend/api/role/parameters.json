@@ -6,10 +6,10 @@
             "Outputs.UserPoolId"
         ]
     },
-    "schemaGraphql": "s3://role-20181027160927-deployment/amplify-appsync-files/schema.graphql.1541467656834",
+    "schemaGraphql": "s3://role-20181027160927-deployment/amplify-appsync-files/schema.graphql.1544709922935",
     "ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
     "ElasticSearchStreamingLambdaCodeS3Bucket": "role-20181027160927-deployment",
     "ResolverBucket": "role-20181027160927-deployment",
     "ResolverRootKey": "amplify-appsync-files",
-    "DeploymentTimestamp": "1541467656834"
+    "DeploymentTimestamp": "1544709922935"
 }

@@ -9,7 +9,7 @@ type Game {
   id: ID!
   name: String!
   path: String!
-  world: World
+  world: World!
 }
 
 enum ModelSortDirection {
@@ -147,7 +147,7 @@ input CreateGameInput {
   id: ID
   name: String!
   path: String!
-  gameWorldId: ID
+  gameWorldId: ID!
 }
 
 input UpdateGameInput {

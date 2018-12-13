@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch: *) =>
 
 const frontload = async props => {
     await props.setLoading(true);
-    await props.getWorld(props.computedMatch.params.id);
+    await props.getWorld(props.computedMatch.params.worldId);
 };
 
 export default connect(

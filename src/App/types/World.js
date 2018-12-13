@@ -1,5 +1,8 @@
+import type { Game } from './Game';
+
 export type World = {
     id: string,
     name: string,
-    path: boolean
+    path: boolean,
+    games: [Game]
 };

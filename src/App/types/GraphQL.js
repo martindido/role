@@ -22,7 +22,7 @@ export type CreateGameInput = {|
   id?: ?string,
   name: string,
   path: string,
-  gameWorldId?: ?string,
+  gameWorldId: string,
 |};
 
 export type UpdateGameInput = {|
@@ -228,7 +228,7 @@ export type CreateGameMutation = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -247,7 +247,7 @@ export type UpdateGameMutation = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -266,7 +266,7 @@ export type DeleteGameMutation = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -337,7 +337,7 @@ export type GetGameQuery = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -360,7 +360,7 @@ export type ListGamesQuery = {|
       id: string,
       name: string,
       path: string,
-      world: ? {|
+      world: {|
         __typename: string,
         id: string,
         name: string,
@@ -416,7 +416,7 @@ export type SearchGamesQuery = {|
       id: string,
       name: string,
       path: string,
-      world: ? {|
+      world: {|
         __typename: string,
         id: string,
         name: string,
@@ -490,7 +490,7 @@ export type OnCreateGameSubscription = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -505,7 +505,7 @@ export type OnUpdateGameSubscription = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,
@@ -520,7 +520,7 @@ export type OnDeleteGameSubscription = {|
     id: string,
     name: string,
     path: string,
-    world: ? {|
+    world: {|
       __typename: string,
       id: string,
       name: string,

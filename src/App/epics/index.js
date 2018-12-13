@@ -9,9 +9,12 @@ import establishCurrentUser from './auth/establishCurrentUser';
 import getWorlds from './graphql/getWorlds';
 import createWorld from './graphql/createWorld';
 import updateWorld from './graphql/updateWorld';
+import createGame from './graphql/createGame';
 import getWorld from './graphql/getWorld';
 import search from './graphql/search';
+import createWorldSubmit from './submit/graphql/createWorld';
 import updateWorldSubmit from './submit/graphql/updateWorld';
+import createGameSubmit from './submit/graphql/createGame';
 
 export const epics = combineEpics(
     signIn,
@@ -24,7 +27,10 @@ export const epics = combineEpics(
     getWorlds,
     createWorld,
     updateWorld,
+    createGame,
     getWorld,
     search,
-    updateWorldSubmit
+    createWorldSubmit,
+    updateWorldSubmit,
+    createGameSubmit
 );

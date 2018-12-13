@@ -2,10 +2,18 @@ import type { Location } from 'react-router-dom';
 import type { User, UnconfirmedUser } from './User';
 import type { SignUpConfirm, Credentials } from './Auth';
 import type { Profile } from './Profile';
-import type { CreateWorldInput, UpdateWorldInput, GetWorldQueryVariables } from './GraphQL';
+import type {
+    CreateWorldInput,
+    UpdateWorldInput,
+    GetWorldQueryVariables,
+    UpdateGameInput,
+    CreateGameInput,
+    GetGameQueryVariables
+} from './GraphQL';
 import type { World } from './World';
 import type { SearchResults } from './Search';
 import type { Errors, SubmitMeta } from './Submit';
+import type { Game } from './Game';
 
 export type SetLoadingAction = {
     type: 'SET_LOADING',
@@ -45,6 +53,18 @@ export type CreateWorldSubmitAction = {
 export type UpdateWorldSubmitAction = {
     type: 'UPDATE_WORLD_SUBMIT',
     payload: UpdateWorldInput,
+    meta: SubmitMeta
+};
+
+export type CreateGameSubmitAction = {
+    type: 'CREATE_GAME_SUBMIT',
+    payload: CreateGameInput,
+    meta: SubmitMeta
+};
+
+export type UpdateGameSubmitAction = {
+    type: 'UPDATE_GAME_SUBMIT',
+    payload: UpdateGameInput,
     meta: SubmitMeta
 };
 
@@ -108,6 +128,25 @@ export type UnsetCurrentProfileAction = {
     type: 'UNSET_CURRENT_PROFILE'
 };
 
+export type SearchAllAction = {
+    type: 'SEARCH_ALL',
+    payload: string
+};
+
+export type SetSearchLoadingAction = {
+    type: 'SET_SEARCH_LOADING',
+    payload: boolean
+};
+
+export type SetSearchResultsAction = {
+    type: 'SET_SEARCH_RESULTS',
+    payload: SearchResults
+};
+
+export type UnsetSearchResultsAction = {
+    type: 'UNSET_SEARCH_RESULTS'
+};
+
 export type GetWorldsAction = {
     type: 'GET_WORLDS'
 };
@@ -120,6 +159,16 @@ export type SetWorldsAction = {
 export type CreateWorldAction = {
     type: 'CREATE_WORLD',
     payload: CreateWorldInput
+};
+
+export type CreateWorldSuccessAction = {
+    type: 'CREATE_WORLD_SUCCESS',
+    payload: World
+};
+
+export type CreateWorldErrorAction = {
+    type: 'CREATE_WORLD_ERROR',
+    payload: Errors
 };
 
 export type UpdateWorldAction = {
@@ -151,23 +200,48 @@ export type UnsetWorldAction = {
     type: 'UNSET_WORLD'
 };
 
-export type SearchAllAction = {
-    type: 'SEARCH_ALL',
-    payload: string
+export type CreateGameAction = {
+    type: 'CREATE_GAME',
+    payload: CreateGameInput
 };
 
-export type SetSearchLoadingAction = {
-    type: 'SET_SEARCH_LOADING',
-    payload: boolean
+export type CreateGameSuccessAction = {
+    type: 'CREATE_GAME_SUCCESS',
+    payload: Game
 };
 
-export type SetSearchResultsAction = {
-    type: 'SET_SEARCH_RESULTS',
-    payload: SearchResults
+export type CreateGameErrorAction = {
+    type: 'CREATE_GAME_ERROR',
+    payload: Errors
 };
 
-export type UnsetSearchResultsAction = {
-    type: 'UNSET_SEARCH_RESULTS'
+export type UpdateGameAction = {
+    type: 'UPDATE_GAME',
+    payload: UpdateGameInput
+};
+
+export type UpdateGameSuccessAction = {
+    type: 'UPDATE_GAME_SUCCESS',
+    payload: Game
+};
+
+export type UpdateGameErrorAction = {
+    type: 'UPDATE_GAME_ERROR',
+    payload: Errors
+};
+
+export type GetGameAction = {
+    type: 'GET_GAME',
+    payload: GetGameQueryVariables
+};
+
+export type SetGameAction = {
+    type: 'SET_GAME',
+    payload: Game
+};
+
+export type UnsetGameAction = {
+    type: 'UNSET_GAME'
 };
 
 export type RoutingAction =
@@ -179,7 +253,10 @@ export type SubmitAction =
     | SetSubmitSuccessAction
     | SetSubmitErrorAction
     | UnsetSubmitAction
-    | UpdateWorldSubmitAction;
+    | CreateWorldSubmitAction
+    | UpdateWorldSubmitAction
+    | CreateGameSubmitAction
+    | UpdateGameSubmitAction;
 
 export type AuthAction =
     | SignInAction
@@ -199,6 +276,7 @@ export type ProfileAction =
     | UnsetCurrentProfileAction;
 
 export type GraphQLAction =
+    | SearchAllAction
     | GetWorldsAction
     | SetWorldsAction
     | CreateWorldAction
@@ -208,7 +286,13 @@ export type GraphQLAction =
     | GetWorldAction
     | SetWorldAction
     | UnsetWorldAction
-    | SearchAllAction;
+    | CreateGameAction
+    | UpdateGameAction
+    | UpdateGameSuccessAction
+    | UpdateGameErrorAction
+    | GetGameAction
+    | SetGameAction
+    | UnsetGameAction;
 
 export type SearchAction =
     | SetSearchLoadingAction
