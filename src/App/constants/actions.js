@@ -2,10 +2,6 @@ export const SET_LOADING = 'SET_LOADING';
 export const SET_NOT_FOUND = 'SET_NOT_FOUND';
 export const SET_PREVIOUS_LOCATION = 'SET_PREVIOUS_LOCATION';
 
-export const SET_SUBMIT_SUCCESS = 'SET_SUBMIT_SUCCESS';
-export const SET_SUBMIT_ERRORS = 'SET_SUBMIT_ERRORS';
-export const UNSET_SUBMIT = 'UNSET_SUBMIT';
-
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';

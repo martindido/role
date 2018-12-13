@@ -10,7 +10,6 @@ import type {
     CreateGameSubmitActionCreator,
     UpdateGameSubmitActionCreator,
     SetGameActionCreator,
-    UnsetSubmitActionCreator,
     SetNotFoundActionCreator,
     SetLoadingActionCreator
 } from '../../types/ActionCreator';
@@ -19,7 +18,6 @@ import type { RouterHistory } from 'react-router-dom';
 export type Props = {
     setLoading: SetLoadingActionCreator,
     setNotFound: SetNotFoundActionCreator,
-    unsetSubmit: UnsetSubmitActionCreator,
     createGameSubmit: CreateGameSubmitActionCreator,
     updateGameSubmit: UpdateGameSubmitActionCreator,
     setGame: SetGameActionCreator,
@@ -55,7 +53,6 @@ export default class Game extends Component<Props> {
     }
 
     componentWillUnmount() {
-        this.props.unsetSubmit();
         this.props.setLoading(false);
         this.props.setNotFound(false);
     }

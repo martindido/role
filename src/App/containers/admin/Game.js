@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
 import { setLoading, setNotFound } from '../../actions/routing';
 import { getGame, getWorld } from '../../actions/graphql';
-import { createGameSubmit, updateGameSubmit, unsetSubmit } from '../../actions/submit';
+import { createGameSubmit, updateGameSubmit } from '../../actions/submit';
 import Game from '../../components/admin/Game';
 
 const mapStateToProps = ({routing, graphql}) => ({
@@ -20,8 +20,7 @@ const mapDispatchToProps = (dispatch: *) =>
         getWorld,
         getGame,
         createGameSubmit,
-        updateGameSubmit,
-        unsetSubmit
+        updateGameSubmit
     }, dispatch);
 
 const frontload = props => {

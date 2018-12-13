@@ -9,7 +9,6 @@ import type {
     CreateWorldSubmitActionCreator,
     UpdateWorldSubmitActionCreator,
     SetWorldActionCreator,
-    UnsetSubmitActionCreator,
     SetNotFoundActionCreator,
     SetLoadingActionCreator
 } from '../../types/ActionCreator';
@@ -18,7 +17,6 @@ import type { RouterHistory } from 'react-router-dom';
 export type Props = {
     setLoading: SetLoadingActionCreator,
     setNotFound: SetNotFoundActionCreator,
-    unsetSubmit: UnsetSubmitActionCreator,
     setWorld: SetWorldActionCreator,
     createWorldSubmit: CreateWorldSubmitActionCreator,
     updateWorldSubmit: UpdateWorldSubmitActionCreator,
@@ -50,7 +48,6 @@ export default class World extends Component<Props> {
     }
 
     componentWillUnmount() {
-        this.props.unsetSubmit();
         this.props.setLoading(false);
         this.props.setNotFound(false);
     }

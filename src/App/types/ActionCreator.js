@@ -47,9 +47,6 @@ import type {
     UpdateWorldSubmitAction,
     CreateGameSubmitAction,
     UpdateGameSubmitAction,
-    UnsetSubmitAction,
-    SetSubmitErrorAction,
-    SetSubmitSuccessAction,
     SetPreviousLocationAction,
     SetNotFoundAction,
     SetLoadingAction
@@ -58,9 +55,6 @@ import type {
 export type SetLoadingActionCreator = boolean => SetLoadingAction;
 export type SetNotFoundActionCreator = boolean => SetNotFoundAction;
 export type SetPreviousLocationActionCreator = Location => SetPreviousLocationAction;
-export type SetSubmitSuccessActionCreator = Object => SetSubmitSuccessAction;
-export type SetSubmitErrorActionCreator = Errors => SetSubmitErrorAction;
-export type UnsetSubmitActionCreator = () => UnsetSubmitAction;
 export type CreateWorldSubmitActionCreator = (CreateWorldInput, SubmitMeta) => CreateWorldSubmitAction;
 export type UpdateWorldSubmitActionCreator = (UpdateWorldInput, SubmitMeta) => UpdateWorldSubmitAction;
 export type CreateGameSubmitActionCreator = (CreateGameInput, SubmitMeta) => CreateGameSubmitAction;

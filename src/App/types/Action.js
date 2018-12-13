@@ -30,20 +30,6 @@ export type SetPreviousLocationAction = {
     payload: Location
 };
 
-export type SetSubmitSuccessAction = {
-    type: 'SET_SUBMIT_SUCCESS',
-    payload: {}
-};
-
-export type SetSubmitErrorAction = {
-    type: 'SET_SUBMIT_ERRORS',
-    payload: Errors
-};
-
-export type UnsetSubmitAction = {
-    type: 'UNSET_SUBMIT'
-};
-
 export type CreateWorldSubmitAction = {
     type: 'CREATE_WORLD_SUBMIT',
     payload: CreateWorldInput,
@@ -250,9 +236,6 @@ export type RoutingAction =
     | SetPreviousLocationAction;
 
 export type SubmitAction =
-    | SetSubmitSuccessAction
-    | SetSubmitErrorAction
-    | UnsetSubmitAction
     | CreateWorldSubmitAction
     | UpdateWorldSubmitAction
     | CreateGameSubmitAction
