@@ -1,28 +1,28 @@
 import {
-    CREATE_GAME_SUBMIT,
-    CREATE_GAME_SUCCESS,
-    CREATE_GAME_ERROR,
+    UPDATE_GAME_SUBMIT,
+    UPDATE_GAME_SUCCESS,
+    UPDATE_GAME_ERROR,
     SET_GAME,
     GET_WORLD_SUCCESS,
     GET_WORLD_ERROR
 } from '../../../constants/actions';
-import { createGame, setGame, getWorld, setWorld } from '../../../actions/graphql';
+import { updateGame, setGame, getWorld, setWorld } from '../../../actions/graphql';
 import { ofType } from 'redux-observable';
 import { mergeMap, map, take, tap, startWith } from 'rxjs/operators';
 import { SubmissionError } from 'redux-form';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { CreateGameSubmitAction } from '../../../types/Action';
+import type { UpdateGameSubmitAction } from '../../../types/Action';
 
-export default (action$: ActionsObservable<CreateGameSubmitAction>) =>
+export default (action$: ActionsObservable<UpdateGameSubmitAction>) =>
     action$.pipe(
-        ofType(CREATE_GAME_SUBMIT),
+        ofType(UPDATE_GAME_SUBMIT),
         mergeMap(action =>
             action$.pipe(
-                ofType(CREATE_GAME_SUCCESS, CREATE_GAME_ERROR),
+                ofType(UPDATE_GAME_SUCCESS, UPDATE_GAME_ERROR),
                 take(1),
                 resolveOrReject(action),
-                ofType(CREATE_GAME_SUCCESS),
+                ofType(UPDATE_GAME_SUCCESS),
                 mergeMap(action => [
                     setGame(action.payload),
                     getWorld(action.payload.world.id)
@@ -39,14 +39,14 @@ export default (action$: ActionsObservable<CreateGameSubmitAction>) =>
                         startWith(action)
                     )
                 }),
-                startWith(createGame(action.payload))
+                startWith(updateGame(action.payload))
             )
         )
     );
 
 function resolveOrReject(action) {
     return tap(newAction => {
-        if (newAction.type === CREATE_GAME_SUCCESS) {
+        if (newAction.type === UPDATE_GAME_SUCCESS) {
             action.meta.resolve(newAction.payload);
         }
         else {

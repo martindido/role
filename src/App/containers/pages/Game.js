@@ -1,24 +1,28 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import Worlds from '../../components/pages/Worlds';
-import { listWorlds } from '../../actions/graphql';
+import Game from '../../components/pages/Game';
+import { loadGame } from '../../actions/load';
 
 import type { State } from '../../types/State';
 
-const mapStateToProps = ({graphql: {worlds}}: State) => ({
-    worlds
+const mapStateToProps = ({graphql}: State) => ({
+    game: graphql.game
 });
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({
-        listWorlds
+        loadGame
     }, dispatch);
 
 const frontload = async props => {
-    props.listWorlds();
-};
+    const {game, computedMatch: {params: {gameId}}} = props;
+    const gameLoaded = game && game.id === gameId;
 
+    if (!gameLoaded) {
+        props.loadGame(gameId);
+    }
+};
 
 export default connect(
     mapStateToProps,
@@ -26,5 +30,5 @@ export default connect(
 )(
     frontloadConnect(frontload, {
         onUpdate: false
-    })(Worlds)
+    })(Game)
 );

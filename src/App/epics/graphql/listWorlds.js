@@ -1,31 +1,31 @@
-import { GET_WORLDS } from '../../constants/actions';
+import { LIST_WORLDS } from '../../constants/actions';
 import { setWorlds } from '../../actions/graphql';
 import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listWorlds } from '../../graphql/queries';
+import { listWorlds as listWorldsQuery } from '../../graphql/queries';
 
-import type { GetWorldsAction } from '../../types/Action';
+import type { ListWorldsAction } from '../../types/Action';
 import type { ActionsObservable } from 'redux-observable';
 
-export default (action$: ActionsObservable<GetWorldsAction>) =>
+export default (action$: ActionsObservable<ListWorldsAction>) =>
     action$.pipe(
-        ofType(GET_WORLDS),
+        ofType(LIST_WORLDS),
         switchMap(
             async (): Promise => {
                 try {
-                    return setWorlds(await getWorlds());
+                    return setWorlds(await listWorlds());
                 }
                 catch (error) {
-                    console.log('getWorlds', 'error', error);
+                    console.log('listWorlds', 'error', error);
                     return setWorlds([]);
                 }
             }
         )
     );
 
-async function getWorlds() {
-    const response = await API.graphql(graphqlOperation(listWorlds));
+async function listWorlds() {
+    const response = await API.graphql(graphqlOperation(listWorldsQuery));
 
     return response.data.listWorlds.items;
 }

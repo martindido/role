@@ -7,17 +7,11 @@ import type { World as WorldType } from '../../types/World';
 import type { UpdateWorldInput, CreateWorldInput } from '../../types/GraphQL';
 import type {
     CreateWorldSubmitActionCreator,
-    UpdateWorldSubmitActionCreator,
-    SetWorldActionCreator,
-    SetNotFoundActionCreator,
-    SetLoadingActionCreator
+    UpdateWorldSubmitActionCreator
 } from '../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
 export type Props = {
-    setLoading: SetLoadingActionCreator,
-    setNotFound: SetNotFoundActionCreator,
-    setWorld: SetWorldActionCreator,
     createWorldSubmit: CreateWorldSubmitActionCreator,
     updateWorldSubmit: UpdateWorldSubmitActionCreator,
     computedMatch: {
@@ -26,38 +20,19 @@ export type Props = {
         }
     },
     history: RouterHistory,
-    isLoading: boolean,
     isNotFound: boolean,
     world?: WorldType
 };
 
 export default class World extends Component<Props> {
     componentDidUpdate(prevProps: Props) {
-        const {isLoading, isNotFound, world, computedMatch} = this.props;
-        const worldId = !!world && world.id;
-        const pathId = computedMatch.params.worldId;
-        const hasLoadFinished = isNotFound || worldId === pathId;
-        const hasWorldChanged = prevProps.world !== world;
+        const {computedMatch: {params: {worldId}}, world} = this.props;
+        const worldCreated = !worldId && world;
+        const worldUpdated = worldId && prevProps.world && prevProps.world !== world;
 
-        if (isLoading && hasLoadFinished) {
-            return this.handleLoadFinished();
+        if (worldCreated || worldUpdated) {
+            this.props.history.push(this.getUp());
         }
-        if (hasWorldChanged) {
-            return this.handleWorldChanged()
-        }
-    }
-
-    componentWillUnmount() {
-        this.props.setLoading(false);
-        this.props.setNotFound(false);
-    }
-
-    handleLoadFinished() {
-        this.props.setLoading(false);
-    }
-
-    handleWorldChanged() {
-        this.props.history.push(this.getUp());
     }
 
     handleSubmitCreate = async (world: CreateWorldInput) => {

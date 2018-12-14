@@ -1,6 +1,5 @@
 import { GET_WORLD } from '../../constants/actions';
-import { setWorld } from '../../actions/graphql';
-import { setNotFound } from '../../actions/routing';
+import { getWorldSuccess, getWorldError } from '../../actions/graphql';
 import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -18,10 +17,10 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
                 try {
                     const world = await getWorld(action.payload);
 
-                    return world ? setWorld(world) : setNotFound(true);
+                    return world ? getWorldSuccess(world) : getWorldError([new Error('Not Found')]);
                 }
                 catch (error) {
-                    return setNotFound(true);
+                    return getWorldError([error]);
                 }
             }
         )

@@ -9,22 +9,10 @@ import {
 import '../../styles/Worlds.css';
 
 import type { World as WorldType } from '../../types/World';
-import type {
-    GetWorldActionCreator,
-    UnsetWorldActionCreator,
-    SetLoadingActionCreator,
-    SetNotFoundActionCreator
-} from '../../types/ActionCreator';
 import { Link } from 'react-router-dom';
 
 export type Props = {
     world?: WorldType,
-    getWorld: GetWorldActionCreator,
-    unsetWorld: UnsetWorldActionCreator,
-    setLoading: SetLoadingActionCreator,
-    setNotFound: SetNotFoundActionCreator,
-    isLoading: boolean,
-    isNotFound: boolean,
     computedMatch: {
         params: {
             worldId: string
@@ -33,63 +21,26 @@ export type Props = {
 };
 
 export default class World extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        const {isLoading, isNotFound, world} = this.props;
-        const id = this.props.computedMatch.params.worldId;
-        const isSameId = id === prevProps.computedMatch.params.worldId;
-        const isSameWorld = !!world && world.id === id;
-
-        if (isNotFound) {
-            if (!isSameId) {
-                this.props.setNotFound(false);
-            }
-            else if (isLoading) {
-                this.props.setLoading(false);
-            }
-        }
-        else {
-            if (isSameWorld && isLoading) {
-                this.props.setLoading(false);
-            }
-            else if (!isSameWorld && !isLoading) {
-                this.props.getWorld({
-                    id
-                });
-                this.props.setLoading(true);
-            }
-        }
-    }
-
-    componentWillUnmount() {
-        this.props.unsetWorld();
-        this.props.setNotFound(false);
-        this.props.setLoading(false);
-    }
-
     render() {
-        const {world} = this.props;
+        const {world, computedMatch: {params: {worldId}}} = this.props;
         const title = world ? world.name : 'World';
         const header = {
             menu: {
                 up: '/',
                 admin: {
-                    items: []
+                    items: [{
+                        key: `worlds-${ worldId }`,
+                        path: `/worlds/${ worldId }`,
+                        icon: 'edit'
+                    }, {
+                        key: 'games',
+                        path: `/worlds/${ worldId }/games`,
+                        icon: 'add'
+                    }]
                 }
             }
         };
 
-        if (world) {
-            header.menu.admin.items.push({
-                key: `worlds-${ world.id }`,
-                path: `/worlds/${ world.id }`,
-                icon: 'edit'
-            });
-            header.menu.admin.items.push({
-                key: 'games',
-                path: `/worlds/${ world.id }/games`,
-                icon: 'add'
-            });
-        }
         return (
             <Page title={ title } header={ header }>
                 { world ? (

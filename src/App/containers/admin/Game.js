@@ -1,36 +1,34 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import { setLoading, setNotFound } from '../../actions/routing';
-import { getGame, getWorld } from '../../actions/graphql';
+import { loadGame, loadWorld } from '../../actions/load';
 import { createGameSubmit, updateGameSubmit } from '../../actions/submit';
 import Game from '../../components/admin/Game';
 
 const mapStateToProps = ({routing, graphql}) => ({
     world: graphql.world,
     game: graphql.game,
-    isLoading: routing.isLoading,
     isNotFound: routing.isNotFound
 });
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({
-        setLoading,
-        setNotFound,
-        getWorld,
-        getGame,
+        loadWorld,
+        loadGame,
         createGameSubmit,
         updateGameSubmit
     }, dispatch);
 
 const frontload = props => {
-    if (props.computedMatch.params.gameId) {
-        props.setLoading(true);
-        props.getGame(props.computedMatch.params.gameId);
+    const {game, world, computedMatch: {params: {gameId, worldId}}} = props;
+    const gameLoaded = game && game.id === gameId;
+    const worldLoaded = world && world.id === worldId;
+
+    if (gameId && !gameLoaded) {
+        props.loadGame(gameId);
     }
-    else if (props.computedMatch.params.worldId) {
-        props.setLoading(true);
-        props.getWorld(props.computedMatch.params.worldId);
+    else if (!worldLoaded) {
+        props.loadWorld(worldId);
     }
 }
 

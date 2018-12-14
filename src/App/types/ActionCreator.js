@@ -22,6 +22,8 @@ import type {
     UnsetWorldAction,
     SetWorldAction,
     GetWorldAction,
+    GetWorldSuccessAction,
+    GetWorldErrorAction,
     SetGameAction,
     GetGameAction,
     UpdateWorldErrorAction,
@@ -29,7 +31,7 @@ import type {
     UpdateWorldAction,
     CreateWorldAction,
     SetWorldsAction,
-    GetWorldsAction,
+    ListWorldsAction,
     UnsetCurrentProfileAction,
     SetCurrentProfileAction,
     GetCurrentProfileAction,
@@ -49,12 +51,14 @@ import type {
     UpdateGameSubmitAction,
     SetPreviousLocationAction,
     SetNotFoundAction,
-    SetLoadingAction
+    SetLoadingAction,
+    LoadWorldAction
 } from './Action';
 
 export type SetLoadingActionCreator = boolean => SetLoadingAction;
 export type SetNotFoundActionCreator = boolean => SetNotFoundAction;
 export type SetPreviousLocationActionCreator = Location => SetPreviousLocationAction;
+export type LoadWorldActionCreator = GetWorldQueryVariables => LoadWorldAction;
 export type CreateWorldSubmitActionCreator = (CreateWorldInput, SubmitMeta) => CreateWorldSubmitAction;
 export type UpdateWorldSubmitActionCreator = (UpdateWorldInput, SubmitMeta) => UpdateWorldSubmitAction;
 export type CreateGameSubmitActionCreator = (CreateGameInput, SubmitMeta) => CreateGameSubmitAction;
@@ -72,13 +76,15 @@ export type EstablishCurrentUserActionCreator = () => EstablishCurrentUserAction
 export type GetCurrentProfileActionCreator = number => GetCurrentProfileAction;
 export type SetCurrentProfileActionCreator = Profile => SetCurrentProfileAction;
 export type UnsetCurrentProfileActionCreator = () => UnsetCurrentProfileAction;
-export type GetWorldsActionCreator = () => GetWorldsAction;
+export type ListWorldsActionCreator = () => ListWorldsAction;
 export type SetWorldsActionCreator = Array<World> => SetWorldsAction;
 export type CreateWorldActionCreator = CreateWorldInput => CreateWorldAction;
 export type UpdateWorldActionCreator = UpdateWorldInput => UpdateWorldAction;
 export type UpdateWorldSuccessActionCreator = World => UpdateWorldSuccessAction;
 export type UpdateWorldErrorActionCreator = Errors => UpdateWorldErrorAction;
 export type GetWorldActionCreator = GetWorldQueryVariables => GetWorldAction;
+export type GetWorldSuccessActionCreator = World => GetWorldSuccessAction;
+export type GetWorldErrorActionCreator = Errors => GetWorldErrorAction;
 export type SetWorldActionCreator = World => SetWorldAction;
 export type GetGameActionCreator = GetGameQueryVariables => GetGameAction;
 export type SetGameActionCreator = Game => SetGameAction;

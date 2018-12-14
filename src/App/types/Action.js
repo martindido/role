@@ -30,6 +30,20 @@ export type SetPreviousLocationAction = {
     payload: Location
 };
 
+export type LoadWorldsAction = {
+    type: 'LOAD_WORLDS'
+};
+
+export type LoadWorldAction = {
+    type: 'LOAD_WORLD',
+    payload: GetWorldQueryVariables
+};
+
+export type LoadGameAction = {
+    type: 'LOAD_GAME',
+    payload: GetGameQueryVariables
+};
+
 export type CreateWorldSubmitAction = {
     type: 'CREATE_WORLD_SUBMIT',
     payload: CreateWorldInput,
@@ -133,8 +147,18 @@ export type UnsetSearchResultsAction = {
     type: 'UNSET_SEARCH_RESULTS'
 };
 
-export type GetWorldsAction = {
-    type: 'GET_WORLDS'
+export type ListWorldsAction = {
+    type: 'LIST_WORLDS'
+};
+
+export type ListWorldsSuccessAction = {
+    type: 'LIST_WORLDS_SUCCESS',
+    payload: Array<World>
+};
+
+export type ListWorldsErrorAction = {
+    type: 'LIST_WORLDS_ERROR',
+    payload: Errors
 };
 
 export type SetWorldsAction = {
@@ -175,6 +199,16 @@ export type UpdateWorldErrorAction = {
 export type GetWorldAction = {
     type: 'GET_WORLD',
     payload: GetWorldQueryVariables
+};
+
+export type GetWorldSuccessAction = {
+    type: 'GET_WORLD_SUCCESS',
+    payload: World
+};
+
+export type GetWorldErrorAction = {
+    type: 'GET_WORLD_ERROR',
+    payload: Errors
 };
 
 export type SetWorldAction = {
@@ -221,6 +255,16 @@ export type GetGameAction = {
     payload: GetGameQueryVariables
 };
 
+export type GetGameSuccessAction = {
+    type: 'GET_GAME_SUCCESS',
+    payload: Game
+};
+
+export type GetGameErrorAction = {
+    type: 'GET_GAME_ERROR',
+    payload: Errors
+};
+
 export type SetGameAction = {
     type: 'SET_GAME',
     payload: Game
@@ -260,13 +304,17 @@ export type ProfileAction =
 
 export type GraphQLAction =
     | SearchAllAction
-    | GetWorldsAction
+    | ListWorldsAction
+    | ListWorldsSuccessAction
+    | ListWorldsErrorAction
     | SetWorldsAction
     | CreateWorldAction
     | UpdateWorldAction
     | UpdateWorldSuccessAction
     | UpdateWorldErrorAction
     | GetWorldAction
+    | GetWorldSuccessAction
+    | GetWorldErrorAction
     | SetWorldAction
     | UnsetWorldAction
     | CreateGameAction

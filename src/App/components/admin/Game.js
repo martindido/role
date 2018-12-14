@@ -9,15 +9,11 @@ import type { UpdateGameInput, CreateGameInput } from '../../types/GraphQL';
 import type {
     CreateGameSubmitActionCreator,
     UpdateGameSubmitActionCreator,
-    SetGameActionCreator,
-    SetNotFoundActionCreator,
-    SetLoadingActionCreator
+    SetGameActionCreator
 } from '../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
 export type Props = {
-    setLoading: SetLoadingActionCreator,
-    setNotFound: SetNotFoundActionCreator,
     createGameSubmit: CreateGameSubmitActionCreator,
     updateGameSubmit: UpdateGameSubmitActionCreator,
     setGame: SetGameActionCreator,
@@ -28,7 +24,6 @@ export type Props = {
         }
     },
     history: RouterHistory,
-    isLoading: boolean,
     isNotFound: boolean,
     world?: World,
     game?: GameType
@@ -36,33 +31,13 @@ export type Props = {
 
 export default class Game extends Component<Props> {
     componentDidUpdate(prevProps: Props) {
-        const {isLoading, isNotFound, world, game, computedMatch} = this.props;
-        const worldId = !!world && world.id;
-        const gameId = !!game && game.id;
-        const pathWorldId = computedMatch.params.worldId;
-        const pathGameId = computedMatch.params.gameId;
-        const hasLoadFinished = isNotFound || worldId === pathWorldId || gameId === pathGameId;
-        const hasGameChanged = prevProps.game !== game;
+        const {game, computedMatch: {params: {gameId}}} = this.props;
+        const gameCreated = !gameId && game;
+        const gameUpdated = gameId && prevProps.game && prevProps.game !== game;
 
-        if (isLoading && hasLoadFinished) {
-            return this.handleLoadFinished();
+        if (gameCreated || gameUpdated) {
+            this.props.history.push(this.getUp());
         }
-        if (hasGameChanged) {
-            return this.handleGameChanged()
-        }
-    }
-
-    componentWillUnmount() {
-        this.props.setLoading(false);
-        this.props.setNotFound(false);
-    }
-
-    handleLoadFinished() {
-        this.props.setLoading(false);
-    }
-
-    handleGameChanged() {
-        this.props.history.push(this.getUp());
     }
 
     handleSubmitCreate = async (game: CreateGameInput) => {

@@ -1,6 +1,6 @@
 import {
     SEARCH_ALL,
-    GET_WORLDS,
+    LIST_WORLDS,
     SET_WORLDS,
     CREATE_WORLD,
     CREATE_WORLD_SUCCESS,
@@ -9,6 +9,8 @@ import {
     UPDATE_WORLD_SUCCESS,
     UPDATE_WORLD_ERROR,
     GET_WORLD,
+    GET_WORLD_SUCCESS,
+    GET_WORLD_ERROR,
     SET_WORLD,
     UNSET_WORLD,
     CREATE_GAME,
@@ -18,13 +20,15 @@ import {
     UPDATE_GAME_SUCCESS,
     UPDATE_GAME_ERROR,
     GET_GAME,
+    GET_GAME_SUCCESS,
+    GET_GAME_ERROR,
     SET_GAME,
     UNSET_GAME
 } from '../constants/actions';
 
 import type {
     SearchAllAction,
-    GetWorldsAction,
+    ListWorldsAction,
     SetWorldsAction,
     CreateWorldAction,
     CreateWorldSuccessAction,
@@ -33,6 +37,8 @@ import type {
     UpdateWorldSuccessAction,
     UpdateWorldErrorAction,
     GetWorldAction,
+    GetWorldSuccessAction,
+    GetWorldErrorAction,
     SetWorldAction,
     UnsetWorldAction,
     CreateGameAction,
@@ -42,6 +48,8 @@ import type {
     UpdateGameSuccessAction,
     UpdateGameErrorAction,
     GetGameAction,
+    GetGameSuccessAction,
+    GetGameErrorAction,
     SetGameAction,
     UnsetGameAction
 } from '../types/Action';
@@ -63,9 +71,9 @@ export function searchAll(value: string): SearchAllAction {
     };
 };
 
-export function getWorlds(): GetWorldsAction {
+export function listWorlds(): ListWorldsAction {
     return {
-        type: GET_WORLDS
+        type: LIST_WORLDS
     };
 };
 
@@ -114,6 +122,20 @@ export function updateWorldSuccess(world: World): UpdateWorldSuccessAction {
 export function updateWorldError(errors: Errors): UpdateWorldErrorAction {
     return {
         type: UPDATE_WORLD_ERROR,
+        payload: errors
+    };
+};
+
+export function getWorldSuccess(world: World): GetWorldSuccessAction {
+    return {
+        type: GET_WORLD_SUCCESS,
+        payload: world
+    };
+};
+
+export function getWorldError(errors: Errors): GetWorldErrorAction {
+    return {
+        type: GET_WORLD_ERROR,
         payload: errors
     };
 };
@@ -188,6 +210,20 @@ export function getGame(id: string): GetGameAction {
         payload: {
             id
         }
+    };
+};
+
+export function getGameSuccess(game: Game): GetGameSuccessAction {
+    return {
+        type: GET_GAME_SUCCESS,
+        payload: game
+    };
+};
+
+export function getGameError(errors: Errors): GetGameErrorAction {
+    return {
+        type: GET_GAME_ERROR,
+        payload: errors
     };
 };
 

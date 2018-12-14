@@ -9,29 +9,12 @@ import {
 import '../../styles/Worlds.css';
 
 import type { World } from '../../types/World';
-import type { SetLoadingActionCreator } from '../../types/ActionCreator';
 
 type Props = {
-    worlds: Array<World>,
-    setLoading: SetLoadingActionCreator,
-    isLoading: boolean
+    worlds: Array<World>
 };
 
 export default class Worlds extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        const hasWorldsChanged = this.props.worlds !== prevProps.worlds || this.props.worlds.length !== prevProps.worlds.length;
-
-        if (hasWorldsChanged && this.props.isLoading) {
-            this.props.setLoading(false);
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.props.isLoading) {
-            this.props.setLoading(false);
-        }
-    }
-
     render() {
         const header = {
             menu: {
