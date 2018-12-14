@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import World from '../../../components/forms/admin/World';
+import Game from '../../../components/forms/admin/Game';
 
 import type { State } from '../../../types/State';
 
@@ -27,5 +27,5 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(reduxForm({
-    form: 'Game'
-})(World));
+    enableReinitialize: true
+})(Game));

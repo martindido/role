@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Form, Message } from 'semantic-ui-react';
 import { Field } from 'redux-form';
+import slugify from 'slugify';
 
 import '../../../styles/Form.css';
 
 import type { FormProps } from 'redux-form';
 
-export default class Games extends Component<FormProps> {
+export default class Game extends Component<FormProps> {
+    handleChangeName = (event: Object, newName: string) => {
+        this.props.change('path', slugify(newName));
+    }
+
     render() {
         const {handleSubmit, submitting, invalid, error} = this.props;
 
@@ -18,13 +23,7 @@ export default class Games extends Component<FormProps> {
                     name='name'
                     placeholder='Name'
                     label='Name'
-                />
-                <Field
-                    fluid
-                    component={ Form.Input }
-                    name='path'
-                    placeholder='Path'
-                    label='Path'
+                    onChange={ this.handleChangeName }
                 />
                 <Form.Button fluid size='massive' inverted>Submit</Form.Button>
                 { error ? (

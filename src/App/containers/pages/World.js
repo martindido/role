@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch: *) =>
 const frontload = async props => {
     const {world, computedMatch: {params: {worldId}}} = props;
     const worldLoaded = world && world.id === worldId;
-
+    
     if (!worldLoaded) {
         props.loadWorld(worldId);
     }

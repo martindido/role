@@ -13,10 +13,10 @@ import { SignIn, path as SignInPath } from '../routes/auth/SignIn';
 import { SignUp, path as SignUpPath } from '../routes/auth/SignUp';
 import { SignUpConfirm, path as SignUpConfirmPath } from '../routes/auth/SignUpConfirm';
 import { SignOut, path as SignOutPath } from '../routes/auth/SignOut';
-import { AdminWorlds, path as AdminWorldsPath } from '../routes/admin/Worlds';
-import { AdminWorld, path as AdminWorldPath } from '../routes/admin/World';
-import { AdminGames, path as AdminGamesPath } from '../routes/admin/Games';
-import { AdminGame, path as AdminGamePath } from '../routes/admin/Game';
+import { AdminCreateWorld, path as AdminCreateWorldPath } from '../routes/admin/create/World';
+import { AdminUpdateWorld, path as AdminUpdateWorldPath } from '../routes/admin/update/World';
+import { AdminCreateGame, path as AdminCreateGamePath } from '../routes/admin/create/Game';
+import { AdminUpdateGame, path as AdminUpdateGamePath } from '../routes/admin/update/Game';
 import NotFount from '../containers/pages/NotFound';
 
 import type { Location } from 'react-router-dom';
@@ -40,10 +40,10 @@ export default class Routes extends Component<Props> {
         return (
             <Switch>
                 <DualRoute exact path={ HomePath } unauthenticatedComponent={ Home } authenticatedComponent={ Worlds }/>
-                <AdminRoute exact path={ AdminWorldsPath } component={ AdminWorlds }/>
-                <AdminRoute exact path={ AdminWorldPath } component={ AdminWorld }/>
-                <AdminRoute exact path={ AdminGamesPath } component={ AdminGames }/>
-                <AdminRoute exact path={ AdminGamePath } component={ AdminGame }/>
+                <AdminRoute exact path={ AdminCreateWorldPath } component={ AdminCreateWorld }/>
+                <AdminRoute exact path={ AdminUpdateWorldPath } component={ AdminUpdateWorld }/>
+                <AdminRoute exact path={ AdminCreateGamePath } component={ AdminCreateGame }/>
+                <AdminRoute exact path={ AdminUpdateGamePath } component={ AdminUpdateGame }/>
                 <AuthenticatedRoute exact path={ GamePath } component={ Game }/>
                 <AuthenticatedRoute exact path={ WorldPath } component={ World }/>
                 <AuthenticatedRoute exact path={ SignOutPath } component={ SignOut }/>

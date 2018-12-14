@@ -20,5 +20,5 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(reduxForm({
-    form: 'World'
+    enableReinitialize: true
 })(World));
