@@ -52,13 +52,15 @@ import type {
     SetPreviousLocationAction,
     SetNotFoundAction,
     SetLoadingAction,
-    LoadWorldAction
+    LoadWorldAction,
+    LoadGameAction
 } from './Action';
 
 export type SetLoadingActionCreator = boolean => SetLoadingAction;
 export type SetNotFoundActionCreator = boolean => SetNotFoundAction;
 export type SetPreviousLocationActionCreator = Location => SetPreviousLocationAction;
-export type LoadWorldActionCreator = GetWorldQueryVariables => LoadWorldAction;
+export type LoadWorldActionCreator = string => LoadWorldAction;
+export type LoadGameActionCreator = string => LoadGameAction;
 export type CreateWorldSubmitActionCreator = (CreateWorldInput, SubmitMeta) => CreateWorldSubmitAction;
 export type UpdateWorldSubmitActionCreator = (UpdateWorldInput, SubmitMeta) => UpdateWorldSubmitAction;
 export type CreateGameSubmitActionCreator = (CreateGameInput, SubmitMeta) => CreateGameSubmitAction;
@@ -82,11 +84,11 @@ export type CreateWorldActionCreator = CreateWorldInput => CreateWorldAction;
 export type UpdateWorldActionCreator = UpdateWorldInput => UpdateWorldAction;
 export type UpdateWorldSuccessActionCreator = World => UpdateWorldSuccessAction;
 export type UpdateWorldErrorActionCreator = Errors => UpdateWorldErrorAction;
-export type GetWorldActionCreator = GetWorldQueryVariables => GetWorldAction;
+export type GetWorldActionCreator = string => GetWorldAction;
 export type GetWorldSuccessActionCreator = World => GetWorldSuccessAction;
 export type GetWorldErrorActionCreator = Errors => GetWorldErrorAction;
 export type SetWorldActionCreator = World => SetWorldAction;
-export type GetGameActionCreator = GetGameQueryVariables => GetGameAction;
+export type GetGameActionCreator = string => GetGameAction;
 export type SetGameActionCreator = Game => SetGameAction;
 export type UnsetWorldActionCreator = () => UnsetWorldAction;
 export type SearchAllActionCreator = string => SearchAllAction;

@@ -8,6 +8,7 @@ import {
 import '../../styles/Worlds.css';
 
 import type { Game as GameType } from '../../types/Game';
+import type { LoadGameActionCreator } from '../../types/ActionCreator';
 
 export type Props = {
     game?: GameType,
@@ -16,10 +17,19 @@ export type Props = {
             worldId: string,
             gameId: string
         }
-    }
+    },
+    loadGame: LoadGameActionCreator
 };
 
 export default class Game extends Component<Props> {
+    componentWillReceiveProps(nextProps: Props) {
+        const {game, computedMatch: {params: {gameId}}} = nextProps;
+
+        if (game && game.id !== gameId) {
+            this.props.loadGame(gameId);
+        }
+    }
+
     render() {
         const {game, computedMatch: {params: {gameId, worldId}}} = this.props;
         const title = game ? game.name : 'Game';

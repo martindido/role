@@ -5,11 +5,12 @@ import {
     Image,
     Header as SemanticHeader
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import '../../styles/Worlds.css';
 
 import type { World as WorldType } from '../../types/World';
-import { Link } from 'react-router-dom';
+import type { LoadWorldActionCreator } from '../../types/ActionCreator';
 
 export type Props = {
     world?: WorldType,
@@ -17,10 +18,19 @@ export type Props = {
         params: {
             worldId: string
         }
-    }
+    },
+    loadWorld: LoadWorldActionCreator
 };
 
 export default class World extends Component<Props> {
+    componentWillReceiveProps(nextProps: Props) {
+        const {world, computedMatch: {params: {worldId}}} = nextProps;
+
+        if (world && world.id !== worldId) {
+            this.props.loadWorld(worldId);
+        }
+    }
+
     render() {
         const {world, computedMatch: {params: {worldId}}} = this.props;
         const title = world ? world.name : 'World';

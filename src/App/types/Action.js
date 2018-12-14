@@ -36,12 +36,12 @@ export type LoadWorldsAction = {
 
 export type LoadWorldAction = {
     type: 'LOAD_WORLD',
-    payload: GetWorldQueryVariables
+    payload: string
 };
 
 export type LoadGameAction = {
     type: 'LOAD_GAME',
-    payload: GetGameQueryVariables
+    payload: string
 };
 
 export type CreateWorldSubmitAction = {

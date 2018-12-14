@@ -8,7 +8,7 @@ import type {
     LoadWorldAction,
     LoadGameAction
 } from '../types/Action';
-import type { GetWorldQueryVariables, GetGameQueryVariables } from '../types/GraphQL';
+import type { GetWorldQueryVariables } from '../types/GraphQL';
 
 export function loadWorlds(payload: GetWorldQueryVariables): LoadWorldsAction {
     return {
@@ -17,16 +17,16 @@ export function loadWorlds(payload: GetWorldQueryVariables): LoadWorldsAction {
     };
 };
 
-export function loadWorld(payload: GetWorldQueryVariables): LoadWorldAction {
+export function loadWorld(id: string): LoadWorldAction {
     return {
         type: LOAD_WORLD,
-        payload
+        payload: id
     };
 };
 
-export function loadGame(payload: GetGameQueryVariables): LoadGameAction {
+export function loadGame(id: string): LoadGameAction {
     return {
         type: LOAD_GAME,
-        payload
+        payload: id
     };
 };
