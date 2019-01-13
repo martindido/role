@@ -1,1 +1,1 @@
-export const USER = 'role:user';
+export const USER = 'user';

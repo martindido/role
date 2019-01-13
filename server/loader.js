@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React from 'react';
+import Amplify from 'aws-amplify';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
@@ -14,8 +15,11 @@ import App from '../src/app';
 import manifest from '../build/asset-manifest.json';
 import { setCurrentUser, signOut } from '../src/App/actions/auth';
 import { USER } from '../src/App/constants/cookies';
+import aws_exports from '../src/aws-exports';
 
 import type { $Request, $Response } from 'express';
+
+Amplify.configure(aws_exports);
 
 export default (req: $Request, res: $Response) => {
     const injectHTML = (data, { html, title, meta, link, body, scripts, state }) => {
@@ -42,8 +46,8 @@ export default (req: $Request, res: $Response) => {
 
             const { store } = createStore(req.url);
 
-            if ('USER' in req.cookies) {
-                store.dispatch(setCurrentUser(req.cookies[USER]));
+            if (USER in req.cookies) {
+                store.dispatch(setCurrentUser(JSON.parse(req.cookies[USER])));
             } else {
                 store.dispatch(signOut());
             }
