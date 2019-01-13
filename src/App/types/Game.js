@@ -1,8 +1,12 @@
 import type { World } from './World';
+// import type { File } from './Storage';
 
 export type Game = {
     id: string,
     name: string,
-    path: boolean,
+    slug: boolean,
+    // logo: File,
+    logoExt: string,
+    logoSrc: string,
     world: World
 };

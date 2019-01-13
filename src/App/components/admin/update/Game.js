@@ -4,9 +4,10 @@ import Form from '../../../containers/forms/admin/Game';
 import { Header } from 'semantic-ui-react';
 
 import type { Game as GameType } from '../../../types/Game';
-import type { UpdateGameInput } from '../../../types/GraphQL';
+import type { UpdateGameSubmit } from '../../../types/Submit';
 import type { UpdateGameSubmitActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
+import { SubmissionError } from 'redux-form';
 
 export type Props = {
     updateGameSubmit: UpdateGameSubmitActionCreator,
@@ -22,27 +23,25 @@ export type Props = {
 };
 
 export default class Game extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        const gameUpdated = prevProps.game && prevProps.game !== this.props.game;
-
-        if (gameUpdated) {
+    handleSubmit = async (submit: UpdateGameSubmit) => {
+        try {
+            await this.updateGame(submit);
             this.props.history.push(this.getUp());
+        }
+        catch (err) {
+            throw new SubmissionError({
+                _error: 'An unexpected error occurred'
+            });
         }
     }
 
-    handleSubmit = async (game: UpdateGameInput) => {
-        try {
-            await new Promise((resolve, reject) => {
-                this.props.updateGameSubmit(game, {
-                    resolve,
-                    reject
-                });
-            })
-
-        }
-        catch (err) {
-            throw err;
-        }
+    updateGame = async (submit: UpdateGameSubmit) => {
+        return await new Promise((resolve, reject) => {
+            this.props.updateGameSubmit(submit, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
     }
 
     getUp() {

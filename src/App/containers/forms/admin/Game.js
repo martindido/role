@@ -1,24 +1,29 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import Game from '../../../components/forms/admin/Game';
 
 import type { State } from '../../../types/State';
 
-const mapStateToProps = ({graphql}: State) => {
-    const props = {
-        initialValues: graphql.game ? {
-            id: graphql.game.id,
-            name: graphql.game.name,
-            path: graphql.game.path,
-            gameWorldId: graphql.game.world.id
-        } : graphql.world ? {
-            gameWorldId: graphql.world.id
+const selector = formValueSelector('edit-game');
+const mapStateToProps = (state: State) => ({
+    game: state.graphql.game,
+    selectedValues: {
+        logo: selector(state, 'logo')
+    },
+    initialValues: {
+        game: state.graphql.game ? {
+            id: state.graphql.game.id,
+            name: state.graphql.game.name,
+            slug: state.graphql.game.slug,
+            // logo: state.graphql.game.logo,
+            logoExt: state.graphql.game.logoExt,
+            gameWorldId: state.graphql.game.world.id
+        } : state.graphql.world ? {
+            gameWorldId: state.graphql.world.id
         } : {}
-    };
-
-    return props;
-};
+    }
+});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators({}, dispatch);

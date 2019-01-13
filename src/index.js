@@ -12,12 +12,12 @@ import aws_exports from './aws-exports';
 
 Amplify.configure(aws_exports);
 
-const { store, history } = createStore();
+const {store, history} = createStore();
 const Application = (
     <Provider store={ store }>
         <ConnectedRouter history={ history }>
             <Frontload noServerRender={ true }>
-                <App />
+                <App/>
             </Frontload>
         </ConnectedRouter>
     </Provider>

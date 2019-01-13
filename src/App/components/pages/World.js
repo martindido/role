@@ -56,18 +56,16 @@ export default class World extends Component<Props> {
                 { world ? (
                     <Fragment>
                         <SemanticHeader as='h2' inverted>
-                            <Image circular src={
-                                require(`../../images/worlds/dungeons-and-dragons-logo.png`)
-                            }/> { world.name }
+                            <Image src={ world.logoSrc } circular/> { world.name }
                         </SemanticHeader>
                         { world.games.length ? (
                             <List animated divided selection verticalAlign='middle' size='massive' inverted>
                                 { world.games.map(game => (
-                                    <List.Item as={ Link } to={ `/worlds/${ world.id }/games/${ game.id }` }
-                                               key={ game.id }>
-                                        <Image avatar src={
-                                            require(`../../images/worlds/dungeons-and-dragons-logo.png`)
-                                        }/>
+                                    <List.Item as={ Link }
+                                               to={ `/worlds/${ world.id }/games/${ game.id }` }
+                                               key={ game.id }
+                                    >
+                                        <Image src={ game.logoSrc } avatar/>
                                         <List.Content>
                                             <List.Header>{ game.name }</List.Header>
                                         </List.Content>

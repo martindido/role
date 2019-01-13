@@ -51,9 +51,7 @@ export default class Game extends Component<Props> {
                 { game ? (
                     <Fragment>
                         <SemanticHeader as='h2' inverted>
-                            <Image circular src={
-                                require(`../../images/worlds/dungeons-and-dragons-logo.png`)
-                            }/> { game.name }
+                            <Image src={ game.logoSrc } circular/> { game.name }
                         </SemanticHeader>
                     </Fragment>
                 ) : null }

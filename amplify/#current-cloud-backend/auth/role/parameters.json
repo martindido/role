@@ -1,6 +1,6 @@
 {
     "identityPoolName": "role",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "thirdPartyAuth": false,
     "lambdaLogPolicy": "role_lambda_log_policy",
     "openIdLambdaRoleName": "role_openid_lambda_role",

@@ -1,22 +1,31 @@
-import { SubmissionError } from 'redux-form';
-
-import type { World } from './World';
+import type { CreateWorldInput, CreateGameInput, UpdateGameInput, UpdateWorldInput } from './GraphQL';
+import type { File } from './Storage';
 
 export type Error = {} | string;
 
 export type Errors = Array<Error>;
 
-export type Submit = {
-    success?: {},
-    errors?: Errors
-};
+export type CreateWorldSubmit = {
+    world: CreateWorldInput,
+    logo: File
+}
+
+export type CreateGameSubmit = {
+    game: CreateGameInput,
+    logo: File
+}
 
 export type UpdateWorldSubmit = {
-    success?: World,
-    errors?: Errors
+    world: UpdateWorldInput,
+    logo?: File
+}
+
+export type UpdateGameSubmit = {
+    game: UpdateGameInput,
+    logo?: File
 }
 
 export type SubmitMeta = {
-    resolve: {} => void,
-    reject: (typeof SubmissionError) => void
+    onSuccess: * => *,
+    onError: * => *
 }

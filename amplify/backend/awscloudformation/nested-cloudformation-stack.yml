@@ -91,7 +91,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/auth/role-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "role",
-					"allowUnauthenticatedIdentities": true,
+					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": false,
 					"lambdaLogPolicy": "role_lambda_log_policy",
 					"openIdLambdaRoleName": "role_openid_lambda_role",
@@ -147,12 +147,27 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://role-20181027160927-deployment/amplify-appsync-files/schema.graphql.1544709922935",
 					"ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
 					"ElasticSearchStreamingLambdaCodeS3Bucket": "role-20181027160927-deployment",
+					"schemaGraphql": "s3://role-20181027160927-deployment/amplify-appsync-files/schema.graphql.1547245737710",
 					"ResolverBucket": "role-20181027160927-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1544709922935"
+					"DeploymentTimestamp": "1547245737710"
+				}
+			}
+		},
+		"storageimages": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"Parameters": {
+					"bucketName": "role-images",
+					"authPolicyName": "s3_amplify_1544d4d6",
+					"unauthPolicyName": "s3_amplify_1544d4d6",
+					"authRoleName": "role-20181027160927-authRole",
+					"unauthRoleName": "role-20181027160927-unauthRole",
+					"authPermissions": "rw",
+					"unauthPermissions": ""
 				}
 			}
 		}

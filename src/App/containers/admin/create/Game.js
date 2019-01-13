@@ -18,13 +18,10 @@ const mapDispatchToProps = (dispatch: *) =>
     }, dispatch);
 
 const frontload = props => {
-    const {world, computedMatch: {params: {worldId}}} = props;
-    const worldLoaded = world && world.id === worldId;
+    const {computedMatch: {params: {worldId}}} = props;
 
-    if (!worldLoaded) {
-        props.loadWorld(worldId);
-    }
     props.unsetGame();
+    props.loadWorld(worldId);
 };
 
 export default connect(

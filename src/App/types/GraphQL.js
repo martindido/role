@@ -5,13 +5,15 @@
 export type CreateWorldInput = {|
   id?: ?string,
   name: string,
-  path: string,
+  slug: string,
+  logoExt: string,
 |};
 
 export type UpdateWorldInput = {|
   id: string,
   name?: ?string,
-  path?: ?string,
+  slug?: ?string,
+  logoExt?: ?string,
 |};
 
 export type DeleteWorldInput = {|
@@ -21,14 +23,16 @@ export type DeleteWorldInput = {|
 export type CreateGameInput = {|
   id?: ?string,
   name: string,
-  path: string,
+  slug: string,
+  logoExt: string,
   gameWorldId: string,
 |};
 
 export type UpdateGameInput = {|
   id: string,
   name?: ?string,
-  path?: ?string,
+  slug?: ?string,
+  logoExt?: ?string,
   gameWorldId?: ?string,
 |};
 
@@ -39,7 +43,8 @@ export type DeleteGameInput = {|
 export type ModelWorldFilterInput = {|
   id?: ?ModelIDFilterInput,
   name?: ?ModelStringFilterInput,
-  path?: ?ModelStringFilterInput,
+  slug?: ?ModelStringFilterInput,
+  logoExt?: ?ModelStringFilterInput,
   and?: ?Array< ?ModelWorldFilterInput >,
   or?: ?Array< ?ModelWorldFilterInput >,
   not?: ?ModelWorldFilterInput,
@@ -74,7 +79,8 @@ export type ModelStringFilterInput = {|
 export type ModelGameFilterInput = {|
   id?: ?ModelIDFilterInput,
   name?: ?ModelStringFilterInput,
-  path?: ?ModelStringFilterInput,
+  slug?: ?ModelStringFilterInput,
+  logoExt?: ?ModelStringFilterInput,
   and?: ?Array< ?ModelGameFilterInput >,
   or?: ?Array< ?ModelGameFilterInput >,
   not?: ?ModelGameFilterInput,
@@ -83,7 +89,8 @@ export type ModelGameFilterInput = {|
 export type SearchableWorldFilterInput = {|
   id?: ?SearchableIDFilterInput,
   name?: ?SearchableStringFilterInput,
-  path?: ?SearchableStringFilterInput,
+  slug?: ?SearchableStringFilterInput,
+  logoExt?: ?SearchableStringFilterInput,
   and?: ?Array< ?SearchableWorldFilterInput >,
   or?: ?Array< ?SearchableWorldFilterInput >,
   not?: ?SearchableWorldFilterInput,
@@ -121,7 +128,8 @@ export type SearchableWorldSortInput = {|
 export type SearchableWorldSortableFields =
   "id" |
   "name" |
-  "path";
+  "slug" |
+  "logoExt";
 
 
 export type SearchableSortDirection =
@@ -132,7 +140,8 @@ export type SearchableSortDirection =
 export type SearchableGameFilterInput = {|
   id?: ?SearchableIDFilterInput,
   name?: ?SearchableStringFilterInput,
-  path?: ?SearchableStringFilterInput,
+  slug?: ?SearchableStringFilterInput,
+  logoExt?: ?SearchableStringFilterInput,
   and?: ?Array< ?SearchableGameFilterInput >,
   or?: ?Array< ?SearchableGameFilterInput >,
   not?: ?SearchableGameFilterInput,
@@ -146,7 +155,8 @@ export type SearchableGameSortInput = {|
 export type SearchableGameSortableFields =
   "id" |
   "name" |
-  "path";
+  "slug" |
+  "logoExt";
 
 
 export type CreateWorldMutationVariables = {|
@@ -158,14 +168,16 @@ export type CreateWorldMutation = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -181,14 +193,16 @@ export type UpdateWorldMutation = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -204,14 +218,16 @@ export type DeleteWorldMutation = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -227,12 +243,14 @@ export type CreateGameMutation = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -246,12 +264,14 @@ export type UpdateGameMutation = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -265,12 +285,14 @@ export type DeleteGameMutation = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -284,14 +306,16 @@ export type GetWorldQuery = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -311,14 +335,16 @@ export type ListWorldsQuery = {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
       games: ? {|
         __typename: string,
         items: ? Array<? {|
           __typename: string,
           id: string,
           name: string,
-          path: string,
+          slug: string,
+          logoExt: string,
         |} >,
         nextToken: ?string,
       |},
@@ -336,12 +362,14 @@ export type GetGameQuery = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -359,12 +387,14 @@ export type ListGamesQuery = {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
       world: {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |},
     |} >,
     nextToken: ?string,
@@ -385,14 +415,16 @@ export type SearchWorldsQuery = {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
       games: ? {|
         __typename: string,
         items: ? Array<? {|
           __typename: string,
           id: string,
           name: string,
-          path: string,
+          slug: string,
+          logoExt: string,
         |} >,
         nextToken: ?string,
       |},
@@ -415,12 +447,14 @@ export type SearchGamesQuery = {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
       world: {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |},
     |} >,
     nextToken: ?string,
@@ -432,14 +466,16 @@ export type OnCreateWorldSubscription = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -451,14 +487,16 @@ export type OnUpdateWorldSubscription = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -470,14 +508,16 @@ export type OnDeleteWorldSubscription = {|
     __typename: "World",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     games: ? {|
       __typename: string,
       items: ? Array<? {|
         __typename: string,
         id: string,
         name: string,
-        path: string,
+        slug: string,
+        logoExt: string,
       |} >,
       nextToken: ?string,
     |},
@@ -489,12 +529,14 @@ export type OnCreateGameSubscription = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -504,12 +546,14 @@ export type OnUpdateGameSubscription = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};
@@ -519,12 +563,14 @@ export type OnDeleteGameSubscription = {|
     __typename: "Game",
     id: string,
     name: string,
-    path: string,
+    slug: string,
+    logoExt: string,
     world: {|
       __typename: string,
       id: string,
       name: string,
-      path: string,
+      slug: string,
+      logoExt: string,
     |},
   |},
 |};

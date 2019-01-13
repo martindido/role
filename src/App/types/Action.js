@@ -12,7 +12,15 @@ import type {
 } from './GraphQL';
 import type { World } from './World';
 import type { SearchResults } from './Search';
-import type { Errors, SubmitMeta } from './Submit';
+import type {
+    Errors,
+    SubmitMeta,
+    CreateWorldSubmit,
+    UpdateWorldSubmit,
+    CreateGameSubmit,
+    UpdateGameSubmit
+} from './Submit';
+import type { FileUpload } from './Storage';
 import type { Game } from './Game';
 
 export type SetLoadingAction = {
@@ -46,26 +54,40 @@ export type LoadGameAction = {
 
 export type CreateWorldSubmitAction = {
     type: 'CREATE_WORLD_SUBMIT',
-    payload: CreateWorldInput,
+    payload: CreateWorldSubmit,
     meta: SubmitMeta
 };
 
 export type UpdateWorldSubmitAction = {
     type: 'UPDATE_WORLD_SUBMIT',
-    payload: UpdateWorldInput,
+    payload: UpdateWorldSubmit,
     meta: SubmitMeta
 };
 
 export type CreateGameSubmitAction = {
     type: 'CREATE_GAME_SUBMIT',
-    payload: CreateGameInput,
+    payload: CreateGameSubmit,
     meta: SubmitMeta
 };
 
 export type UpdateGameSubmitAction = {
     type: 'UPDATE_GAME_SUBMIT',
-    payload: UpdateGameInput,
+    payload: UpdateGameSubmit,
     meta: SubmitMeta
+};
+
+export type UploadFileAction = {
+    type: 'UPLOAD_FILE',
+    payload: FileUpload
+};
+
+export type UploadFileSuccessAction = {
+    type: 'UPLOAD_FILE_SUCCESS'
+};
+
+export type UploadFileErrorAction = {
+    type: 'UPLOAD_FILE_ERROR',
+    payload: Errors
 };
 
 export type SignInAction = {

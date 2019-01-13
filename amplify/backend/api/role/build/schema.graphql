@@ -1,15 +1,24 @@
 type World {
   id: ID!
   name: String!
-  path: String!
+  slug: String!
+  logoExt: String!
   games(filter: ModelGameFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelGameConnection
 }
 
 type Game {
   id: ID!
   name: String!
-  path: String!
+  slug: String!
+  logoExt: String!
   world: World!
+}
+
+type Logo {
+  name: String!
+  size: Int!
+  type: String!
+  extension: String!
 }
 
 enum ModelSortDirection {
@@ -80,7 +89,8 @@ input ModelBooleanFilterInput {
 input ModelWorldFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
-  path: ModelStringFilterInput
+  slug: ModelStringFilterInput
+  logoExt: ModelStringFilterInput
   and: [ModelWorldFilterInput]
   or: [ModelWorldFilterInput]
   not: ModelWorldFilterInput
@@ -98,13 +108,15 @@ type Query {
 input CreateWorldInput {
   id: ID
   name: String!
-  path: String!
+  slug: String!
+  logoExt: String!
 }
 
 input UpdateWorldInput {
   id: ID!
   name: String
-  path: String
+  slug: String
+  logoExt: String
 }
 
 input DeleteWorldInput {
@@ -137,7 +149,8 @@ type ModelGameConnection {
 input ModelGameFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
-  path: ModelStringFilterInput
+  slug: ModelStringFilterInput
+  logoExt: ModelStringFilterInput
   and: [ModelGameFilterInput]
   or: [ModelGameFilterInput]
   not: ModelGameFilterInput
@@ -146,14 +159,16 @@ input ModelGameFilterInput {
 input CreateGameInput {
   id: ID
   name: String!
-  path: String!
+  slug: String!
+  logoExt: String!
   gameWorldId: ID!
 }
 
 input UpdateGameInput {
   id: ID!
   name: String
-  path: String
+  slug: String
+  logoExt: String
   gameWorldId: ID
 }
 
@@ -213,7 +228,8 @@ input SearchableBooleanFilterInput {
 input SearchableWorldFilterInput {
   id: SearchableIDFilterInput
   name: SearchableStringFilterInput
-  path: SearchableStringFilterInput
+  slug: SearchableStringFilterInput
+  logoExt: SearchableStringFilterInput
   and: [SearchableWorldFilterInput]
   or: [SearchableWorldFilterInput]
   not: SearchableWorldFilterInput
@@ -227,7 +243,8 @@ enum SearchableSortDirection {
 enum SearchableWorldSortableFields {
   id
   name
-  path
+  slug
+  logoExt
 }
 
 input SearchableWorldSortInput {
@@ -243,7 +260,8 @@ type SearchableWorldConnection {
 input SearchableGameFilterInput {
   id: SearchableIDFilterInput
   name: SearchableStringFilterInput
-  path: SearchableStringFilterInput
+  slug: SearchableStringFilterInput
+  logoExt: SearchableStringFilterInput
   and: [SearchableGameFilterInput]
   or: [SearchableGameFilterInput]
   not: SearchableGameFilterInput
@@ -252,7 +270,8 @@ input SearchableGameFilterInput {
 enum SearchableGameSortableFields {
   id
   name
-  path
+  slug
+  logoExt
 }
 
 input SearchableGameSortInput {

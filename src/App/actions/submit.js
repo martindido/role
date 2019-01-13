@@ -11,10 +11,15 @@ import type {
     UpdateGameSubmitAction,
     CreateGameSubmitAction
 } from '../types/Action';
-import type { SubmitMeta } from '../types/Submit';
-import type { UpdateWorldInput, CreateWorldInput, CreateGameInput, UpdateGameInput } from '../types/GraphQL';
+import type {
+    SubmitMeta,
+    CreateWorldSubmit,
+    UpdateWorldSubmit,
+    CreateGameSubmit,
+    UpdateGameSubmit
+} from '../types/Submit';
 
-export function createWorldSubmit(payload: CreateWorldInput, meta: SubmitMeta): CreateWorldSubmitAction {
+export function createWorldSubmit(payload: CreateWorldSubmit, meta: SubmitMeta): CreateWorldSubmitAction {
     return {
         type: CREATE_WORLD_SUBMIT,
         payload,
@@ -22,7 +27,7 @@ export function createWorldSubmit(payload: CreateWorldInput, meta: SubmitMeta): 
     };
 }
 
-export function updateWorldSubmit(payload: UpdateWorldInput, meta: SubmitMeta): UpdateWorldSubmitAction {
+export function updateWorldSubmit(payload: UpdateWorldSubmit, meta: SubmitMeta): UpdateWorldSubmitAction {
     return {
         type: UPDATE_WORLD_SUBMIT,
         payload,
@@ -30,7 +35,7 @@ export function updateWorldSubmit(payload: UpdateWorldInput, meta: SubmitMeta): 
     };
 }
 
-export function createGameSubmit(payload: CreateGameInput, meta: SubmitMeta): CreateGameSubmitAction {
+export function createGameSubmit(payload: CreateGameSubmit, meta: SubmitMeta): CreateGameSubmitAction {
     return {
         type: CREATE_GAME_SUBMIT,
         payload,
@@ -38,7 +43,7 @@ export function createGameSubmit(payload: CreateGameInput, meta: SubmitMeta): Cr
     };
 }
 
-export function updateGameSubmit(payload: UpdateGameInput, meta: SubmitMeta): UpdateGameSubmitAction {
+export function updateGameSubmit(payload: UpdateGameSubmit, meta: SubmitMeta): UpdateGameSubmitAction {
     return {
         type: UPDATE_GAME_SUBMIT,
         payload,

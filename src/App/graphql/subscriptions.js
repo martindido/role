@@ -5,12 +5,14 @@ export const onCreateWorld = `subscription OnCreateWorld {
   onCreateWorld {
     id
     name
-    path
+    slug
+    logoExt
     games {
       items {
         id
         name
-        path
+        slug
+        logoExt
       }
       nextToken
     }
@@ -21,12 +23,14 @@ export const onUpdateWorld = `subscription OnUpdateWorld {
   onUpdateWorld {
     id
     name
-    path
+    slug
+    logoExt
     games {
       items {
         id
         name
-        path
+        slug
+        logoExt
       }
       nextToken
     }
@@ -37,12 +41,14 @@ export const onDeleteWorld = `subscription OnDeleteWorld {
   onDeleteWorld {
     id
     name
-    path
+    slug
+    logoExt
     games {
       items {
         id
         name
-        path
+        slug
+        logoExt
       }
       nextToken
     }
@@ -53,11 +59,13 @@ export const onCreateGame = `subscription OnCreateGame {
   onCreateGame {
     id
     name
-    path
+    slug
+    logoExt
     world {
       id
       name
-      path
+      slug
+      logoExt
     }
   }
 }
@@ -66,11 +74,13 @@ export const onUpdateGame = `subscription OnUpdateGame {
   onUpdateGame {
     id
     name
-    path
+    slug
+    logoExt
     world {
       id
       name
-      path
+      slug
+      logoExt
     }
   }
 }
@@ -79,11 +89,13 @@ export const onDeleteGame = `subscription OnDeleteGame {
   onDeleteGame {
     id
     name
-    path
+    slug
+    logoExt
     world {
       id
       name
-      path
+      slug
+      logoExt
     }
   }
 }

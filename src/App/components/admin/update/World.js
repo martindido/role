@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react';
 import Page from '../../../containers/pages/Page';
 import Form from '../../../containers/forms/admin/World';
 import { Header } from 'semantic-ui-react';
+import { SubmissionError } from 'redux-form';
 
 import type { World as WorldType } from '../../../types/World';
-import type { UpdateWorldInput } from '../../../types/GraphQL';
 import type { UpdateWorldSubmitActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
+import type { UpdateWorldSubmit } from '../../../types/Submit';
+
 
 export type Props = {
     updateWorldSubmit: UpdateWorldSubmitActionCreator,
@@ -21,27 +23,25 @@ export type Props = {
 };
 
 export default class World extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        const worldUpdated = prevProps.world && prevProps.world !== this.props.world;
-
-        if (worldUpdated) {
+    handleSubmit = async (submit: UpdateWorldSubmit) => {
+        try {
+            await this.updateWorld(submit);
             this.props.history.push(this.getUp());
+        }
+        catch (err) {
+            throw new SubmissionError({
+                _error: 'An unexpected error occurred'
+            });
         }
     }
 
-    handleSubmit = async (world: UpdateWorldInput) => {
-        try {
-            await new Promise((resolve, reject) => {
-                this.props.updateWorldSubmit(world, {
-                    resolve,
-                    reject
-                });
-            })
-
-        }
-        catch (err) {
-            throw err;
-        }
+    updateWorld = async (submit: UpdateWorldSubmit) => {
+        return await new Promise((resolve, reject) => {
+            this.props.updateWorldSubmit(submit, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
     }
 
     getUp() {

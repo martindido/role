@@ -2,49 +2,46 @@ import React, { Component, Fragment } from 'react';
 import Page from '../../../containers/pages/Page';
 import Form from '../../../containers/forms/admin/World';
 import { Header } from 'semantic-ui-react';
+import { SubmissionError } from 'redux-form';
 
 import type { World as WorldType } from '../../../types/World';
-import type { CreateWorldInput } from '../../../types/GraphQL';
+import type { CreateWorldSubmit } from '../../../types/Submit';
 import type { CreateWorldSubmitActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
 export type Props = {
     createWorldSubmit: CreateWorldSubmitActionCreator,
     history: RouterHistory,
-    isNotFound: boolean,
     world?: WorldType
 };
 
 export default class World extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        if (this.props.world) {
-            this.props.history.push(this.getUp());
-        }
-    }
-
-    handleSubmit = async (world: CreateWorldInput) => {
+    handleSubmit = async (submit: CreateWorldSubmit) => {
         try {
-            await new Promise((resolve, reject) => {
-                this.props.createWorldSubmit(world, {
-                    resolve,
-                    reject
-                });
-            })
+            const world = await this.createWorld(submit);
 
+            this.props.history.push(`/worlds/${ world.id }`);
         }
         catch (err) {
-            throw err;
+            throw new SubmissionError({
+                _error: 'An unexpected error occurred'
+            });
         }
     }
 
-    getUp() {
-        return '/';
+    createWorld = async (submit: CreateWorldSubmit) => {
+        return await new Promise((resolve, reject) => {
+            this.props.createWorldSubmit(submit, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
     }
 
     render() {
         const header = {
             menu: {
-                up: this.getUp()
+                up: '/'
             }
         };
 

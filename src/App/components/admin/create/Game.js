@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 import Page from '../../../containers/pages/Page';
 import Form from '../../../containers/forms/admin/Game';
 import { Header } from 'semantic-ui-react';
+import { SubmissionError } from 'redux-form';
 
 import type { Game as GameType } from '../../../types/Game';
-import type { CreateGameInput } from '../../../types/GraphQL';
+import type { CreateGameSubmit } from '../../../types/Submit';
 import type { CreateGameSubmitActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
@@ -20,37 +21,33 @@ export type Props = {
 };
 
 export default class Game extends Component<Props> {
-    componentDidUpdate(prevProps: Props) {
-        if (this.props.game) {
-            this.props.history.push(this.getUp());
-        }
-    }
-
-    handleSubmit = async (game: CreateGameInput) => {
+    handleSubmit = async (submit: CreateGameSubmit) => {
         try {
-            await new Promise((resolve, reject) => {
-                this.props.createGameSubmit(game, {
-                    resolve,
-                    reject
-                });
-            })
+            const game = await this.createGame(submit);
 
+            this.props.history.push(`/worlds/${ game.world.id }/games/${ game.id }`);
         }
         catch (err) {
-            throw err;
+            throw new SubmissionError({
+                _error: 'An unexpected error occurred'
+            });
         }
     }
 
-    getUp() {
-        const {computedMatch: {params: {worldId}}} = this.props;
-
-        return `/worlds/${ worldId }`;
+    createGame = async (submit: CreateGameSubmit) => {
+        return await new Promise((resolve, reject) => {
+            this.props.createGameSubmit(submit, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
     }
 
     render() {
+        const {computedMatch: {params: {worldId}}} = this.props;
         const header = {
             menu: {
-                up: this.getUp()
+                up: `/worlds/${ worldId }`
             }
         };
 

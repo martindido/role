@@ -17,12 +17,9 @@ const mapDispatchToProps = (dispatch: *) =>
     }, dispatch);
 
 const frontload = props => {
-    const {game, computedMatch: {params: {gameId}}} = props;
-    const gameLoaded = game && game.id === gameId;
+    const {computedMatch: {params: {gameId}}} = props;
 
-    if (!gameLoaded) {
-        props.loadGame(gameId);
-    }
+    props.loadGame(gameId);
 }
 
 export default connect(

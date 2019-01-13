@@ -15,7 +15,9 @@ type World
     }]) {
     id: ID!
     name: String!
-    path: String!
+    slug: String!
+    #    logo: Logo!
+    logoExt: String!
     games: [Game] @connection(name: "WorldGames")
 }
 
@@ -36,6 +38,15 @@ type Game
     }]) {
     id: ID!
     name: String!
-    path: String!
+    slug: String!
+    #    logo: Logo!
+    logoExt: String!
     world: World! @connection(name: "WorldGames")
+}
+
+type Logo {
+    name: String!
+    size: Int!
+    type: String!
+    extension: String!
 }

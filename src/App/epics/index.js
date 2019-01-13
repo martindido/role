@@ -21,6 +21,7 @@ import createWorldSubmit from './submit/graphql/createWorld';
 import updateWorldSubmit from './submit/graphql/updateWorld';
 import createGameSubmit from './submit/graphql/createGame';
 import updateGameSubmit from './submit/graphql/updateGame';
+import uploadFile from './storage/uploadFile';
 
 export const epics = combineEpics(
     signIn,
@@ -44,5 +45,6 @@ export const epics = combineEpics(
     createWorldSubmit,
     updateWorldSubmit,
     createGameSubmit,
-    updateGameSubmit
+    updateGameSubmit,
+    uploadFile
 );

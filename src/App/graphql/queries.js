@@ -5,12 +5,14 @@ export const getWorld = `query GetWorld($id: ID!) {
   getWorld(id: $id) {
     id
     name
-    path
+    slug
+    logoExt
     games {
       items {
         id
         name
-        path
+        slug
+        logoExt
       }
       nextToken
     }
@@ -26,12 +28,14 @@ export const listWorlds = `query ListWorlds(
     items {
       id
       name
-      path
+      slug
+      logoExt
       games {
         items {
           id
           name
-          path
+          slug
+          logoExt
         }
         nextToken
       }
@@ -44,11 +48,13 @@ export const getGame = `query GetGame($id: ID!) {
   getGame(id: $id) {
     id
     name
-    path
+    slug
+    logoExt
     world {
       id
       name
-      path
+      slug
+      logoExt
     }
   }
 }
@@ -62,11 +68,13 @@ export const listGames = `query ListGames(
     items {
       id
       name
-      path
+      slug
+      logoExt
       world {
         id
         name
-        path
+        slug
+        logoExt
       }
     }
     nextToken
@@ -88,12 +96,14 @@ export const searchWorlds = `query SearchWorlds(
     items {
       id
       name
-      path
+      slug
+      logoExt
       games {
         items {
           id
           name
-          path
+          slug
+          logoExt
         }
         nextToken
       }
@@ -117,11 +127,13 @@ export const searchGames = `query SearchGames(
     items {
       id
       name
-      path
+      slug
+      logoExt
       world {
         id
         name
-        path
+        slug
+        logoExt
       }
     }
     nextToken

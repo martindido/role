@@ -1,19 +1,19 @@
 import { GET_WORLD } from '../../constants/actions';
 import { getWorldSuccess, getWorldError } from '../../actions/graphql';
-import { ofType, Promise } from 'redux-observable';
+import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { getWorld as getWorldQuery } from '../../graphql/queries';
 
 import type { GetWorldAction } from '../../types/Action';
-import type { ActionsObservable } from 'redux-observable';
+import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
 import type { GetWorldQueryVariables } from '../../types/GraphQL';
 
 export default (action$: ActionsObservable<GetWorldAction>) =>
     action$.pipe(
         ofType(GET_WORLD),
         switchMap(
-            async (action: GetWorldAction): Promise => {
+            async (action: GetWorldAction): PromiseType => {
                 try {
                     const world = await getWorld(action.payload);
 
@@ -30,6 +30,24 @@ async function getWorld(variables: GetWorldQueryVariables) {
     const response = await API.graphql(graphqlOperation(getWorldQuery, variables));
     const world = response.data.getWorld;
 
-    world.games = world.games.items;
+    try {
+        world.logoSrc = await Storage.get(`${ world.id }.${ world.logoExt }`);
+    }
+    catch (error) {
+        // NOOP
+    }
+    world.games = await Promise.all(
+        world.games.items.map(
+            async game => {
+                try {
+                    game.logoSrc = await Storage.get(`${ game.id }.${ game.logoExt }`);
+                }
+                catch (error) {
+                    // NOOP
+                }
+                return game;
+            }
+        )
+    );
     return world;
 }

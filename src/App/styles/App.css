@@ -1,4 +1,4 @@
-html, body {
+html, body, #app .ui.segment.inverted {
     background-color: black;
     color: white;
 }

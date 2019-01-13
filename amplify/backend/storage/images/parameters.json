@@ -1,0 +1,9 @@
+{
+    "bucketName": "role-images",
+    "authPolicyName": "s3_amplify_1544d4d6",
+    "unauthPolicyName": "s3_amplify_1544d4d6",
+    "authRoleName": "role-20181027160927-authRole",
+    "unauthRoleName": "role-20181027160927-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}
