@@ -1,17 +1,15 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
+import { connectRouter } from 'connected-react-router';
 import { auth, initialState as authInitialState } from './auth';
 import { routing, initialState as routingInitialState } from './routing';
 import { graphql, initialState as graphqlInitialState } from './graphql';
 import { search, initialState as searchInitialState } from './search';
 
-const reducers = {
-    form,
-    auth,
-    routing,
-    graphql,
-    search
-};
+import type { BrowserHistory } from 'history/createBrowserHistory';
+import type { CombinedReducer } from 'redux';
+
+export type Reducers = Object;
 
 export const initialState = {
     auth: authInitialState,
@@ -19,5 +17,15 @@ export const initialState = {
     graphql: graphqlInitialState,
     search: searchInitialState
 };
-export type Reducers = typeof reducers;
-export default combineReducers(reducers);
+export default (history: BrowserHistory): CombinedReducer<Object, Object> => combineReducers(reducers(history));
+
+function reducers(history) {
+    return {
+        router: connectRouter(history),
+        form,
+        auth,
+        routing,
+        graphql,
+        search
+    };
+}

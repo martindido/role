@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import createMemoryHistory from 'history/createMemoryHistory';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import { createEpicMiddleware } from 'redux-observable';
-import reducers, { initialState as reducersInitialState } from './App/reducers/index';
+import createRootReducer, { initialState as reducersInitialState } from './App/reducers/index';
 import { epics } from './App/epics';
+
+import type { Store } from 'redux';
 
 export default (url: string = '/') => {
     const history = getHistory(url);
@@ -13,8 +15,8 @@ export default (url: string = '/') => {
     const enhancers = getInitialEnhancers();
     const composedEnhancers = composeEnhancers(middlewares, enhancers);
     const initialState = getInitialState();
-    const store = createStore(
-        connectRouter(history)(reducers),
+    const store: Store<Object, Object> = createStore(
+        createRootReducer(history),
         initialState,
         composedEnhancers
     );
