@@ -42,14 +42,12 @@ describe('.signUpConfirm', () => {
 
 describe('.unsetCurrentUnconfirmedUser', () => {
     it('returns the corresponding type', () => {
-        // $FlowFixMe
         expect(actionCreators.unsetCurrentUnconfirmedUser().type).toEqual(UNSET_CURRENT_UNCONFIRMED_USER);
     });
 });
 
 describe('.signOut', () => {
     it('returns the corresponding type', () => {
-        // $FlowFixMe
         expect(actionCreators.signOut().type).toEqual(LOGOUT);
     });
 });
@@ -70,14 +68,12 @@ describe('.setCurrentUser', () => {
 
 describe('.unsetCurrentUser', () => {
     it('returns the corresponding type', () => {
-        // $FlowFixMe
         expect(actionCreators.unsetCurrentUser().type).toEqual(UNSET_CURRENT_USER);
     });
 });
 
 describe('.establishCurrentUser', () => {
     it('returns the corresponding type', () => {
-        // $FlowFixMe
         expect(actionCreators.establishCurrentUser().type).toEqual(ESTABLISH_CURRENT_USER);
     });
 });
