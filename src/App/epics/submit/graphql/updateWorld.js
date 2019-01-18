@@ -26,7 +26,7 @@ export default (action$: ActionsObservable<UpdateWorldSubmitAction>) =>
                 startWith(updateWorld(updateWorldSubmitAction.payload.world))
             )
         )
-    )
+    );
 
 function onUpdateWorldSuccess(action$, updateWorldSubmitAction) {
     if (!updateWorldSubmitAction.payload.logo) {
@@ -39,10 +39,12 @@ function onUpdateWorldSuccess(action$, updateWorldSubmitAction) {
             onError(UPLOAD_FILE_ERROR, updateWorldSubmitAction),
             ofType(UPLOAD_FILE_SUCCESS),
             onUploadFileSuccess(updateWorldSubmitAction, updateWorldSuccessAction),
-            startWith(uploadFile({
-                slug: `${ updateWorldSubmitAction.payload.id }.${ updateWorldSubmitAction.payload.logoExt }`,
-                file: updateWorldSubmitAction.payload.logo
-            }))
+            startWith(
+                uploadFile({
+                    slug: `${updateWorldSubmitAction.payload.id}.${updateWorldSubmitAction.payload.logo.extension}`,
+                    file: updateWorldSubmitAction.payload.logo
+                })
+            )
         )
     );
 }

@@ -26,7 +26,7 @@ export default (action$: ActionsObservable<CreateWorldSubmitAction>) =>
                 startWith(createWorld(createWorldSubmitAction.payload.world))
             )
         )
-    )
+    );
 
 function onCreateWorldSuccess(action$, createWorldSubmitAction) {
     return mergeMap(createWorldSuccessAction =>
@@ -36,10 +36,12 @@ function onCreateWorldSuccess(action$, createWorldSubmitAction) {
             onError(UPLOAD_FILE_ERROR, createWorldSubmitAction),
             ofType(UPLOAD_FILE_SUCCESS),
             onUploadFileSuccess(createWorldSubmitAction, createWorldSuccessAction),
-            startWith(uploadFile({
-                slug: `${ createWorldSuccessAction.payload.id }.${ createWorldSuccessAction.payload.logoExt }`,
-                file: createWorldSubmitAction.payload.logo
-            }))
+            startWith(
+                uploadFile({
+                    slug: `${createWorldSuccessAction.payload.id}.${createWorldSuccessAction.payload.logo.extension}`,
+                    file: createWorldSubmitAction.payload.logo
+                })
+            )
         )
     );
 }

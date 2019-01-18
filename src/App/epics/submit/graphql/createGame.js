@@ -26,7 +26,7 @@ export default (action$: ActionsObservable<CreateGameSubmitAction>) =>
                 startWith(createGame(createGameSubmitAction.payload.game))
             )
         )
-    )
+    );
 
 function onCreateGameSuccess(action$, createGameSubmitAction) {
     return mergeMap(createGameSuccessAction =>
@@ -36,10 +36,12 @@ function onCreateGameSuccess(action$, createGameSubmitAction) {
             onError(UPLOAD_FILE_ERROR, createGameSubmitAction),
             ofType(UPLOAD_FILE_SUCCESS),
             onUploadFileSuccess(createGameSubmitAction, createGameSuccessAction),
-            startWith(uploadFile({
-                slug: `${ createGameSuccessAction.payload.id }.${ createGameSuccessAction.payload.logoExt }`,
-                file: createGameSubmitAction.payload.logo
-            }))
+            startWith(
+                uploadFile({
+                    slug: `${createGameSuccessAction.payload.id}.${createGameSuccessAction.payload.logo.extension}`,
+                    file: createGameSubmitAction.payload.logo
+                })
+            )
         )
     );
 }

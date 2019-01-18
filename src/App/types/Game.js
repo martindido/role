@@ -5,8 +5,7 @@ export type Game = {
     id: string,
     name: string,
     slug: boolean,
-    // logo: File,
-    logoExt: string,
+    logo: File,
     logoSrc: string,
     world: World
 };

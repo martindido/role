@@ -26,7 +26,7 @@ export default (action$: ActionsObservable<UpdateGameSubmitAction>) =>
                 startWith(updateGame(updateGameSubmitAction.payload.game))
             )
         )
-    )
+    );
 
 function onUpdateGameSuccess(action$, updateGameSubmitAction) {
     if (!updateGameSubmitAction.payload.logo) {
@@ -39,10 +39,12 @@ function onUpdateGameSuccess(action$, updateGameSubmitAction) {
             onError(UPLOAD_FILE_ERROR, updateGameSubmitAction),
             ofType(UPLOAD_FILE_SUCCESS),
             onUploadFileSuccess(updateGameSubmitAction, updateGameSuccessAction),
-            startWith(uploadFile({
-                slug: `${ updateGameSubmitAction.payload.id }.${ updateGameSubmitAction.payload.logoExt }`,
-                file: updateGameSubmitAction.payload.logo
-            }))
+            startWith(
+                uploadFile({
+                    slug: `${updateGameSubmitAction.payload.id}.${updateGameSubmitAction.payload.logo.extension}`,
+                    file: updateGameSubmitAction.payload.logo
+                })
+            )
         )
     );
 }

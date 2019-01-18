@@ -6,13 +6,17 @@ export const createWorld = `mutation CreateWorld($input: CreateWorldInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     games {
       items {
         id
         name
         slug
-        logoExt
       }
       nextToken
     }
@@ -24,13 +28,17 @@ export const updateWorld = `mutation UpdateWorld($input: UpdateWorldInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     games {
       items {
         id
         name
         slug
-        logoExt
       }
       nextToken
     }
@@ -42,13 +50,17 @@ export const deleteWorld = `mutation DeleteWorld($input: DeleteWorldInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     games {
       items {
         id
         name
         slug
-        logoExt
       }
       nextToken
     }
@@ -60,12 +72,16 @@ export const createGame = `mutation CreateGame($input: CreateGameInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     world {
       id
       name
       slug
-      logoExt
     }
   }
 }
@@ -75,12 +91,16 @@ export const updateGame = `mutation UpdateGame($input: UpdateGameInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     world {
       id
       name
       slug
-      logoExt
     }
   }
 }
@@ -90,12 +110,16 @@ export const deleteGame = `mutation DeleteGame($input: DeleteGameInput!) {
     id
     name
     slug
-    logoExt
+    logo {
+      name
+      size
+      type
+      extension
+    }
     world {
       id
       name
       slug
-      logoExt
     }
   }
 }

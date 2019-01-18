@@ -1,46 +1,22 @@
 type World
     @model
     @searchable
-    @auth(rules: [
-    { allow: groups,
-        groups: [
-            "admins"
-        ],
-        queries: [],
-        mutations: [
-            create,
-            update,
-            delete
-        ]
-    }]) {
+    @auth(rules: [{ allow: groups, groups: ["admins"], queries: [], mutations: [create, update, delete] }]) {
     id: ID!
     name: String!
     slug: String!
-    #    logo: Logo!
-    logoExt: String!
+    logo: Logo!
     games: [Game] @connection(name: "WorldGames")
 }
 
 type Game
     @model
     @searchable
-    @auth(rules: [
-    { allow: groups,
-        groups: [
-            "admins"
-        ],
-        queries: [],
-        mutations: [
-            create,
-            update,
-            delete
-        ]
-    }]) {
+    @auth(rules: [{ allow: groups, groups: ["admins"], queries: [], mutations: [create, update, delete] }]) {
     id: ID!
     name: String!
     slug: String!
-    #    logo: Logo!
-    logoExt: String!
+    logo: Logo!
     world: World! @connection(name: "WorldGames")
 }
 

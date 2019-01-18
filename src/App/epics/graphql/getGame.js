@@ -18,8 +18,8 @@ export default (action$: ActionsObservable<GetGameAction>) =>
                     const game = await getGame(action.payload);
 
                     return game ? getGameSuccess(game) : getGameError([new Error('Not Found')]);
-                }
-                catch (error) {
+                } catch (error) {
+                    console.log('getGame', 'error', error);
                     return getGameError([error]);
                 }
             }
@@ -31,9 +31,8 @@ async function getGame(variables: GetGameQueryVariables) {
     const game = response.data.getGame;
 
     try {
-        game.logoSrc = await Storage.get(`${ game.id }.${ game.logoExt }`);
-    }
-    catch (error) {
+        game.logoSrc = await Storage.get(`${game.id}.${game.logo.extension}`);
+    } catch (error) {
         // NOOP
     }
     return game;

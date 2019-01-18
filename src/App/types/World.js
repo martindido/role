@@ -5,8 +5,7 @@ export type World = {
     id: string,
     name: string,
     slug: string,
-    // logo: File,
-    logoExt: string,
+    logo: File,
     logoSrc: string,
     games: Array<Game>
 };

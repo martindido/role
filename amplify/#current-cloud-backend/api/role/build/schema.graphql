@@ -2,7 +2,7 @@ type World {
   id: ID!
   name: String!
   slug: String!
-  logoExt: String!
+  logo: Logo!
   games(filter: ModelGameFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelGameConnection
 }
 
@@ -10,11 +10,18 @@ type Game {
   id: ID!
   name: String!
   slug: String!
-  logoExt: String!
+  logo: Logo!
   world: World!
 }
 
 type Logo {
+  name: String!
+  size: Int!
+  type: String!
+  extension: String!
+}
+
+input LogoInput {
   name: String!
   size: Int!
   type: String!
@@ -90,7 +97,6 @@ input ModelWorldFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
   slug: ModelStringFilterInput
-  logoExt: ModelStringFilterInput
   and: [ModelWorldFilterInput]
   or: [ModelWorldFilterInput]
   not: ModelWorldFilterInput
@@ -109,14 +115,14 @@ input CreateWorldInput {
   id: ID
   name: String!
   slug: String!
-  logoExt: String!
+  logo: LogoInput!
 }
 
 input UpdateWorldInput {
   id: ID!
   name: String
   slug: String
-  logoExt: String
+  logo: LogoInput
 }
 
 input DeleteWorldInput {
@@ -150,7 +156,6 @@ input ModelGameFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
   slug: ModelStringFilterInput
-  logoExt: ModelStringFilterInput
   and: [ModelGameFilterInput]
   or: [ModelGameFilterInput]
   not: ModelGameFilterInput
@@ -160,7 +165,7 @@ input CreateGameInput {
   id: ID
   name: String!
   slug: String!
-  logoExt: String!
+  logo: LogoInput!
   gameWorldId: ID!
 }
 
@@ -168,7 +173,7 @@ input UpdateGameInput {
   id: ID!
   name: String
   slug: String
-  logoExt: String
+  logo: LogoInput
   gameWorldId: ID
 }
 
@@ -229,7 +234,6 @@ input SearchableWorldFilterInput {
   id: SearchableIDFilterInput
   name: SearchableStringFilterInput
   slug: SearchableStringFilterInput
-  logoExt: SearchableStringFilterInput
   and: [SearchableWorldFilterInput]
   or: [SearchableWorldFilterInput]
   not: SearchableWorldFilterInput
@@ -244,7 +248,6 @@ enum SearchableWorldSortableFields {
   id
   name
   slug
-  logoExt
 }
 
 input SearchableWorldSortInput {
@@ -261,7 +264,6 @@ input SearchableGameFilterInput {
   id: SearchableIDFilterInput
   name: SearchableStringFilterInput
   slug: SearchableStringFilterInput
-  logoExt: SearchableStringFilterInput
   and: [SearchableGameFilterInput]
   or: [SearchableGameFilterInput]
   not: SearchableGameFilterInput
@@ -271,7 +273,6 @@ enum SearchableGameSortableFields {
   id
   name
   slug
-  logoExt
 }
 
 input SearchableGameSortInput {

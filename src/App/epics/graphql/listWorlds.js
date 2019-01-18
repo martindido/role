@@ -15,8 +15,7 @@ export default (action$: ActionsObservable<ListWorldsAction>) =>
             async (): Promise => {
                 try {
                     return setWorlds(await listWorlds());
-                }
-                catch (error) {
+                } catch (error) {
                     console.log('listWorlds', 'error', error);
                     return setWorlds([]);
                 }
@@ -25,16 +24,17 @@ export default (action$: ActionsObservable<ListWorldsAction>) =>
     );
 
 async function listWorlds() {
-    const response = await API.graphql(graphqlOperation(listWorldsQuery, {
-        limit: 100
-    }));
+    const response = await API.graphql(
+        graphqlOperation(listWorldsQuery, {
+            limit: 100
+        })
+    );
     const worlds = response.data.listWorlds.items;
 
     for (const world of worlds) {
         try {
-            world.logoSrc = await Storage.get(`${ world.id }.${ world.logoExt }`);
-        }
-        catch (error) {
+            world.logoSrc = await Storage.get(`${world.id}.${world.logo.extension}`);
+        } catch (error) {
             // NOOP
         }
     }

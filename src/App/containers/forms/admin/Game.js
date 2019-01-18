@@ -12,25 +12,29 @@ const mapStateToProps = (state: State) => ({
         logo: selector(state, 'logo')
     },
     initialValues: {
-        game: state.graphql.game ? {
-            id: state.graphql.game.id,
-            name: state.graphql.game.name,
-            slug: state.graphql.game.slug,
-            // logo: state.graphql.game.logo,
-            logoExt: state.graphql.game.logoExt,
-            gameWorldId: state.graphql.game.world.id
-        } : state.graphql.world ? {
-            gameWorldId: state.graphql.world.id
-        } : {}
+        game: state.graphql.game
+            ? {
+                  id: state.graphql.game.id,
+                  name: state.graphql.game.name,
+                  slug: state.graphql.game.slug,
+                  logo: state.graphql.game.logo,
+                  gameWorldId: state.graphql.game.world.id
+              }
+            : state.graphql.world
+            ? {
+                  gameWorldId: state.graphql.world.id
+              }
+            : {}
     }
 });
 
-const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch: *) => bindActionCreators({}, dispatch);
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(reduxForm({
-    enableReinitialize: true
-})(Game));
+)(
+    reduxForm({
+        enableReinitialize: true
+    })(Game)
+);

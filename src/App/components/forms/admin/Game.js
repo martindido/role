@@ -14,55 +14,51 @@ export default class Game extends Component<FormProps> {
         const slug = slugify(newName);
 
         this.props.change('game[slug]', slug);
-    }
+    };
 
     handleChangeLogo = (event: Object, newLogo: File) => {
-        // this.props.change('game[logo]', {
-        //     name: newLogo.name,
-        //     size: newLogo.size,
-        //     type: newLogo.type,
-        //     extension: mime.extension(newLogo.type) || 'png'
-        // });
-        this.props.change('game[logoExt]', mime.extension(newLogo.type) || 'png');
-    }
+        this.props.change('game[logo]', {
+            name: newLogo.name,
+            size: newLogo.size,
+            type: newLogo.type,
+            extension: mime.extension(newLogo.type) || 'png'
+        });
+    };
 
     normalizeLogoFile = (value: string) => {
         return value[0];
-    }
+    };
 
     render() {
-        const {handleSubmit, submitting, invalid, error, game, selectedValues} = this.props;
+        const { handleSubmit, submitting, invalid, error, game, selectedValues } = this.props;
 
         return (
-            <Form inverted size='large' onSubmit={ handleSubmit } loading={ submitting } error={ invalid }>
+            <Form inverted size='large' onSubmit={handleSubmit} loading={submitting} error={invalid}>
                 <Field
                     fluid
-                    component={ InputField }
+                    component={InputField}
                     name='game[name]'
                     label='Name'
                     placeholder='Name'
-                    onChange={ this.handleChangeName }
+                    onChange={this.handleChangeName}
                 />
                 <Field
                     fluid
-                    component={ UploadField }
+                    component={UploadField}
                     name='logo'
                     label='Logo'
-                    onChange={ this.handleChangeLogo }
-                    normalize={ this.normalizeLogoFile }
+                    onChange={this.handleChangeLogo}
+                    normalize={this.normalizeLogoFile}
                 />
-                { game && !selectedValues.logo ? (
+                {game && !selectedValues.logo ? (
                     <Segment inverted>
-                        <Image src={ game.logoSrc } size='tiny' centered/>
+                        <Image src={game.logoSrc} size='tiny' centered />
                     </Segment>
-                ) : null }
-                <Form.Button fluid size='massive' inverted>Submit</Form.Button>
-                { error ? (
-                    <Message
-                        error
-                        content={ error }
-                    />
-                ) : null }
+                ) : null}
+                <Form.Button fluid size='massive' inverted>
+                    Submit
+                </Form.Button>
+                {error ? <Message error content={error} /> : null}
             </Form>
         );
     }

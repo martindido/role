@@ -3,7 +3,7 @@ import { getWorldSuccess, getWorldError } from '../../actions/graphql';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
-import { getWorld as getWorldQuery } from '../../graphql/queries';
+import { getWorldCustom } from '../../graphql/custom/queries';
 
 import type { GetWorldAction } from '../../types/Action';
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
@@ -18,8 +18,8 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
                     const world = await getWorld(action.payload);
 
                     return world ? getWorldSuccess(world) : getWorldError([new Error('Not Found')]);
-                }
-                catch (error) {
+                } catch (error) {
+                    console.log('getWorld', 'error', error);
                     return getWorldError([error]);
                 }
             }
@@ -27,27 +27,23 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
     );
 
 async function getWorld(variables: GetWorldQueryVariables) {
-    const response = await API.graphql(graphqlOperation(getWorldQuery, variables));
+    const response = await API.graphql(graphqlOperation(getWorldCustom, variables));
     const world = response.data.getWorld;
 
     try {
-        world.logoSrc = await Storage.get(`${ world.id }.${ world.logoExt }`);
-    }
-    catch (error) {
+        world.logoSrc = await Storage.get(`${world.id}.${world.logo.extension}`);
+    } catch (error) {
         // NOOP
     }
     world.games = await Promise.all(
-        world.games.items.map(
-            async game => {
-                try {
-                    game.logoSrc = await Storage.get(`${ game.id }.${ game.logoExt }`);
-                }
-                catch (error) {
-                    // NOOP
-                }
-                return game;
+        world.games.items.map(async game => {
+            try {
+                game.logoSrc = await Storage.get(`${game.id}.${game.logo.extension}`);
+            } catch (error) {
+                // NOOP
             }
-        )
+            return game;
+        })
     );
     return world;
 }
