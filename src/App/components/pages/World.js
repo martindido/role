@@ -56,7 +56,7 @@ export default class World extends Component<Props> {
                 { world ? (
                     <Fragment>
                         <SemanticHeader as='h2' inverted>
-                            <Image src={ world.logoSrc } circular/> { world.name }
+                            <Image src={ world.logo.src } circular/> { world.name }
                         </SemanticHeader>
                         { world.games.length ? (
                             <List animated divided selection verticalAlign='middle' size='massive' inverted>
@@ -65,7 +65,7 @@ export default class World extends Component<Props> {
                                                to={ `/worlds/${ world.id }/games/${ game.id }` }
                                                key={ game.id }
                                     >
-                                        <Image src={ game.logoSrc } avatar/>
+                                        <Image src={ game.logo.src } avatar/>
                                         <List.Content>
                                             <List.Header>{ game.name }</List.Header>
                                         </List.Content>

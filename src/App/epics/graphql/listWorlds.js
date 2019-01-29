@@ -1,5 +1,5 @@
 import { LIST_WORLDS } from '../../constants/actions';
-import { setWorlds } from '../../actions/graphql';
+import { listWorldsSuccess, listWorldsError } from '../../actions/graphql';
 import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
@@ -14,10 +14,12 @@ export default (action$: ActionsObservable<ListWorldsAction>) =>
         switchMap(
             async (): Promise => {
                 try {
-                    return setWorlds(await listWorlds());
+                    const worlds = await listWorlds();
+
+                    return listWorldsSuccess(worlds);
                 } catch (error) {
                     console.log('listWorlds', 'error', error);
-                    return setWorlds([]);
+                    return listWorldsError([error]);
                 }
             }
         )
@@ -33,7 +35,7 @@ async function listWorlds() {
 
     for (const world of worlds) {
         try {
-            world.logoSrc = await Storage.get(`${world.id}.${world.logo.extension}`);
+            world.logo.src = await Storage.get(`${world.id}.${world.logo.extension}`);
         } catch (error) {
             // NOOP
         }

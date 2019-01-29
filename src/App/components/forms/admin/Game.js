@@ -52,7 +52,7 @@ export default class Game extends Component<FormProps> {
                 />
                 {game && !selectedValues.logo ? (
                     <Segment inverted>
-                        <Image src={game.logoSrc} size='tiny' centered />
+                        <Image src={game.logo.src} size='tiny' centered />
                     </Segment>
                 ) : null}
                 <Form.Button fluid size='massive' inverted>

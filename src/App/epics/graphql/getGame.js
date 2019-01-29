@@ -31,7 +31,7 @@ async function getGame(variables: GetGameQueryVariables) {
     const game = response.data.getGame;
 
     try {
-        game.logoSrc = await Storage.get(`${game.id}.${game.logo.extension}`);
+        game.logo.src = await Storage.get(`${game.id}.${game.logo.extension}`);
     } catch (error) {
         // NOOP
     }

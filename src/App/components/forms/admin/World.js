@@ -53,7 +53,7 @@ export default class World extends Component<FormProps> {
                 />
                 {world && !selectedValues.logo ? (
                     <Segment inverted>
-                        <Image src={world.logoSrc} size='tiny' centered />
+                        <Image src={world.logo.src} size='tiny' centered />
                     </Segment>
                 ) : null}
                 <Form.Button fluid size='massive' inverted>

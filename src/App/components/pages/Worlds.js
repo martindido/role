@@ -34,7 +34,7 @@ export default class Worlds extends Component<Props> {
                     <List animated divided selection verticalAlign='middle' size='massive' inverted>
                         { this.props.worlds.map(world => (
                             <List.Item as={ Link } to={ `/worlds/${ world.id }` } key={ world.id }>
-                                <Image src={ world.logoSrc } avatar/>
+                                <Image src={ world.logo.src } avatar/>
                                 <List.Content>
                                     <List.Header>{ world.name }</List.Header>
                                 </List.Content>

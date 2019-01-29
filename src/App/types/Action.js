@@ -20,7 +20,7 @@ import type {
     CreateGameSubmit,
     UpdateGameSubmit
 } from './Submit';
-import type { FileUpload } from './Storage';
+import type { FileUpload, S3File } from './Storage';
 import type { Game } from './Game';
 
 export type SetLoadingAction = {
@@ -82,7 +82,8 @@ export type UploadFileAction = {
 };
 
 export type UploadFileSuccessAction = {
-    type: 'UPLOAD_FILE_SUCCESS'
+    type: 'UPLOAD_FILE_SUCCESS',
+    payload: S3File
 };
 
 export type UploadFileErrorAction = {
@@ -111,7 +112,7 @@ export type SignUpConfirmAction = {
 };
 
 export type SignOutAction = {
-    type: 'LOGOUT'
+    type: 'SIGN_OUT'
 };
 
 export type AuthenticateAction = {
@@ -296,10 +297,7 @@ export type UnsetGameAction = {
     type: 'UNSET_GAME'
 };
 
-export type RoutingAction =
-    | SetLoadingAction
-    | SetNotFoundAction
-    | SetPreviousLocationAction;
+export type RoutingAction = SetLoadingAction | SetNotFoundAction | SetPreviousLocationAction;
 
 export type SubmitAction =
     | CreateWorldSubmitAction
@@ -319,10 +317,7 @@ export type AuthAction =
     | UnsetCurrentUserAction
     | EstablishCurrentUserAction;
 
-export type ProfileAction =
-    | GetCurrentProfileAction
-    | SetCurrentProfileAction
-    | UnsetCurrentProfileAction;
+export type ProfileAction = GetCurrentProfileAction | SetCurrentProfileAction | UnsetCurrentProfileAction;
 
 export type GraphQLAction =
     | SearchAllAction
@@ -347,15 +342,6 @@ export type GraphQLAction =
     | SetGameAction
     | UnsetGameAction;
 
-export type SearchAction =
-    | SetSearchLoadingAction
-    | SetSearchResultsAction
-    | UnsetSearchResultsAction;
+export type SearchAction = SetSearchLoadingAction | SetSearchResultsAction | UnsetSearchResultsAction;
 
-export type Action =
-    | RoutingAction
-    | SubmitAction
-    | AuthAction
-    | ProfileAction
-    | GraphQLAction
-    | SearchAction;
+export type Action = RoutingAction | SubmitAction | AuthAction | ProfileAction | GraphQLAction | SearchAction;

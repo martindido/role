@@ -4,7 +4,7 @@ import {
     SIGN_UP_SUCCESS,
     SIGN_UP_CONFIRM,
     UNSET_CURRENT_UNCONFIRMED_USER,
-    LOGOUT,
+    SIGN_OUT,
     AUTHENTICATE,
     SET_CURRENT_USER,
     UNSET_CURRENT_USER,
@@ -31,64 +31,63 @@ export function signIn(credentials: Credentials): SignInAction {
         type: SIGN_IN,
         payload: credentials
     };
-};
+}
 
 export function signUp(credentials: Credentials): SignUpAction {
     return {
         type: SIGN_UP,
         payload: credentials
     };
-};
+}
 
 export function signUpSuccess(unconfirmedUser: UnconfirmedUser): SignUpSuccessAction {
     return {
         type: SIGN_UP_SUCCESS,
         payload: unconfirmedUser
     };
-};
+}
 
 export function signUpConfirm(confirmation: SignUpConfirm): SignUpConfirmAction {
     return {
         type: SIGN_UP_CONFIRM,
         payload: confirmation
     };
-};
+}
 
 export function unsetCurrentUnconfirmedUser(): UnsetCurrentUnconfirmedUserAction {
     return {
         type: UNSET_CURRENT_UNCONFIRMED_USER
     };
-};
+}
 
 export function signOut(): SignOutAction {
     return {
-        type: LOGOUT
+        type: SIGN_OUT
     };
-};
+}
 
 export function authenticate(isAuthenticated: boolean): AuthenticateAction {
     return {
         type: AUTHENTICATE,
         payload: isAuthenticated
     };
-};
+}
 
 export function setCurrentUser(user: User): SetCurrentUserAction {
     return {
         type: SET_CURRENT_USER,
         payload: user
     };
-};
+}
 
 export function unsetCurrentUser(): UnsetCurrentUserAction {
     return {
         type: UNSET_CURRENT_USER
     };
-};
-
+}
 
 export function establishCurrentUser(): EstablishCurrentUserAction {
     return {
         type: ESTABLISH_CURRENT_USER
     };
-};
+}

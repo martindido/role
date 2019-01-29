@@ -31,14 +31,14 @@ async function getWorld(variables: GetWorldQueryVariables) {
     const world = response.data.getWorld;
 
     try {
-        world.logoSrc = await Storage.get(`${world.id}.${world.logo.extension}`);
+        world.logo.src = await Storage.get(`${world.id}.${world.logo.extension}`);
     } catch (error) {
         // NOOP
     }
     world.games = await Promise.all(
         world.games.items.map(async game => {
             try {
-                game.logoSrc = await Storage.get(`${game.id}.${game.logo.extension}`);
+                game.logo.src = await Storage.get(`${game.id}.${game.logo.extension}`);
             } catch (error) {
                 // NOOP
             }

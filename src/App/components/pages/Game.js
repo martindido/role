@@ -51,7 +51,7 @@ export default class Game extends Component<Props> {
                 { game ? (
                     <Fragment>
                         <SemanticHeader as='h2' inverted>
-                            <Image src={ game.logoSrc } circular/> { game.name }
+                            <Image src={ game.logo.src } circular/> { game.name }
                         </SemanticHeader>
                     </Fragment>
                 ) : null }

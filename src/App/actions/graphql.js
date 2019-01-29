@@ -1,6 +1,8 @@
 import {
     SEARCH_ALL,
     LIST_WORLDS,
+    LIST_WORLDS_SUCCESS,
+    LIST_WORLDS_ERROR,
     SET_WORLDS,
     CREATE_WORLD,
     CREATE_WORLD_SUCCESS,
@@ -29,6 +31,8 @@ import {
 import type {
     SearchAllAction,
     ListWorldsAction,
+    ListWorldsSuccessAction,
+    ListWorldsErrorAction,
     SetWorldsAction,
     CreateWorldAction,
     CreateWorldSuccessAction,
@@ -53,92 +57,86 @@ import type {
     SetGameAction,
     UnsetGameAction
 } from '../types/Action';
-import type {
-    CreateWorldInput,
-    UpdateWorldInput,
-    UpdateGameInput,
-    CreateGameInput
-} from '../types/GraphQL';
+import type { CreateWorldInput, UpdateWorldInput, UpdateGameInput, CreateGameInput } from '../types/GraphQL';
 import type { World } from '../types/World';
 import type { Errors } from '../types/Submit';
 import type { Game } from '../types/Game';
-
 
 export function searchAll(value: string): SearchAllAction {
     return {
         type: SEARCH_ALL,
         payload: value
     };
-};
+}
 
 export function listWorlds(): ListWorldsAction {
     return {
         type: LIST_WORLDS
     };
-};
+}
+
+export function listWorldsSuccess(worlds: Array<World>): ListWorldsSuccessAction {
+    return {
+        type: LIST_WORLDS_SUCCESS,
+        payload: worlds
+    };
+}
+
+export function listWorldsError(errors: Errors): ListWorldsErrorAction {
+    return {
+        type: LIST_WORLDS_ERROR,
+        payload: errors
+    };
+}
 
 export function setWorlds(worlds: Array<World>): SetWorldsAction {
     return {
         type: SET_WORLDS,
         payload: worlds
     };
-};
+}
 
 export function createWorld(world: CreateWorldInput): CreateWorldAction {
     return {
         type: CREATE_WORLD,
         payload: world
     };
-};
+}
 
 export function createWorldSuccess(world: World): CreateWorldSuccessAction {
     return {
         type: CREATE_WORLD_SUCCESS,
         payload: world
     };
-};
+}
 
 export function createWorldError(errors: Errors): CreateWorldErrorAction {
     return {
         type: CREATE_WORLD_ERROR,
         payload: errors
     };
-};
+}
 
 export function updateWorld(world: UpdateWorldInput): UpdateWorldAction {
     return {
         type: UPDATE_WORLD,
         payload: world
     };
-};
+}
 
 export function updateWorldSuccess(world: World): UpdateWorldSuccessAction {
     return {
         type: UPDATE_WORLD_SUCCESS,
         payload: world
     };
-};
+}
 
 export function updateWorldError(errors: Errors): UpdateWorldErrorAction {
     return {
         type: UPDATE_WORLD_ERROR,
         payload: errors
     };
-};
-
-export function getWorldSuccess(world: World): GetWorldSuccessAction {
-    return {
-        type: GET_WORLD_SUCCESS,
-        payload: world
-    };
-};
-
-export function getWorldError(errors: Errors): GetWorldErrorAction {
-    return {
-        type: GET_WORLD_ERROR,
-        payload: errors
-    };
-};
+}
 
 export function getWorld(id: string): GetWorldAction {
     return {
@@ -147,62 +145,76 @@ export function getWorld(id: string): GetWorldAction {
             id
         }
     };
-};
+}
+
+export function getWorldSuccess(world: World): GetWorldSuccessAction {
+    return {
+        type: GET_WORLD_SUCCESS,
+        payload: world
+    };
+}
+
+export function getWorldError(errors: Errors): GetWorldErrorAction {
+    return {
+        type: GET_WORLD_ERROR,
+        payload: errors
+    };
+}
 
 export function setWorld(world: World): SetWorldAction {
     return {
         type: SET_WORLD,
         payload: world
     };
-};
+}
 
 export function unsetWorld(): UnsetWorldAction {
     return {
         type: UNSET_WORLD
     };
-};
+}
 
 export function createGame(game: CreateGameInput): CreateGameAction {
     return {
         type: CREATE_GAME,
         payload: game
     };
-};
+}
 
 export function createGameSuccess(game: Game): CreateGameSuccessAction {
     return {
         type: CREATE_GAME_SUCCESS,
         payload: game
     };
-};
+}
 
 export function createGameError(errors: Errors): CreateGameErrorAction {
     return {
         type: CREATE_GAME_ERROR,
         payload: errors
     };
-};
+}
 
 export function updateGame(game: UpdateGameInput): UpdateGameAction {
     return {
         type: UPDATE_GAME,
         payload: game
     };
-};
+}
 
 export function updateGameSuccess(game: Game): UpdateGameSuccessAction {
     return {
         type: UPDATE_GAME_SUCCESS,
         payload: game
     };
-};
+}
 
 export function updateGameError(errors: Errors): UpdateGameErrorAction {
     return {
         type: UPDATE_GAME_ERROR,
         payload: errors
     };
-};
+}
 
 export function getGame(id: string): GetGameAction {
     return {
@@ -211,31 +223,31 @@ export function getGame(id: string): GetGameAction {
             id
         }
     };
-};
+}
 
 export function getGameSuccess(game: Game): GetGameSuccessAction {
     return {
         type: GET_GAME_SUCCESS,
         payload: game
     };
-};
+}
 
 export function getGameError(errors: Errors): GetGameErrorAction {
     return {
         type: GET_GAME_ERROR,
         payload: errors
     };
-};
+}
 
 export function setGame(game: Game): SetGameAction {
     return {
         type: SET_GAME,
         payload: game
     };
-};
+}
 
 export function unsetGame(): UnsetGameAction {
     return {
         type: UNSET_GAME
     };
-};
+}
