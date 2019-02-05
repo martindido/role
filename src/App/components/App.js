@@ -5,24 +5,24 @@ import Routes from '../containers/Routes';
 import '../styles/App.css';
 
 import type { Location } from 'react-router-dom';
-import type { EstablishCurrentUserActionCreator } from '../types/ActionCreator';
+import type { AuthenticateActionCreator } from '../types/ActionCreator';
 
 type Props = {
     location: Location,
-    establishCurrentUser: EstablishCurrentUserActionCreator,
+    authenticate: AuthenticateActionCreator
 };
 
 export default class App extends Component<Props> {
     componentWillMount() {
         if (!isServer) {
-            this.props.establishCurrentUser();
+            this.props.authenticate();
         }
     }
 
     render() {
         return (
             <div id='app'>
-                <Routes/>
+                <Routes />
             </div>
         );
     }

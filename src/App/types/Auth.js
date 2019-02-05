@@ -1,10 +1,7 @@
-import type { UnconfirmedUser } from './User';
-
-export type SignUpConfirmData = {
+export type Confirmation = {
+    username?: string,
     code: string
 };
-
-export type SignUpConfirm = UnconfirmedUser & SignUpConfirmData;
 
 export type Credentials = {
     email?: string,

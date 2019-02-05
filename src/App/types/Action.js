@@ -1,6 +1,6 @@
 import type { Location } from 'react-router-dom';
-import type { User, UnconfirmedUser } from './User';
-import type { SignUpConfirm, Credentials } from './Auth';
+import type { User } from './User';
+import type { Credentials, Confirmation } from './Auth';
 import type { Profile } from './Profile';
 import type {
     CreateWorldInput,
@@ -13,8 +13,12 @@ import type {
 import type { World } from './World';
 import type { SearchResults } from './Search';
 import type {
+    Error,
     Errors,
     SubmitMeta,
+    SignInSubmit,
+    SignUpSubmit,
+    SignUpConfirmSubmit,
     CreateWorldSubmit,
     UpdateWorldSubmit,
     CreateGameSubmit,
@@ -50,6 +54,24 @@ export type LoadWorldAction = {
 export type LoadGameAction = {
     type: 'LOAD_GAME',
     payload: string
+};
+
+export type SignInSubmitAction = {
+    type: 'SIGN_IN_SUBMIT',
+    payload: SignInSubmit,
+    meta: SubmitMeta
+};
+
+export type SignUpSubmitAction = {
+    type: 'SIGN_UP_SUBMIT',
+    payload: SignUpSubmit,
+    meta: SubmitMeta
+};
+
+export type SignUpConfirmSubmitAction = {
+    type: 'SIGN_UP_CONFIRM_SUBMIT',
+    payload: SignUpConfirmSubmit,
+    meta: SubmitMeta
 };
 
 export type CreateWorldSubmitAction = {
@@ -96,6 +118,16 @@ export type SignInAction = {
     payload: Credentials
 };
 
+export type SignInSuccessAction = {
+    type: 'SIGN_IN_SUCCESS',
+    payload: User
+};
+
+export type SignInErrorAction = {
+    type: 'SIGN_IN_ERROR',
+    payload: Error
+};
+
 export type SignUpAction = {
     type: 'SIGN_UP',
     payload: Credentials
@@ -103,12 +135,27 @@ export type SignUpAction = {
 
 export type SignUpSuccessAction = {
     type: 'SIGN_UP_SUCCESS',
-    payload: UnconfirmedUser
+    payload: User
+};
+
+export type SignUpErrorAction = {
+    type: 'SIGN_UP_ERROR',
+    payload: Error
 };
 
 export type SignUpConfirmAction = {
     type: 'SIGN_UP_CONFIRM',
-    payload: SignUpConfirm
+    payload: Confirmation
+};
+
+export type SignUpConfirmSuccessAction = {
+    type: 'SIGN_UP_CONFIRM_SUCCESS',
+    payload: string
+};
+
+export type SignUpConfirmErrorAction = {
+    type: 'SIGN_UP_CONFIRM_ERROR',
+    payload: Error
 };
 
 export type SignOutAction = {
@@ -116,8 +163,12 @@ export type SignOutAction = {
 };
 
 export type AuthenticateAction = {
-    type: 'AUTHENTICATE',
-    payload: boolean
+    type: 'AUTHENTICATE'
+};
+
+export type SetCurrentUnconfirmedUserAction = {
+    type: 'SET_CURRENT_UNCONFIRMED_USER',
+    payload: User
 };
 
 export type UnsetCurrentUnconfirmedUserAction = {
@@ -131,10 +182,6 @@ export type SetCurrentUserAction = {
 
 export type UnsetCurrentUserAction = {
     type: 'UNSET_CURRENT_USER'
-};
-
-export type EstablishCurrentUserAction = {
-    type: 'ESTABLISH_CURRENT_USER'
 };
 
 export type GetCurrentProfileAction = {
@@ -300,6 +347,9 @@ export type UnsetGameAction = {
 export type RoutingAction = SetLoadingAction | SetNotFoundAction | SetPreviousLocationAction;
 
 export type SubmitAction =
+    | SignUpSubmitAction
+    | SignUpConfirmSubmitAction
+    | SignInSubmitAction
     | CreateWorldSubmitAction
     | UpdateWorldSubmitAction
     | CreateGameSubmitAction
@@ -307,15 +357,20 @@ export type SubmitAction =
 
 export type AuthAction =
     | SignInAction
+    | SignInSuccessAction
+    | SignInErrorAction
     | SignUpAction
     | SignUpSuccessAction
+    | SignUpErrorAction
     | SignUpConfirmAction
+    | SignUpConfirmSuccessAction
+    | SignUpConfirmErrorAction
+    | SetCurrentUnconfirmedUserAction
     | UnsetCurrentUnconfirmedUserAction
     | SignOutAction
     | AuthenticateAction
     | SetCurrentUserAction
-    | UnsetCurrentUserAction
-    | EstablishCurrentUserAction;
+    | UnsetCurrentUserAction;
 
 export type ProfileAction = GetCurrentProfileAction | SetCurrentProfileAction | UnsetCurrentProfileAction;
 

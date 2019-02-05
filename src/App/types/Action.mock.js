@@ -1,16 +1,14 @@
-import type { Profile } from './Profile';
-
 import {
     SIGN_IN,
     SIGN_UP,
     SIGN_UP_SUCCESS,
     SIGN_UP_CONFIRM,
+    SET_CURRENT_UNCONFIRMED_USER,
     UNSET_CURRENT_UNCONFIRMED_USER,
     SIGN_OUT,
     AUTHENTICATE,
     SET_CURRENT_USER,
     UNSET_CURRENT_USER,
-    ESTABLISH_CURRENT_USER,
     SEARCH_ALL,
     LIST_WORLDS,
     LIST_WORLDS_SUCCESS,
@@ -55,8 +53,8 @@ import {
     CREATE_GAME_SUBMIT,
     UPDATE_GAME_SUBMIT
 } from '../constants/actions';
-import { credentials, credentialsWithEmail, signUpConfirm } from './Auth.mock';
-import { unconfirmedUser, user } from './User.mock';
+import { credentials, credentialsWithEmail, confirmation } from './Auth.mock';
+import { user } from './User.mock';
 import { world } from './World.mock';
 import { game } from './Game.mock';
 import {
@@ -116,12 +114,17 @@ export const signUpAction = {
 
 export const signUpSuccessAction = {
     type: SIGN_UP_SUCCESS,
-    payload: unconfirmedUser
+    payload: user
 };
 
 export const signUpConfirmAction = {
     type: SIGN_UP_CONFIRM,
-    payload: signUpConfirm
+    payload: confirmation
+};
+
+export const setCurrentUnconfirmedUserAction = {
+    type: SET_CURRENT_UNCONFIRMED_USER,
+    payload: user
 };
 
 export const unsetCurrentUnconfirmedUserAction = {
@@ -149,10 +152,6 @@ export const setCurrentUserAction = {
 
 export const unsetCurrentUserAction = {
     type: UNSET_CURRENT_USER
-};
-
-export const establishCurrentUserAction = {
-    type: ESTABLISH_CURRENT_USER
 };
 
 export const searchAllAction = {

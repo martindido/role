@@ -2,40 +2,60 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Page from '../../containers/pages/Page';
 import SignUpForm from '../../containers/forms/auth/SignUp';
-import {
-    Grid,
-    Header,
-    Image,
-    Message
-} from 'semantic-ui-react';
+import { Grid, Header, Image, Message } from 'semantic-ui-react';
+import { SubmissionError } from 'redux-form';
 import logo from '../../images/logo.png';
 
-import type { UnconfirmedUser } from '../../types/User';
+import type { User } from '../../types/User';
 import type { Credentials } from '../../types/Auth';
-import type { SignUpActionCreator } from '../../types/ActionCreator';
+import type { SignUpSubmit } from '../../types/Submit';
+import type { SignUpSubmitActionCreator, SetCurrentUnconfirmedUserActionCreator } from '../../types/ActionCreator';
+import type { RouterHistory } from 'react-router-dom';
 
 type Props = {
-    signUp: SignUpActionCreator,
-    currentUnconfirmedUser?: UnconfirmedUser
-}
+    signUpSubmit: SignUpSubmitActionCreator,
+    setCurrentUnconfirmedUser: SetCurrentUnconfirmedUserActionCreator,
+    currentUnconfirmedUser?: User,
+    history: RouterHistory
+};
 
 export default class SignUp extends Component<Props> {
-    handleSubmit = (credentials: Credentials) => {
-        this.props.signUp(credentials);
-    }
+    handleSubmit = async (credentials: Credentials) => {
+        try {
+            const user = await this.signUp({
+                credentials
+            });
+
+            this.props.setCurrentUnconfirmedUser(user);
+            this.props.history.push(`/sign-up-confirm`);
+        } catch (error) {
+            throw new SubmissionError({
+                _error: error.message
+            });
+        }
+    };
+
+    signUp = async (submit: SignUpSubmit) => {
+        return await new Promise((resolve, reject) => {
+            this.props.signUpSubmit(submit, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
+    };
 
     render() {
         if (this.props.currentUnconfirmedUser) {
-            return (<Redirect to={ '/sign-up-confirm' }/>);
+            return <Redirect to={'/sign-up-confirm'} />;
         }
         return (
-            <Page id='SignUp' description='Role sign up' withHeader={ false }>
+            <Page id='SignUp' description='Role sign up' withHeader={false}>
                 <Grid centered textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='wrapper'>
                         <Header as='h2' color='black' textAlign='center' inverted>
-                            <Image src={ logo }/> Create a new account
+                            <Image src={logo} /> Create a new account
                         </Header>
-                        <SignUpForm onSubmit={ this.handleSubmit }/>
+                        <SignUpForm onSubmit={this.handleSubmit} />
                         <Message>
                             <Message.Header>Already have an account?</Message.Header>
                             <Link to='/sign-in'>Sign In</Link>

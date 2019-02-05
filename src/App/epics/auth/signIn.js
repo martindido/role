@@ -1,11 +1,11 @@
 import { SIGN_IN } from '../../constants/actions';
-import { setCurrentUser } from '../../actions/auth';
-import { ofType, Promise } from 'redux-observable';
+import { signInSuccess, signInError } from '../../actions/auth';
+import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
+import { Auth } from 'aws-amplify';
 
 import type { SignInAction } from '../../types/Action';
-import type { ActionsObservable } from 'redux-observable';
-import { Auth } from 'aws-amplify';
+import type { ActionsObservable, Promise } from 'redux-observable';
 
 export default (action$: ActionsObservable<SignInAction>) =>
     action$.pipe(
@@ -13,26 +13,19 @@ export default (action$: ActionsObservable<SignInAction>) =>
         switchMap(
             async (action: SignInAction): Promise => {
                 try {
-                    return setCurrentUser(await signIn(action.payload));
-                }
-                catch (error) {
+                    return signInSuccess(await signIn(action.payload));
+                } catch (error) {
                     console.log('signIn', 'error', error);
-                    return setCurrentUser({
-                        username: 'error',
-                        isAdmin: false
-                    });
+                    return signInError(error);
                 }
             }
         )
     );
 
-async function signIn(user) {
-    const data = await Auth.signIn(user.username, user.password);
-    const session = await Auth.currentSession();
-    const payload = session.getIdToken().decodePayload();
+async function signIn(credentials) {
+    const data = await Auth.signIn(credentials.username, credentials.password);
 
     return {
-        username: data.username,
-        isAdmin: !!payload['cognito:groups'] && payload['cognito:groups'].includes('admins')
+        username: data.username
     };
 }

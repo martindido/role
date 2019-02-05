@@ -1,6 +1,6 @@
 import * as actionCreators from './auth';
-import { unconfirmedUser, user } from '../types/User.mock';
-import { credentials, credentialsWithEmail, signUpConfirm } from '../types/Auth.mock';
+import { user } from '../types/User.mock';
+import { credentials, credentialsWithEmail, confirmation } from '../types/Auth.mock';
 import {
     signInAction,
     signUpAction,
@@ -11,8 +11,7 @@ import {
     authenticateAction,
     deauthenticateAction,
     setCurrentUserAction,
-    unsetCurrentUserAction,
-    establishCurrentUserAction
+    unsetCurrentUserAction
 } from '../types/Action.mock';
 
 describe('.signIn', () => {
@@ -29,13 +28,13 @@ describe('.signUp', () => {
 
 describe('.signUpSuccess', () => {
     it('returns the corresponding action', () => {
-        expect(actionCreators.signUpSuccess(unconfirmedUser)).toEqual(signUpSuccessAction);
+        expect(actionCreators.signUpSuccess(user)).toEqual(signUpSuccessAction);
     });
 });
 
 describe('.signUpConfirm', () => {
     it('returns the corresponding action', () => {
-        expect(actionCreators.signUpConfirm(signUpConfirm)).toEqual(signUpConfirmAction);
+        expect(actionCreators.signUpConfirm(confirmation)).toEqual(signUpConfirmAction);
     });
 });
 
@@ -69,11 +68,5 @@ describe('.setCurrentUser', () => {
 describe('.unsetCurrentUser', () => {
     it('returns the corresponding action', () => {
         expect(actionCreators.unsetCurrentUser()).toEqual(unsetCurrentUserAction);
-    });
-});
-
-describe('.establishCurrentUser', () => {
-    it('returns the corresponding action', () => {
-        expect(actionCreators.establishCurrentUser()).toEqual(establishCurrentUserAction);
     });
 });

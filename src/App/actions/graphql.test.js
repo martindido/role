@@ -2,6 +2,9 @@ import * as actionCreators from './graphql';
 import {
     searchAllAction,
     listWorldsAction,
+    listWorldsSuccessAction,
+    listWorldsErrorAction,
+    listWorldsErrorStringAction,
     setWorldsAction,
     createWorldAction,
     createWorldWithIdAction,
@@ -96,6 +99,21 @@ describe('.searchAll', () => {
 describe('.listWorlds', () => {
     it('returns the corresponding action', () => {
         expect(actionCreators.listWorlds()).toEqual(listWorldsAction);
+    });
+});
+
+describe('.listWorldsSuccess', () => {
+    it('returns the corresponding action', () => {
+        expect(actionCreators.listWorldsSuccess([world])).toEqual(listWorldsSuccessAction);
+    });
+});
+
+describe('.listWorldsError', () => {
+    it('returns the corresponding action with errors', () => {
+        expect(actionCreators.listWorldsError(errors)).toEqual(listWorldsErrorAction);
+    });
+    it('returns the corresponding action with error strings', () => {
+        expect(actionCreators.listWorldsError(errorStrings)).toEqual(listWorldsErrorStringAction);
     });
 });
 

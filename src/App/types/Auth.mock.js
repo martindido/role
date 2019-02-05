@@ -1,16 +1,12 @@
-import { unconfirmedUser, USERNAME } from './User.mock';
+import { USERNAME, user } from './User.mock';
 
 export const CODE = '123456';
 export const EMAIL = 'role@center.com';
 export const PASSWORD = 'abc123';
 
-export const signUpConfirmData = {
+export const confirmation = {
+    ...user,
     code: CODE
-};
-
-export const signUpConfirm = {
-    ...unconfirmedUser,
-    ...signUpConfirmData
 };
 
 export const credentials = {

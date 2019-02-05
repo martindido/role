@@ -1,18 +1,17 @@
 import {
-    SIGN_UP_SUCCESS,
+    SET_CURRENT_UNCONFIRMED_USER,
     UNSET_CURRENT_UNCONFIRMED_USER,
-    AUTHENTICATE,
     SET_CURRENT_USER,
     UNSET_CURRENT_USER
 } from '../constants/actions';
 
 import type { AuthAction } from '../types/Action';
-import type { User, UnconfirmedUser } from '../types/User';
+import type { User } from '../types/User';
 
-type State = {
+export type State = {
     isAuthenticated: boolean,
     currentUser?: User,
-    currentUnconfirmedUser?: UnconfirmedUser
+    currentUnconfirmedUser?: User
 };
 
 export const initialState = {
@@ -20,32 +19,42 @@ export const initialState = {
 };
 export const auth = (state: State = initialState, action: AuthAction) => {
     switch (action.type) {
-        case SIGN_UP_SUCCESS:
-            return {
-                ...state,
-                currentUnconfirmedUser: action.payload
-            };
+        case SET_CURRENT_UNCONFIRMED_USER:
+            return set(state, 'currentUnconfirmedUser', action.payload);
         case UNSET_CURRENT_UNCONFIRMED_USER:
-            return {
-                ...state,
-                currentUnconfirmedUser: undefined
-            };
-        case AUTHENTICATE:
-            return {
-                ...state,
-                isAuthenticated: action.payload
-            };
+            return unset(state, 'currentUnconfirmedUser');
         case SET_CURRENT_USER:
-            return {
-                ...state,
-                currentUser: action.payload
-            };
+            return set(state, {
+                currentUser: action.payload,
+                isAuthenticated: true
+            });
         case UNSET_CURRENT_USER:
-            return {
-                ...state,
-                currentUser: undefined
-            };
+            return unset(state, ['currentUser', 'isAuthenticated']);
         default:
             return state;
     }
 };
+
+function set(state, attributes, value) {
+    if (typeof attributes === 'string') {
+        attributes = {
+            [attributes]: value
+        };
+    }
+    return {
+        ...state,
+        ...attributes
+    };
+}
+
+function unset(state, attributes) {
+    const newState = { ...state };
+
+    if (typeof attributes === 'string') {
+        attributes = [attributes];
+    }
+    for (const attribute of attributes) {
+        delete newState[attribute];
+    }
+    return newState;
+}

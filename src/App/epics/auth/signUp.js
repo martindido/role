@@ -1,5 +1,5 @@
 import { SIGN_UP } from '../../constants/actions';
-import { signUpSuccess } from '../../actions/auth';
+import { signUpSuccess, signUpError } from '../../actions/auth';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
@@ -14,24 +14,21 @@ export default (action$: ActionsObservable<SignUpAction>) =>
             async (action: SignUpAction): Promise => {
                 try {
                     return signUpSuccess(await signUp(action.payload));
-                }
-                catch (error) {
+                } catch (error) {
                     console.log('signUp', 'error', error);
-                    return signUpSuccess({
-                        username: `${error.message}`
-                    });
+                    return signUpError(error);
                 }
             }
         )
     );
 
-async function signUp(user) {
+async function signUp(credentials) {
     const data = await Auth.signUp({
-        username: user.username,
-        password: user.password,
+        username: credentials.username,
+        password: credentials.password,
         attributes: {
-            email: user.email,
-            nickname: user.username
+            email: credentials.email,
+            nickname: credentials.username
         }
     });
 
@@ -39,4 +36,3 @@ async function signUp(user) {
         username: data.user.username
     };
 }
-
