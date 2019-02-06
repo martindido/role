@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SignIn from '../../components/auth/SignIn';
-import { signInSubmit } from '../../actions/submit';
-import { authenticate } from '../../actions/auth';
+import { signInSync, authenticateSync } from '../../actions/sync';
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators(
         {
-            signInSubmit,
-            authenticate
+            signInSync,
+            authenticateSync
         },
         dispatch
     );

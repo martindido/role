@@ -8,3 +8,5 @@ export type Credentials = {
     username: string,
     password: string
 };
+
+export type Authenticator = Object;

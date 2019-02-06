@@ -9,16 +9,14 @@ import logo from '../../images/logo.png';
 import type { User } from '../../types/User';
 import type { Confirmation } from '../../types/Auth';
 import type {
-    SignUpConfirmSubmitActionCreator,
-    AuthenticateActionCreator,
+    SignUpConfirmSyncActionCreator,
     UnsetCurrentUnconfirmedUserActionCreator
 } from '../../types/ActionCreator';
-import type { SignUpConfirmSubmit } from '../../types/Submit';
+import type { SignUpConfirmSync } from '../../types/Sync';
 import type { RouterHistory } from 'react-router-dom';
 
 export type Props = {
-    signUpConfirmSubmit: SignUpConfirmSubmitActionCreator,
-    authenticate: AuthenticateActionCreator,
+    signUpConfirmSync: SignUpConfirmSyncActionCreator,
     unsetCurrentUnconfirmedUser: UnsetCurrentUnconfirmedUserActionCreator,
     currentUnconfirmedUser: User,
     history: RouterHistory
@@ -43,9 +41,9 @@ export default class SignUpConfirm extends Component<Props> {
         }
     };
 
-    signUpConfirm = async (submit: SignUpConfirmSubmit) => {
+    signUpConfirm = async (payload: SignUpConfirmSync) => {
         return await new Promise((resolve, reject) => {
-            this.props.signUpConfirmSubmit(submit, {
+            this.props.signUpConfirmSync(payload, {
                 onSuccess: resolve,
                 onError: reject
             });

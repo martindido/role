@@ -1,25 +1,25 @@
-import { SIGN_UP_CONFIRM_SUBMIT, SIGN_UP_CONFIRM_SUCCESS, SIGN_UP_CONFIRM_ERROR } from '../../../constants/actions';
+import { SIGN_UP_CONFIRM_SYNC, SIGN_UP_CONFIRM_SUCCESS, SIGN_UP_CONFIRM_ERROR } from '../../../constants/actions';
 import { signUpConfirm } from '../../../actions/auth';
 import { ofType } from 'redux-observable';
 import { mergeMap, take, startWith, tap } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { SignUpConfirmSubmitAction } from '../../../types/Action';
+import type { SignUpConfirmSyncAction } from '../../../types/Action';
 
-export default (action$: ActionsObservable<SignUpConfirmSubmitAction>) =>
+export default (action$: ActionsObservable<SignUpConfirmSyncAction>) =>
     action$.pipe(
-        ofType(SIGN_UP_CONFIRM_SUBMIT),
-        mergeMap(signUpConfirmSubmitAction =>
+        ofType(SIGN_UP_CONFIRM_SYNC),
+        mergeMap(signUpConfirmSyncAction =>
             action$.pipe(
                 ofType(SIGN_UP_CONFIRM_SUCCESS, SIGN_UP_CONFIRM_ERROR),
                 take(1),
-                onError(SIGN_UP_CONFIRM_ERROR, signUpConfirmSubmitAction),
+                onError(SIGN_UP_CONFIRM_ERROR, signUpConfirmSyncAction),
                 ofType(SIGN_UP_CONFIRM_SUCCESS),
-                onSuccess(signUpConfirmSubmitAction),
+                onSuccess(signUpConfirmSyncAction),
                 startWith(
                     signUpConfirm({
-                        username: signUpConfirmSubmitAction.payload.user.username,
-                        code: signUpConfirmSubmitAction.payload.confirmation.code
+                        username: signUpConfirmSyncAction.payload.user.username,
+                        code: signUpConfirmSyncAction.payload.confirmation.code
                     })
                 )
             )
@@ -34,8 +34,8 @@ function onError(type, action) {
     });
 }
 
-function onSuccess(signUpConfirmSubmitAction) {
+function onSuccess(signUpConfirmSyncAction) {
     return tap(signUpConfirmSuccessAction =>
-        signUpConfirmSubmitAction.meta.onSuccess(signUpConfirmSuccessAction.payload)
+        signUpConfirmSyncAction.meta.onSuccess(signUpConfirmSuccessAction.payload)
     );
 }

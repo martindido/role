@@ -1,4 +1,7 @@
 import {
+    AUTHENTICATE,
+    AUTHENTICATE_SUCCESS,
+    AUTHENTICATE_ERROR,
     SIGN_IN,
     SIGN_IN_SUCCESS,
     SIGN_IN_ERROR,
@@ -11,12 +14,14 @@ import {
     SET_CURRENT_UNCONFIRMED_USER,
     UNSET_CURRENT_UNCONFIRMED_USER,
     SIGN_OUT,
-    AUTHENTICATE,
     SET_CURRENT_USER,
     UNSET_CURRENT_USER
 } from '../constants/actions';
 
 import type {
+    AuthenticateAction,
+    AuthenticateSuccessAction,
+    AuthenticateErrorAction,
     SignInAction,
     SignInSuccessAction,
     SignInErrorAction,
@@ -29,13 +34,33 @@ import type {
     SetCurrentUnconfirmedUserAction,
     UnsetCurrentUnconfirmedUserAction,
     SignOutAction,
-    AuthenticateAction,
     SetCurrentUserAction,
     UnsetCurrentUserAction
 } from '../types/Action';
 import type { User } from '../types/User';
-import type { Credentials, Confirmation } from '../types/Auth';
-import type { Error } from '../types/Submit';
+import type { Credentials, Confirmation, Authenticator } from '../types/Auth';
+import type { Error } from '../types/Sync';
+
+export function authenticate(authenticator?: Authenticator): AuthenticateAction {
+    return {
+        type: AUTHENTICATE,
+        payload: authenticator
+    };
+}
+
+export function authenticateSuccess(user: User): AuthenticateSuccessAction {
+    return {
+        type: AUTHENTICATE_SUCCESS,
+        payload: user
+    };
+}
+
+export function authenticateError(error: Error): AuthenticateErrorAction {
+    return {
+        type: AUTHENTICATE_ERROR,
+        payload: error
+    };
+}
 
 export function signIn(credentials: Credentials): SignInAction {
     return {
@@ -116,13 +141,6 @@ export function unsetCurrentUnconfirmedUser(): UnsetCurrentUnconfirmedUserAction
 export function signOut(): SignOutAction {
     return {
         type: SIGN_OUT
-    };
-}
-
-export function authenticate(isAuthenticated: boolean): AuthenticateAction {
-    return {
-        type: AUTHENTICATE,
-        payload: isAuthenticated
     };
 }
 

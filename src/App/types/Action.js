@@ -1,6 +1,6 @@
 import type { Location } from 'react-router-dom';
 import type { User } from './User';
-import type { Credentials, Confirmation } from './Auth';
+import type { Credentials, Confirmation, Authenticator } from './Auth';
 import type { Profile } from './Profile';
 import type {
     CreateWorldInput,
@@ -15,15 +15,16 @@ import type { SearchResults } from './Search';
 import type {
     Error,
     Errors,
-    SubmitMeta,
-    SignInSubmit,
-    SignUpSubmit,
-    SignUpConfirmSubmit,
-    CreateWorldSubmit,
-    UpdateWorldSubmit,
-    CreateGameSubmit,
-    UpdateGameSubmit
-} from './Submit';
+    SyncMeta,
+    AuthenticateSync,
+    SignInSync,
+    SignUpSync,
+    SignUpConfirmSync,
+    CreateWorldSync,
+    UpdateWorldSync,
+    CreateGameSync,
+    UpdateGameSync
+} from './Sync';
 import type { FileUpload, S3File } from './Storage';
 import type { Game } from './Game';
 
@@ -56,46 +57,52 @@ export type LoadGameAction = {
     payload: string
 };
 
-export type SignInSubmitAction = {
-    type: 'SIGN_IN_SUBMIT',
-    payload: SignInSubmit,
-    meta: SubmitMeta
+export type AuthenticateSyncAction = {
+    type: 'AUTHENTICATE_SYNC',
+    payload: AuthenticateSync,
+    meta: SyncMeta
 };
 
-export type SignUpSubmitAction = {
-    type: 'SIGN_UP_SUBMIT',
-    payload: SignUpSubmit,
-    meta: SubmitMeta
+export type SignInSyncAction = {
+    type: 'SIGN_IN_SYNC',
+    payload: SignInSync,
+    meta: SyncMeta
 };
 
-export type SignUpConfirmSubmitAction = {
-    type: 'SIGN_UP_CONFIRM_SUBMIT',
-    payload: SignUpConfirmSubmit,
-    meta: SubmitMeta
+export type SignUpSyncAction = {
+    type: 'SIGN_UP_SYNC',
+    payload: SignUpSync,
+    meta: SyncMeta
 };
 
-export type CreateWorldSubmitAction = {
-    type: 'CREATE_WORLD_SUBMIT',
-    payload: CreateWorldSubmit,
-    meta: SubmitMeta
+export type SignUpConfirmSyncAction = {
+    type: 'SIGN_UP_CONFIRM_SYNC',
+    payload: SignUpConfirmSync,
+    meta: SyncMeta
 };
 
-export type UpdateWorldSubmitAction = {
-    type: 'UPDATE_WORLD_SUBMIT',
-    payload: UpdateWorldSubmit,
-    meta: SubmitMeta
+export type CreateWorldSyncAction = {
+    type: 'CREATE_WORLD_SYNC',
+    payload: CreateWorldSync,
+    meta: SyncMeta
 };
 
-export type CreateGameSubmitAction = {
-    type: 'CREATE_GAME_SUBMIT',
-    payload: CreateGameSubmit,
-    meta: SubmitMeta
+export type UpdateWorldSyncAction = {
+    type: 'UPDATE_WORLD_SYNC',
+    payload: UpdateWorldSync,
+    meta: SyncMeta
 };
 
-export type UpdateGameSubmitAction = {
-    type: 'UPDATE_GAME_SUBMIT',
-    payload: UpdateGameSubmit,
-    meta: SubmitMeta
+export type CreateGameSyncAction = {
+    type: 'CREATE_GAME_SYNC',
+    payload: CreateGameSync,
+    meta: SyncMeta
+};
+
+export type UpdateGameSyncAction = {
+    type: 'UPDATE_GAME_SYNC',
+    payload: UpdateGameSync,
+    meta: SyncMeta
 };
 
 export type UploadFileAction = {
@@ -111,6 +118,21 @@ export type UploadFileSuccessAction = {
 export type UploadFileErrorAction = {
     type: 'UPLOAD_FILE_ERROR',
     payload: Errors
+};
+
+export type AuthenticateAction = {
+    type: 'AUTHENTICATE',
+    payload?: Authenticator
+};
+
+export type AuthenticateSuccessAction = {
+    type: 'AUTHENTICATE_SUCCESS',
+    payload: User
+};
+
+export type AuthenticateErrorAction = {
+    type: 'AUTHENTICATE_ERROR',
+    payload: Error
 };
 
 export type SignInAction = {
@@ -160,10 +182,6 @@ export type SignUpConfirmErrorAction = {
 
 export type SignOutAction = {
     type: 'SIGN_OUT'
-};
-
-export type AuthenticateAction = {
-    type: 'AUTHENTICATE'
 };
 
 export type SetCurrentUnconfirmedUserAction = {
@@ -346,14 +364,15 @@ export type UnsetGameAction = {
 
 export type RoutingAction = SetLoadingAction | SetNotFoundAction | SetPreviousLocationAction;
 
-export type SubmitAction =
-    | SignUpSubmitAction
-    | SignUpConfirmSubmitAction
-    | SignInSubmitAction
-    | CreateWorldSubmitAction
-    | UpdateWorldSubmitAction
-    | CreateGameSubmitAction
-    | UpdateGameSubmitAction;
+export type SyncAction =
+    | AuthenticateSyncAction
+    | SignInSyncAction
+    | SignUpSyncAction
+    | SignUpConfirmSyncAction
+    | CreateWorldSyncAction
+    | UpdateWorldSyncAction
+    | CreateGameSyncAction
+    | UpdateGameSyncAction;
 
 export type AuthAction =
     | SignInAction
@@ -399,4 +418,4 @@ export type GraphQLAction =
 
 export type SearchAction = SetSearchLoadingAction | SetSearchResultsAction | UnsetSearchResultsAction;
 
-export type Action = RoutingAction | SubmitAction | AuthAction | ProfileAction | GraphQLAction | SearchAction;
+export type Action = RoutingAction | SyncAction | AuthAction | ProfileAction | GraphQLAction | SearchAction;

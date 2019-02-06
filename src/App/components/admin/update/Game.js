@@ -4,13 +4,13 @@ import Form from '../../../containers/forms/admin/Game';
 import { Header } from 'semantic-ui-react';
 
 import type { Game as GameType } from '../../../types/Game';
-import type { UpdateGameSubmit } from '../../../types/Submit';
-import type { UpdateGameSubmitActionCreator } from '../../../types/ActionCreator';
+import type { UpdateGameSync } from '../../../types/Sync';
+import type { UpdateGameSyncActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 import { SubmissionError } from 'redux-form';
 
 export type Props = {
-    updateGameSubmit: UpdateGameSubmitActionCreator,
+    updateGameSync: UpdateGameSyncActionCreator,
     computedMatch: {
         params: {
             worldId: string,
@@ -23,36 +23,40 @@ export type Props = {
 };
 
 export default class Game extends Component<Props> {
-    handleSubmit = async (submit: UpdateGameSubmit) => {
+    handleSubmit = async (payload: UpdateGameSync) => {
         try {
-            await this.updateGame(submit);
+            await this.updateGame(payload);
             this.props.history.push(this.getUp());
-        }
-        catch (err) {
+        } catch (err) {
             throw new SubmissionError({
                 _error: 'An unexpected error occurred'
             });
         }
-    }
+    };
 
-    updateGame = async (submit: UpdateGameSubmit) => {
+    updateGame = async (payload: UpdateGameSync) => {
         return await new Promise((resolve, reject) => {
-            this.props.updateGameSubmit(submit, {
+            this.props.updateGameSync(payload, {
                 onSuccess: resolve,
                 onError: reject
             });
         });
-    }
+    };
 
     getUp() {
-        const {computedMatch: {params: {worldId, gameId}}, isNotFound} = this.props;
-        const up = `/worlds/${ worldId }`;
+        const {
+            computedMatch: {
+                params: { worldId, gameId }
+            },
+            isNotFound
+        } = this.props;
+        const up = `/worlds/${worldId}`;
 
-        return isNotFound ? up : `${ up }/games/${ gameId }`;
+        return isNotFound ? up : `${up}/games/${gameId}`;
     }
 
     render() {
-        const {game} = this.props;
+        const { game } = this.props;
         const header = {
             menu: {
                 up: this.getUp()
@@ -60,12 +64,12 @@ export default class Game extends Component<Props> {
         };
 
         return (
-            <Page title='Game Admin' className='admin edit-game' header={ header }>
+            <Page title='Game Admin' className='admin edit-game' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        { game ? `Edit ${ game.name }` : 'Edit game' }
+                        {game ? `Edit ${game.name}` : 'Edit game'}
                     </Header>
-                    <Form form='edit-game' onSubmit={ this.handleSubmit }></Form>
+                    <Form form='edit-game' onSubmit={this.handleSubmit} />
                 </Fragment>
             </Page>
         );

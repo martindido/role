@@ -3,22 +3,29 @@ import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
 import { loadWorld } from '../../../actions/load';
 import { unsetGame } from '../../../actions/graphql';
-import { createGameSubmit } from '../../../actions/submit';
+import { createGameSync } from '../../../actions/sync';
 import Game from '../../../components/admin/create/Game';
 
-const mapStateToProps = ({graphql}) => ({
+const mapStateToProps = ({ graphql }) => ({
     game: graphql.game
 });
 
 const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({
-        loadWorld,
-        unsetGame,
-        createGameSubmit
-    }, dispatch);
+    bindActionCreators(
+        {
+            loadWorld,
+            unsetGame,
+            createGameSync
+        },
+        dispatch
+    );
 
 const frontload = props => {
-    const {computedMatch: {params: {worldId}}} = props;
+    const {
+        computedMatch: {
+            params: { worldId }
+        }
+    } = props;
 
     props.unsetGame();
     props.loadWorld(worldId);

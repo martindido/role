@@ -5,13 +5,12 @@ import { Header } from 'semantic-ui-react';
 import { SubmissionError } from 'redux-form';
 
 import type { World as WorldType } from '../../../types/World';
-import type { UpdateWorldSubmitActionCreator } from '../../../types/ActionCreator';
+import type { UpdateWorldSyncActionCreator } from '../../../types/ActionCreator';
+import type { UpdateWorldSync } from '../../../types/Sync';
 import type { RouterHistory } from 'react-router-dom';
-import type { UpdateWorldSubmit } from '../../../types/Submit';
-
 
 export type Props = {
-    updateWorldSubmit: UpdateWorldSubmitActionCreator,
+    updateWorldSync: UpdateWorldSyncActionCreator,
     computedMatch: {
         params: {
             worldId: string
@@ -23,35 +22,39 @@ export type Props = {
 };
 
 export default class World extends Component<Props> {
-    handleSubmit = async (submit: UpdateWorldSubmit) => {
+    handleSubmit = async (payload: UpdateWorldSync) => {
         try {
-            await this.updateWorld(submit);
+            await this.updateWorld(payload);
             this.props.history.push(this.getUp());
-        }
-        catch (err) {
+        } catch (err) {
             throw new SubmissionError({
                 _error: 'An unexpected error occurred'
             });
         }
-    }
+    };
 
-    updateWorld = async (submit: UpdateWorldSubmit) => {
+    updateWorld = async (payload: UpdateWorldSync) => {
         return await new Promise((resolve, reject) => {
-            this.props.updateWorldSubmit(submit, {
+            this.props.updateWorldSync(payload, {
                 onSuccess: resolve,
                 onError: reject
             });
         });
-    }
+    };
 
     getUp() {
-        const {computedMatch: {params: {worldId}}, isNotFound} = this.props;
+        const {
+            computedMatch: {
+                params: { worldId }
+            },
+            isNotFound
+        } = this.props;
 
-        return isNotFound ? '/' : `/worlds/${ worldId }`;
+        return isNotFound ? '/' : `/worlds/${worldId}`;
     }
 
     render() {
-        const {world} = this.props;
+        const { world } = this.props;
         const header = {
             menu: {
                 up: this.getUp()
@@ -59,12 +62,12 @@ export default class World extends Component<Props> {
         };
 
         return (
-            <Page title='World Admin' className='admin new-world' header={ header }>
+            <Page title='World Admin' className='admin new-world' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        { world ? `Edit ${ world.name }` : 'Edit world' }
+                        {world ? `Edit ${world.name}` : 'Edit world'}
                     </Header>
-                    <Form form='edit-world' onSubmit={ this.handleSubmit }></Form>
+                    <Form form='edit-world' onSubmit={this.handleSubmit} />
                 </Fragment>
             </Page>
         );

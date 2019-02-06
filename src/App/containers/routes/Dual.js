@@ -9,8 +9,7 @@ const mapStateToProps = ({ auth: { isAuthenticated } }: State) => ({
     isAuthenticated
 });
 
-const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch: *) => bindActionCreators({}, dispatch);
 
 export default withRouter(
     connect(

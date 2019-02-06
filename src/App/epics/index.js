@@ -15,20 +15,21 @@ import loadGame from './load/graphql/getGame';
 import getWorld from './graphql/getWorld';
 import getGame from './graphql/getGame';
 import search from './graphql/search';
-import signInSubmit from './submit/auth/signIn';
-import signUpSubmit from './submit/auth/signUp';
-import signUpConfirmSubmit from './submit/auth/signUpConfirm';
-import createWorldSubmit from './submit/graphql/createWorld';
-import updateWorldSubmit from './submit/graphql/updateWorld';
-import createGameSubmit from './submit/graphql/createGame';
-import updateGameSubmit from './submit/graphql/updateGame';
+import authenticateSync from './sync/auth/authenticate';
+import signInSync from './sync/auth/signIn';
+import signUpSync from './sync/auth/signUp';
+import signUpConfirmSync from './sync/auth/signUpConfirm';
+import createWorldSync from './sync/graphql/createWorld';
+import updateWorldSync from './sync/graphql/updateWorld';
+import createGameSync from './sync/graphql/createGame';
+import updateGameSync from './sync/graphql/updateGame';
 import uploadFile from './storage/uploadFile';
 
 export const epics = combineEpics(
+    authenticate,
     signIn,
     signUp,
     signUpConfirm,
-    authenticate,
     signOut,
     listWorlds,
     createWorld,
@@ -41,12 +42,13 @@ export const epics = combineEpics(
     loadGame,
     getGame,
     search,
-    signInSubmit,
-    signUpSubmit,
-    signUpConfirmSubmit,
-    createWorldSubmit,
-    updateWorldSubmit,
-    createGameSubmit,
-    updateGameSubmit,
+    authenticateSync,
+    signInSync,
+    signUpSync,
+    signUpConfirmSync,
+    createWorldSync,
+    updateWorldSync,
+    createGameSync,
+    updateGameSync,
     uploadFile
 );

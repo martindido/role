@@ -7,13 +7,13 @@ import { SubmissionError } from 'redux-form';
 import logo from '../../images/logo.png';
 
 import type { Credentials } from '../../types/Auth';
-import type { SignInSubmit } from '../../types/Submit';
-import type { SignInSubmitActionCreator, AuthenticateActionCreator } from '../../types/ActionCreator';
+import type { SignInSync, AuthenticateSync } from '../../types/Sync';
+import type { SignInSyncActionCreator, AuthenticateSyncActionCreator } from '../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
 type Props = {
-    signInSubmit: SignInSubmitActionCreator,
-    authenticate: AuthenticateActionCreator,
+    signInSync: SignInSyncActionCreator,
+    authenticateSync: AuthenticateSyncActionCreator,
     history: RouterHistory
 };
 
@@ -23,7 +23,7 @@ export default class SignIn extends Component<Props> {
             await this.signIn({
                 credentials
             });
-            this.props.authenticate();
+            await this.authenticate();
             this.props.history.push('/');
         } catch (error) {
             throw new SubmissionError({
@@ -32,9 +32,18 @@ export default class SignIn extends Component<Props> {
         }
     };
 
-    signIn = async (submit: SignInSubmit) => {
+    signIn = async (payload: SignInSync) => {
         return await new Promise((resolve, reject) => {
-            this.props.signInSubmit(submit, {
+            this.props.signInSync(payload, {
+                onSuccess: resolve,
+                onError: reject
+            });
+        });
+    };
+
+    authenticate = async (payload?: AuthenticateSync = {}) => {
+        return await new Promise((resolve, reject) => {
+            this.props.authenticateSync(payload, {
                 onSuccess: resolve,
                 onError: reject
             });

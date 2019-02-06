@@ -8,12 +8,12 @@ import logo from '../../images/logo.png';
 
 import type { User } from '../../types/User';
 import type { Credentials } from '../../types/Auth';
-import type { SignUpSubmit } from '../../types/Submit';
-import type { SignUpSubmitActionCreator, SetCurrentUnconfirmedUserActionCreator } from '../../types/ActionCreator';
+import type { SignUpSync } from '../../types/Sync';
+import type { SignUpSyncActionCreator, SetCurrentUnconfirmedUserActionCreator } from '../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 
 type Props = {
-    signUpSubmit: SignUpSubmitActionCreator,
+    signUpSync: SignUpSyncActionCreator,
     setCurrentUnconfirmedUser: SetCurrentUnconfirmedUserActionCreator,
     currentUnconfirmedUser?: User,
     history: RouterHistory
@@ -35,9 +35,9 @@ export default class SignUp extends Component<Props> {
         }
     };
 
-    signUp = async (submit: SignUpSubmit) => {
+    signUp = async (payload: SignUpSync) => {
         return await new Promise((resolve, reject) => {
-            this.props.signUpSubmit(submit, {
+            this.props.signUpSync(payload, {
                 onSuccess: resolve,
                 onError: reject
             });

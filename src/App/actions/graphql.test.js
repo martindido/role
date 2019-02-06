@@ -87,7 +87,7 @@ import {
 } from '../types/GraphQL.mock';
 import { VALUE } from '../types/Search.mock';
 import { world } from '../types/World.mock';
-import { errors, errorStrings } from '../types/Submit.mock';
+import { errors, errorStrings } from '../types/Sync.mock';
 import { game } from '../types/Game.mock';
 
 describe('.searchAll', () => {

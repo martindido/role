@@ -59,7 +59,7 @@ import type {
 } from '../types/Action';
 import type { CreateWorldInput, UpdateWorldInput, UpdateGameInput, CreateGameInput } from '../types/GraphQL';
 import type { World } from '../types/World';
-import type { Errors } from '../types/Submit';
+import type { Errors } from '../types/Sync';
 import type { Game } from '../types/Game';
 
 export function searchAll(value: string): SearchAllAction {

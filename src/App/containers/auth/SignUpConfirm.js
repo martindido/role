@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SignUpConfirm from '../../components/auth/SignUpConfirm';
 import { unsetCurrentUnconfirmedUser } from '../../actions/auth';
-import { signUpConfirmSubmit } from '../../actions/submit';
+import { signUpConfirmSync } from '../../actions/sync';
 
 import type { State } from '../../types/State';
 
@@ -13,7 +13,7 @@ const mapStateToProps = ({ auth }: State) => ({
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators(
         {
-            signUpConfirmSubmit,
+            signUpConfirmSync,
             unsetCurrentUnconfirmedUser
         },
         dispatch

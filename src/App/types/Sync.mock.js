@@ -9,35 +9,35 @@ export const errors = [error];
 
 export const errorStrings = [errorString];
 
-export const createWorldSubmit = {
+export const createWorldSync = {
     world: createWorldInput,
     logo: file
 };
 
-export const createGameSubmit = {
+export const createGameSync = {
     game: createGameInput,
     logo: file
 };
 
-export const updateWorldSubmit = {
+export const updateWorldSync = {
     world: updateWorldInput
 };
 
-export const updateWorldWithLogoSubmit = {
+export const updateWorldWithLogoSync = {
     world: updateWorldInput,
     logo: file
 };
 
-export const updateGameSubmit = {
+export const updateGameSync = {
     game: updateGameInput
 };
 
-export const updateGameWithLogoSubmit = {
+export const updateGameWithLogoSync = {
     game: updateGameInput,
     logo: file
 };
 
-export const submitMeta = {
+export const syncMeta = {
     onSuccess: () => {},
     onError: () => {}
 };

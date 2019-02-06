@@ -48,10 +48,10 @@ import {
     UPLOAD_FILE,
     UPLOAD_FILE_SUCCESS,
     UPLOAD_FILE_ERROR,
-    CREATE_WORLD_SUBMIT,
-    UPDATE_WORLD_SUBMIT,
-    CREATE_GAME_SUBMIT,
-    UPDATE_GAME_SUBMIT
+    CREATE_WORLD_SYNC,
+    UPDATE_WORLD_SYNC,
+    CREATE_GAME_SYNC,
+    UPDATE_GAME_SYNC
 } from '../constants/actions';
 import { credentials, credentialsWithEmail, confirmation } from './Auth.mock';
 import { user } from './User.mock';
@@ -92,14 +92,14 @@ import { searchResults, searchResultsWithCategories, VALUE } from './Search.mock
 import {
     errors,
     errorStrings,
-    submitMeta,
-    createWorldSubmit,
-    updateWorldSubmit,
-    updateWorldWithLogoSubmit,
-    createGameSubmit,
-    updateGameSubmit,
-    updateGameWithLogoSubmit
-} from './Submit.mock';
+    syncMeta,
+    createWorldSync,
+    updateWorldSync,
+    updateWorldWithLogoSync,
+    createGameSync,
+    updateGameSync,
+    updateGameWithLogoSync
+} from './Sync.mock';
 import { fileUpload, s3File } from './Storage.mock';
 
 export const signInAction = {
@@ -136,13 +136,7 @@ export const signOutAction = {
 };
 
 export const authenticateAction = {
-    type: AUTHENTICATE,
-    payload: true
-};
-
-export const deauthenticateAction = {
-    type: AUTHENTICATE,
-    payload: false
+    type: AUTHENTICATE
 };
 
 export const setCurrentUserAction = {
@@ -514,38 +508,38 @@ export const uploadFileErrorStringAction = {
     payload: errorStrings
 };
 
-export const createWorldSubmitAction = {
-    type: CREATE_WORLD_SUBMIT,
-    payload: createWorldSubmit,
-    meta: submitMeta
+export const createWorldSyncAction = {
+    type: CREATE_WORLD_SYNC,
+    payload: createWorldSync,
+    meta: syncMeta
 };
 
-export const updateWorldSubmitAction = {
-    type: UPDATE_WORLD_SUBMIT,
-    payload: updateWorldSubmit,
-    meta: submitMeta
+export const updateWorldSyncAction = {
+    type: UPDATE_WORLD_SYNC,
+    payload: updateWorldSync,
+    meta: syncMeta
 };
 
-export const updateWorldWithLogoSubmitAction = {
-    type: UPDATE_WORLD_SUBMIT,
-    payload: updateWorldWithLogoSubmit,
-    meta: submitMeta
+export const updateWorldWithLogoSyncAction = {
+    type: UPDATE_WORLD_SYNC,
+    payload: updateWorldWithLogoSync,
+    meta: syncMeta
 };
 
-export const createGameSubmitAction = {
-    type: CREATE_GAME_SUBMIT,
-    payload: createGameSubmit,
-    meta: submitMeta
+export const createGameSyncAction = {
+    type: CREATE_GAME_SYNC,
+    payload: createGameSync,
+    meta: syncMeta
 };
 
-export const updateGameSubmitAction = {
-    type: UPDATE_GAME_SUBMIT,
-    payload: updateGameSubmit,
-    meta: submitMeta
+export const updateGameSyncAction = {
+    type: UPDATE_GAME_SYNC,
+    payload: updateGameSync,
+    meta: syncMeta
 };
 
-export const updateGameWithLogoSubmitAction = {
-    type: UPDATE_GAME_SUBMIT,
-    payload: updateGameWithLogoSubmit,
-    meta: submitMeta
+export const updateGameWithLogoSyncAction = {
+    type: UPDATE_GAME_SYNC,
+    payload: updateGameWithLogoSync,
+    meta: syncMeta
 };

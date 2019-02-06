@@ -9,7 +9,6 @@ import {
     unsetCurrentUnconfirmedUserAction,
     signOutAction,
     authenticateAction,
-    deauthenticateAction,
     setCurrentUserAction,
     unsetCurrentUserAction
 } from '../types/Action.mock';
@@ -52,10 +51,7 @@ describe('.signOut', () => {
 
 describe('.authenticate', () => {
     it('returns the corresponding action when authenticating', () => {
-        expect(actionCreators.authenticate(true)).toEqual(authenticateAction);
-    });
-    it('returns the corresponding action when deauthenticating', () => {
-        expect(actionCreators.authenticate(false)).toEqual(deauthenticateAction);
+        expect(actionCreators.authenticate()).toEqual(authenticateAction);
     });
 });
 

@@ -1,5 +1,5 @@
 import {
-    CREATE_WORLD_SUBMIT,
+    CREATE_WORLD_SYNC,
     CREATE_WORLD_SUCCESS,
     CREATE_WORLD_ERROR,
     UPLOAD_FILE_SUCCESS,
@@ -11,43 +11,43 @@ import { ofType } from 'redux-observable';
 import { mergeMap, take, startWith, tap } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { CreateWorldSubmitAction } from '../../../types/Action';
+import type { CreateWorldSyncAction } from '../../../types/Action';
 
-export default (action$: ActionsObservable<CreateWorldSubmitAction>) =>
+export default (action$: ActionsObservable<CreateWorldSyncAction>) =>
     action$.pipe(
-        ofType(CREATE_WORLD_SUBMIT),
-        mergeMap(createWorldSubmitAction =>
+        ofType(CREATE_WORLD_SYNC),
+        mergeMap(createWorldSyncAction =>
             action$.pipe(
                 ofType(CREATE_WORLD_SUCCESS, CREATE_WORLD_ERROR),
                 take(1),
-                onError(CREATE_WORLD_ERROR, createWorldSubmitAction),
+                onError(CREATE_WORLD_ERROR, createWorldSyncAction),
                 ofType(CREATE_WORLD_SUCCESS),
-                onCreateWorldSuccess(action$, createWorldSubmitAction),
-                startWith(createWorld(createWorldSubmitAction.payload.world))
+                onCreateWorldSuccess(action$, createWorldSyncAction),
+                startWith(createWorld(createWorldSyncAction.payload.world))
             )
         )
     );
 
-function onCreateWorldSuccess(action$, createWorldSubmitAction) {
+function onCreateWorldSuccess(action$, createWorldSyncAction) {
     return mergeMap(createWorldSuccessAction =>
         action$.pipe(
             ofType(UPLOAD_FILE_SUCCESS, UPLOAD_FILE_ERROR),
             take(1),
-            onError(UPLOAD_FILE_ERROR, createWorldSubmitAction),
+            onError(UPLOAD_FILE_ERROR, createWorldSyncAction),
             ofType(UPLOAD_FILE_SUCCESS),
-            onUploadFileSuccess(createWorldSubmitAction, createWorldSuccessAction),
+            onUploadFileSuccess(createWorldSyncAction, createWorldSuccessAction),
             startWith(
                 uploadFile({
                     slug: `${createWorldSuccessAction.payload.id}.${createWorldSuccessAction.payload.logo.extension}`,
-                    file: createWorldSubmitAction.payload.logo
+                    file: createWorldSyncAction.payload.logo
                 })
             )
         )
     );
 }
 
-function onUploadFileSuccess(createWorldSubmitAction, createWorldSuccessAction) {
-    return tap(() => createWorldSubmitAction.meta.onSuccess(createWorldSuccessAction.payload));
+function onUploadFileSuccess(createWorldSyncAction, createWorldSuccessAction) {
+    return tap(() => createWorldSyncAction.meta.onSuccess(createWorldSuccessAction.payload));
 }
 
 function onError(type, action) {

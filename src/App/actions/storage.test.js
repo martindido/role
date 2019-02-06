@@ -6,7 +6,7 @@ import {
     uploadFileErrorStringAction
 } from '../types/Action.mock';
 import { fileUpload, s3File } from '../types/Storage.mock';
-import { errors, errorStrings } from '../types/submit.mock';
+import { errors, errorStrings } from '../types/Sync.mock';
 
 describe('.uploadFile', () => {
     it('returns the corresponding action', () => {

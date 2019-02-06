@@ -1,29 +1,31 @@
 import type { Location } from 'react-router-dom';
 import type {
-    SubmitMeta,
-    SignInSubmit,
-    SignUpSubmit,
-    SignUpConfirmSubmit,
-    CreateWorldSubmit,
-    CreateGameSubmit,
-    UpdateWorldSubmit,
-    UpdateGameSubmit
-} from './Submit';
+    SyncMeta,
+    AuthenticateSync,
+    SignInSync,
+    SignUpSync,
+    SignUpConfirmSync,
+    CreateWorldSync,
+    CreateGameSync,
+    UpdateWorldSync,
+    UpdateGameSync
+} from './Sync';
 import type {
     UnsetSearchResultsAction,
     SetSearchLoadingAction,
     SearchAllAction,
     SetCurrentUnconfirmedUserAction,
     UnsetCurrentUnconfirmedUserAction,
-    SignOutAction,
-    SignUpSubmitAction,
-    SignUpConfirmSubmitAction,
-    SignInSubmitAction,
     AuthenticateAction,
-    CreateWorldSubmitAction,
-    UpdateWorldSubmitAction,
-    CreateGameSubmitAction,
-    UpdateGameSubmitAction,
+    SignInSyncAction,
+    SignUpSyncAction,
+    SignUpConfirmSyncAction,
+    SignOutAction,
+    AuthenticateSyncAction,
+    CreateWorldSyncAction,
+    UpdateWorldSyncAction,
+    CreateGameSyncAction,
+    UpdateGameSyncAction,
     SetPreviousLocationAction,
     SetNotFoundAction,
     LoadWorldAction,
@@ -35,14 +37,15 @@ export type SetNotFoundActionCreator = boolean => SetNotFoundAction;
 export type SetPreviousLocationActionCreator = Location => SetPreviousLocationAction;
 export type LoadWorldActionCreator = string => LoadWorldAction;
 export type LoadGameActionCreator = string => LoadGameAction;
-export type CreateWorldSubmitActionCreator = (CreateWorldSubmit, SubmitMeta) => CreateWorldSubmitAction;
-export type UpdateWorldSubmitActionCreator = (UpdateWorldSubmit, SubmitMeta) => UpdateWorldSubmitAction;
-export type CreateGameSubmitActionCreator = (CreateGameSubmit, SubmitMeta) => CreateGameSubmitAction;
-export type UpdateGameSubmitActionCreator = (UpdateGameSubmit, SubmitMeta) => UpdateGameSubmitAction;
-export type SignInSubmitActionCreator = (SignInSubmit, SubmitMeta) => SignInSubmitAction;
-export type SignUpSubmitActionCreator = (SignUpSubmit, SubmitMeta) => SignUpSubmitAction;
-export type SignUpConfirmSubmitActionCreator = (SignUpConfirmSubmit, SubmitMeta) => SignUpConfirmSubmitAction;
+export type CreateWorldSyncActionCreator = (CreateWorldSync, SyncMeta) => CreateWorldSyncAction;
+export type UpdateWorldSyncActionCreator = (UpdateWorldSync, SyncMeta) => UpdateWorldSyncAction;
+export type CreateGameSyncActionCreator = (CreateGameSync, SyncMeta) => CreateGameSyncAction;
+export type UpdateGameSyncActionCreator = (UpdateGameSync, SyncMeta) => UpdateGameSyncAction;
+export type SignInSyncActionCreator = (SignInSync, SyncMeta) => SignInSyncAction;
+export type SignUpSyncActionCreator = (SignUpSync, SyncMeta) => SignUpSyncAction;
+export type SignUpConfirmSyncActionCreator = (SignUpConfirmSync, SyncMeta) => SignUpConfirmSyncAction;
 export type SignOutActionCreator = () => SignOutAction;
+export type AuthenticateSyncActionCreator = (AuthenticateSync, SyncMeta) => AuthenticateSyncAction;
 export type AuthenticateActionCreator = () => AuthenticateAction;
 export type SetCurrentUnconfirmedUserActionCreator = User => SetCurrentUnconfirmedUserAction;
 export type UnsetCurrentUnconfirmedUserActionCreator = () => UnsetCurrentUnconfirmedUserAction;

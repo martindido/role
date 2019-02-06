@@ -10,14 +10,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import aws_exports from './aws-exports';
 
-Amplify.configure(aws_exports);
+Amplify.configure({
+    ...aws_exports,
+    Auth: {
+        cookieStorage: {
+            domain: '.rolecenter.com',
+            secure: false
+        }
+    }
+});
 
-const {store, history} = createStore();
+const { store, history } = createStore();
 const Application = (
-    <Provider store={ store }>
-        <ConnectedRouter history={ history }>
-            <Frontload noServerRender={ true }>
-                <App/>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Frontload noServerRender={true}>
+                <App />
             </Frontload>
         </ConnectedRouter>
     </Provider>
@@ -29,8 +37,7 @@ if (root) {
         Loadable.preloadReady().then(() => {
             hydrate(Application, root);
         });
-    }
-    else {
+    } else {
         render(Application, root);
     }
     serviceWorker.register();
