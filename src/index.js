@@ -2,6 +2,7 @@ import React from 'react';
 import Amplify from 'aws-amplify';
 import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
+import { LocalizeProvider } from 'react-localize-redux';
 import Loadable from 'react-loadable';
 import { Frontload } from 'react-frontload';
 import { ConnectedRouter } from 'connected-react-router';
@@ -23,11 +24,13 @@ Amplify.configure({
 const { store, history } = createStore();
 const Application = (
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Frontload noServerRender={true}>
-                <App />
-            </Frontload>
-        </ConnectedRouter>
+        <LocalizeProvider store={store}>
+            <ConnectedRouter history={history}>
+                <Frontload noServerRender={true}>
+                    <App />
+                </Frontload>
+            </ConnectedRouter>
+        </LocalizeProvider>
     </Provider>
 );
 const root: ?Element = document.getElementById('root');

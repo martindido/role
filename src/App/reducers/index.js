@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import { connectRouter } from 'connected-react-router';
+import { localizeReducer } from 'react-localize-redux';
 import { auth, initialState as authInitialState } from './auth';
 import { routing, initialState as routingInitialState } from './routing';
 import { graphql, initialState as graphqlInitialState } from './graphql';
@@ -21,6 +22,7 @@ export default (history: BrowserHistory): CombinedReducer<Object, Object> => com
 
 function reducers(history) {
     return {
+        localize: localizeReducer,
         router: connectRouter(history),
         form,
         auth,

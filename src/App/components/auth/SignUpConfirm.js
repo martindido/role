@@ -51,7 +51,9 @@ export default class SignUpConfirm extends Component<Props> {
     };
 
     render() {
-        if (!this.props.currentUnconfirmedUser) {
+        const { currentUnconfirmedUser } = this.props;
+
+        if (!currentUnconfirmedUser) {
             return <Redirect to={'/sign-up'} />;
         }
         return (

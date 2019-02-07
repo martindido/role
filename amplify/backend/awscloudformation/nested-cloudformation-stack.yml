@@ -116,7 +116,7 @@
 					"userpoolClientName": "role_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
-					"userpoolClientReadAttributes": "email",
+					"userpoolClientReadAttributes": "email,locale,nickname,picture",
 					"mfaLambdaRole": "role_totp_lambda_role",
 					"mfaLambdaLogPolicy": "role_totp_lambda_log_policy",
 					"mfaPassRolePolicy": "role_totp_pass_role_policy",
@@ -124,14 +124,15 @@
 					"userpoolClientLambdaRole": "role_userpoolclient_lambda_role",
 					"userpoolClientLogPolicy": "role_userpoolclient_lambda_log_policy",
 					"userpoolClientLambdaPolicy": "role_userpoolclient_lambda_iam_policy",
-					"userpoolClientSetAttributes": false,
+					"userpoolClientSetAttributes": true,
 					"useDefault": "manual",
 					"authSelections": "identityPoolAndUserPool",
 					"resourceName": "role",
 					"unAuthRoleName": "role-20181027160927-unauthRole",
 					"authRoleName": "role-20181027160927-authRole",
 					"unAuthRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-unauthRole",
-					"authRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-authRole"
+					"authRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-authRole",
+					"userpoolClientWriteAttributes": "locale,picture,email,nickname"
 				}
 			}
 		},

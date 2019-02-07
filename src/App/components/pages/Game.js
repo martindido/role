@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Page from '../../containers/pages/Page';
-import {
-    Image,
-    Header as SemanticHeader
-} from 'semantic-ui-react';
+import { Image, Header as SemanticHeader } from 'semantic-ui-react';
 
 import '../../styles/Worlds.css';
 
@@ -23,7 +20,12 @@ export type Props = {
 
 export default class Game extends Component<Props> {
     componentWillReceiveProps(nextProps: Props) {
-        const {game, computedMatch: {params: {gameId}}} = nextProps;
+        const {
+            game,
+            computedMatch: {
+                params: { gameId }
+            }
+        } = nextProps;
 
         if (game && game.id !== gameId) {
             this.props.loadGame(gameId);
@@ -31,30 +33,37 @@ export default class Game extends Component<Props> {
     }
 
     render() {
-        const {game, computedMatch: {params: {gameId, worldId}}} = this.props;
+        const {
+            game,
+            computedMatch: {
+                params: { gameId, worldId }
+            }
+        } = this.props;
         const title = game ? game.name : 'Game';
         const header = {
             menu: {
-                up: `/worlds/${ worldId }`,
+                up: `/worlds/${worldId}`,
                 admin: {
-                    items: [{
-                        key: `games-${ gameId }`,
-                        path: `/worlds/${ worldId }/games/${ gameId }`,
-                        icon: 'edit'
-                    }]
+                    items: [
+                        {
+                            key: `games-${gameId}`,
+                            path: `/worlds/${worldId}/games/${gameId}`,
+                            icon: 'edit'
+                        }
+                    ]
                 }
             }
         };
 
         return (
-            <Page title={ title } header={ header }>
-                { game ? (
+            <Page title={title} header={header}>
+                {game ? (
                     <Fragment>
                         <SemanticHeader as='h2' inverted>
-                            <Image src={ game.logo.src } circular/> { game.name }
+                            <Image src={game.logo.src} circular /> {game.name}
                         </SemanticHeader>
                     </Fragment>
-                ) : null }
+                ) : null}
             </Page>
         );
     }

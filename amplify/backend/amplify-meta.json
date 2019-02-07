@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2019-01-18T16:39:52.855Z",
+			"lastPushTimeStamp": "2019-02-07T08:44:56.029Z",
 			"output": {
 				"S3BucketSecureURL": "https://role-20181027161358--hostingbucket.s3.amazonaws.com",
 				"WebsiteURL": "http://role-20181027161358--hostingbucket.s3-website-us-east-1.amazonaws.com",
@@ -37,7 +37,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/auth/role-cloudformation-template.yml",
 				"logicalId": "authrole"
 			},
-			"lastPushTimeStamp": "2019-01-18T16:39:52.856Z",
+			"lastPushTimeStamp": "2019-02-07T08:45:01.163Z",
 			"output": {
 				"AppClientSecret": "1q8ao9celnhqa1dvdvhakth5vf6m7cafgbdea2cdjbhe36o9pvhk",
 				"UserPoolId": "us-east-1_gyBnaWgjl",
@@ -47,7 +47,7 @@
 				"IdentityPoolName": "role",
 				"UserPoolName": "role-users"
 			},
-			"lastPushDirHash": "kUITgfE1NCu3peQjY+kq5isvG1E=",
+			"lastPushDirHash": "OXSmabPRhEmpXXxaTleNs/N0F1M=",
 			"[object Object]": {}
 		}
 	},
@@ -68,7 +68,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apirole"
 			},
-			"lastPushTimeStamp": "2019-01-18T16:39:55.224Z",
+			"lastPushTimeStamp": "2019-02-07T08:44:56.031Z",
 			"lastPushDirHash": "QEwTafNpNck8fD/vpn9Vt/DLGmk="
 		}
 	},
@@ -80,7 +80,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storageimages"
 			},
-			"lastPushTimeStamp": "2019-01-18T16:39:52.859Z",
+			"lastPushTimeStamp": "2019-02-07T08:44:56.031Z",
 			"output": {
 				"BucketName": "role-images",
 				"Region": "us-east-1"

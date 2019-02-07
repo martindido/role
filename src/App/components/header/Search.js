@@ -15,7 +15,8 @@ export type Props = {
     unsetSearchResults: UnsetSearchResultsActionCreator,
     isLoading: boolean,
     results: SearchResults,
-    history: RouterHistory
+    history: RouterHistory,
+    translate: Function
 };
 export type Value = {
     value: string
@@ -29,25 +30,28 @@ export default class Search extends Component<Props> {
         this.props.unsetSearchResults();
     }
 
-    handleSearchChange = (event: {}, {value}: Value) => {
+    handleSearchChange = (event: {}, { value }: Value) => {
         this.props.setSearchLoading(true);
         this.props.searchAll(value);
-    }
+    };
 
-    handleResultSelect = (event: {}, {result}: Result) => {
+    handleResultSelect = (event: {}, { result }: Result) => {
         this.props.history.push(result.path);
-    }
+    };
 
     render() {
-        const {results, isLoading} = this.props;
+        const { translate, results, isLoading } = this.props;
 
         return (
-            <SemanticSearch category={ !Array.isArray(results) } placeholder='Search...' size='large'
-                            className='transparent'
-                            onSearchChange={ this.handleSearchChange }
-                            onResultSelect={ this.handleResultSelect }
-                            results={ results }
-                            loading={ isLoading }
+            <SemanticSearch
+                category={!Array.isArray(results)}
+                placeholder={translate('search')}
+                size='large'
+                className='transparent'
+                onSearchChange={this.handleSearchChange}
+                onResultSelect={this.handleResultSelect}
+                results={results}
+                loading={isLoading}
             />
         );
     }

@@ -12,7 +12,8 @@ import type { RouterHistory } from 'react-router-dom';
 export type Props = {
     createWorldSync: CreateWorldSyncActionCreator,
     history: RouterHistory,
-    world?: WorldType
+    world?: WorldType,
+    translate: Function
 };
 
 export default class World extends Component<Props> {
@@ -38,6 +39,7 @@ export default class World extends Component<Props> {
     };
 
     render() {
+        const { translate } = this.props;
         const header = {
             menu: {
                 up: '/'
@@ -48,7 +50,7 @@ export default class World extends Component<Props> {
             <Page title='World Admin' className='admin new-world' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        Add a new world
+                        {translate('forms.create')} {translate('world')}
                     </Header>
                     <Form form='new-world' onSubmit={this.handleSubmit} />
                 </Fragment>

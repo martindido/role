@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
+import { getTranslate } from 'react-localize-redux';
 import { loadWorld } from '../../../actions/load';
 import { unsetGame } from '../../../actions/graphql';
 import { createGameSync } from '../../../actions/sync';
 import Game from '../../../components/admin/create/Game';
 
-const mapStateToProps = ({ graphql }) => ({
+const mapStateToProps = ({ localize, graphql }) => ({
+    translate: getTranslate(localize),
     game: graphql.game
 });
 

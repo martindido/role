@@ -4,9 +4,7 @@ import SignUpConfirm from '../../components/auth/SignUpConfirm';
 import { unsetCurrentUnconfirmedUser } from '../../actions/auth';
 import { signUpConfirmSync } from '../../actions/sync';
 
-import type { State } from '../../types/State';
-
-const mapStateToProps = ({ auth }: State) => ({
+const mapStateToProps = ({ auth }) => ({
     currentUnconfirmedUser: auth.currentUnconfirmedUser
 });
 

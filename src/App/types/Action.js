@@ -1,7 +1,6 @@
 import type { Location } from 'react-router-dom';
 import type { User } from './User';
 import type { Credentials, Confirmation, Authenticator } from './Auth';
-import type { Profile } from './Profile';
 import type {
     CreateWorldInput,
     UpdateWorldInput,
@@ -105,6 +104,11 @@ export type UpdateGameSyncAction = {
     meta: SyncMeta
 };
 
+export type GetCurrentLanguageSyncAction = {
+    type: 'GET_CURRENT_LANGUAGE_SYNC',
+    meta: SyncMeta
+};
+
 export type UploadFileAction = {
     type: 'UPLOAD_FILE',
     payload: FileUpload
@@ -200,20 +204,6 @@ export type SetCurrentUserAction = {
 
 export type UnsetCurrentUserAction = {
     type: 'UNSET_CURRENT_USER'
-};
-
-export type GetCurrentProfileAction = {
-    type: 'GET_CURRENT_PROFILE',
-    payload: number
-};
-
-export type SetCurrentProfileAction = {
-    type: 'SET_CURRENT_PROFILE',
-    payload: Profile
-};
-
-export type UnsetCurrentProfileAction = {
-    type: 'UNSET_CURRENT_PROFILE'
 };
 
 export type SearchAllAction = {
@@ -362,6 +352,34 @@ export type UnsetGameAction = {
     type: 'UNSET_GAME'
 };
 
+export type SetCurrentLanguageAction = {
+    type: 'SET_CURRENT_LANGUAGE',
+    payload: string
+};
+
+export type SetCurrentLanguageSuccessAction = {
+    type: 'SET_CURRENT_LANGUAGE_SUCCESS'
+};
+
+export type SetCurrentLanguageErrorAction = {
+    type: 'SET_CURRENT_LANGUAGE_ERROR',
+    payload: Error
+};
+
+export type GetCurrentLanguageAction = {
+    type: 'GET_CURRENT_LANGUAGE'
+};
+
+export type GetCurrentLanguageSuccessAction = {
+    type: 'GET_CURRENT_LANGUAGE_SUCCESS',
+    payload: string
+};
+
+export type GetCurrentLanguageErrorAction = {
+    type: 'GET_CURRENT_LANGUAGE_ERROR',
+    payload: Error
+};
+
 export type RoutingAction = SetLoadingAction | SetNotFoundAction | SetPreviousLocationAction;
 
 export type SyncAction =
@@ -372,7 +390,8 @@ export type SyncAction =
     | CreateWorldSyncAction
     | UpdateWorldSyncAction
     | CreateGameSyncAction
-    | UpdateGameSyncAction;
+    | UpdateGameSyncAction
+    | GetCurrentLanguageSyncAction;
 
 export type AuthAction =
     | SignInAction
@@ -390,8 +409,6 @@ export type AuthAction =
     | AuthenticateAction
     | SetCurrentUserAction
     | UnsetCurrentUserAction;
-
-export type ProfileAction = GetCurrentProfileAction | SetCurrentProfileAction | UnsetCurrentProfileAction;
 
 export type GraphQLAction =
     | SearchAllAction
@@ -418,4 +435,12 @@ export type GraphQLAction =
 
 export type SearchAction = SetSearchLoadingAction | SetSearchResultsAction | UnsetSearchResultsAction;
 
-export type Action = RoutingAction | SyncAction | AuthAction | ProfileAction | GraphQLAction | SearchAction;
+export type LocaleAction =
+    | SetCurrentLanguageAction
+    | SetCurrentLanguageSuccessAction
+    | SetCurrentLanguageErrorAction
+    | GetCurrentLanguageAction
+    | GetCurrentLanguageSuccessAction
+    | GetCurrentLanguageErrorAction;
+
+export type Action = RoutingAction | SyncAction | AuthAction | GraphQLAction | SearchAction | LocaleAction;

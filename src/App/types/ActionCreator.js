@@ -29,7 +29,9 @@ import type {
     SetPreviousLocationAction,
     SetNotFoundAction,
     LoadWorldAction,
-    LoadGameAction
+    LoadGameAction,
+    SetCurrentLanguageAction,
+    GetCurrentLanguageSyncAction
 } from './Action';
 import type { User } from './User';
 
@@ -52,3 +54,5 @@ export type UnsetCurrentUnconfirmedUserActionCreator = () => UnsetCurrentUnconfi
 export type SearchAllActionCreator = string => SearchAllAction;
 export type SetSearchLoadingActionCreator = boolean => SetSearchLoadingAction;
 export type UnsetSearchResultsActionCreator = () => UnsetSearchResultsAction;
+export type SetCurrentLanguageActionCreator = string => SetCurrentLanguageAction;
+export type GetCurrentLanguageSyncActionCreator = SyncMeta => GetCurrentLanguageSyncAction;

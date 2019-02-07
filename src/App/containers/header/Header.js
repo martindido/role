@@ -8,8 +8,7 @@ const mapStateToProps = ({ auth }: State) => ({
     currentUser: auth.currentUser
 });
 
-const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch: *) => bindActionCreators({}, dispatch);
 
 export default connect(
     mapStateToProps,

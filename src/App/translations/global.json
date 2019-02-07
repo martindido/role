@@ -1,0 +1,14 @@
+{
+    "test": ["aaaaaaaa", "bbbbbbbb"],
+    "search": ["Search...", "Buscar..."],
+    "languages": {
+        "english": ["English", "Inglés"],
+        "spanish": ["Spanish", "Español"]
+    },
+    "world": ["world", "mundo"],
+    "game": ["game", "juego"],
+    "forms": {
+        "create": ["Add a new", "Agregar un nuevo"],
+        "update": ["Edit", "Editar"]
+    }
+}

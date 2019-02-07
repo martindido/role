@@ -6,17 +6,24 @@ import { loadGame } from '../../actions/load';
 
 import type { State } from '../../types/State';
 
-const mapStateToProps = ({graphql}: State) => ({
+const mapStateToProps = ({ graphql }: State) => ({
     game: graphql.game
 });
 
 const mapDispatchToProps = (dispatch: *) =>
-    bindActionCreators({
-        loadGame
-    }, dispatch);
+    bindActionCreators(
+        {
+            loadGame
+        },
+        dispatch
+    );
 
 const frontload = async props => {
-    const {computedMatch: {params: {gameId}}} = props;
+    const {
+        computedMatch: {
+            params: { gameId }
+        }
+    } = props;
 
     props.loadGame(gameId);
 };

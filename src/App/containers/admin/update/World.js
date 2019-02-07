@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
+import { getTranslate } from 'react-localize-redux';
 import { loadWorld } from '../../../actions/load';
 import { updateWorldSync } from '../../../actions/sync';
 import World from '../../../components/admin/update/World';
 
-const mapStateToProps = ({ routing, graphql }) => ({
+const mapStateToProps = ({ localize, routing, graphql }) => ({
+    translate: getTranslate(localize),
     world: graphql.world,
     isNotFound: routing.isNotFound
 });

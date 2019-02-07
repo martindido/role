@@ -17,7 +17,8 @@ export type Props = {
         }
     },
     history: RouterHistory,
-    game?: GameType
+    game?: GameType,
+    translate: Function
 };
 
 export default class Game extends Component<Props> {
@@ -44,6 +45,7 @@ export default class Game extends Component<Props> {
 
     render() {
         const {
+            translate,
             computedMatch: {
                 params: { worldId }
             }
@@ -58,7 +60,7 @@ export default class Game extends Component<Props> {
             <Page title='Game Admin' className='admin new-game' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        Add a new game
+                        {translate('forms.create')} {translate('game')}
                     </Header>
                     <Form form='new-game' onSubmit={this.handleSubmit} />
                 </Fragment>

@@ -23,7 +23,10 @@ import createWorldSync from './sync/graphql/createWorld';
 import updateWorldSync from './sync/graphql/updateWorld';
 import createGameSync from './sync/graphql/createGame';
 import updateGameSync from './sync/graphql/updateGame';
+import getCurrentLanguageSync from './sync/locale/getCurrentLanguage';
 import uploadFile from './storage/uploadFile';
+import setCurrentLanguage from './locale/setCurrentLanguage';
+import getCurrentLanguage from './locale/getCurrentLanguage';
 
 export const epics = combineEpics(
     authenticate,
@@ -50,5 +53,8 @@ export const epics = combineEpics(
     updateWorldSync,
     createGameSync,
     updateGameSync,
-    uploadFile
+    getCurrentLanguageSync,
+    uploadFile,
+    setCurrentLanguage,
+    getCurrentLanguage
 );

@@ -19,7 +19,8 @@ export type Props = {
     },
     history: RouterHistory,
     isNotFound: boolean,
-    game?: GameType
+    game?: GameType,
+    translate: Function
 };
 
 export default class Game extends Component<Props> {
@@ -56,7 +57,7 @@ export default class Game extends Component<Props> {
     }
 
     render() {
-        const { game } = this.props;
+        const { translate, game } = this.props;
         const header = {
             menu: {
                 up: this.getUp()
@@ -67,7 +68,7 @@ export default class Game extends Component<Props> {
             <Page title='Game Admin' className='admin edit-game' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        {game ? `Edit ${game.name}` : 'Edit game'}
+                        {translate('forms.update')} {game ? game.name : translate('game')}
                     </Header>
                     <Form form='edit-game' onSubmit={this.handleSubmit} />
                 </Fragment>

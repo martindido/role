@@ -1,37 +1,38 @@
 #header .logo {
-  margin-right: 1em;
+    margin-right: 1em;
 }
 
 #header .ui.search,
 #header .ui.search > .ui.icon.input {
-  width: 100%;
+    width: 100%;
 }
 
 #header .ui.transparent > .ui.icon.input > input {
-  padding-left: 0 !important;
-  padding-right: 2em !important;
+    padding-left: 0 !important;
+    padding-right: 2em !important;
 }
 
 #header .ui.transparent > .ui.input > input {
-  border-color: transparent !important;
-  background-color: transparent !important;
-  padding: 0 !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+    border-color: transparent !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
 #search {
-  margin-top: 62px;
+    margin-top: 62px;
+    z-index: 100;
 }
 
 #header + .ui.segment {
-  padding-top: 76px;
-  margin-top: 0;
+    padding-top: 76px;
+    margin-top: 0;
 }
 
 @media (max-width: 768px) {
-  #header + .ui.segment {
-    padding-top: 123px;
-  }
+    #header + .ui.segment {
+        padding-top: 123px;
+    }
 }

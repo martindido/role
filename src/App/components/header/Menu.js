@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu as SemanticMenu, Icon } from 'semantic-ui-react';
+import { Menu as SemanticMenu, Icon, Dropdown } from 'semantic-ui-react';
 
 import type { Location, RouterHistory } from 'react-router-dom';
 import type { User } from '../../types/User';
+import type { SetCurrentLanguageActionCreator } from '../../types/ActionCreator';
 
 export type AdminItemProps = {
     key: string,
@@ -24,6 +25,10 @@ export type Props = {
     location: Location,
     previousLocation: Location,
     currentUser: User,
+    translate: Function,
+    setActiveLanguage: Function,
+    currentLanguage: string,
+    setCurrentLanguage: SetCurrentLanguageActionCreator
 } & MenuProps;
 
 export default class Menu extends Component<Props> {
@@ -32,42 +37,82 @@ export default class Menu extends Component<Props> {
         admin: {
             items: []
         }
-    }
+    };
 
     handleClickBack = () => {
         this.props.history.goBack();
-    }
+    };
+
+    handleClickLanguage = (event: Object, { language }: Object) => {
+        this.props.setCurrentLanguage(language);
+        this.props.setActiveLanguage(language);
+    };
 
     render() {
-        const {isLoading, forceLoading, previousLocation, location: {pathname}, currentUser, up, admin} = this.props;
+        const {
+            translate,
+            currentLanguage,
+            isLoading,
+            forceLoading,
+            previousLocation,
+            location: { pathname },
+            currentUser,
+            up,
+            admin
+        } = this.props;
         const loading = forceLoading || isLoading;
-        const withBack = !loading
-            && !!previousLocation
-            && previousLocation.pathname !== pathname
-            && previousLocation.pathname !== '/sign-in'
-            && previousLocation.pathname !== '/sign-up'
-            && previousLocation.pathname !== '/sign-up-confirm';
+        const withBack =
+            !loading &&
+            !!previousLocation &&
+            previousLocation.pathname !== pathname &&
+            previousLocation.pathname !== '/sign-in' &&
+            previousLocation.pathname !== '/sign-up' &&
+            previousLocation.pathname !== '/sign-up-confirm';
         const backEqualsUp = !!up && !!previousLocation && up === previousLocation.pathname;
         const withUp = !loading && !!up;
         const withAdmin = !loading && !!currentUser.isAdmin;
 
         return (
             <Fragment>
-                { withBack ? (!backEqualsUp ? (
-                    <SemanticMenu.Item name='back' onClick={ this.handleClickBack }>
-                        <Icon name='backward'/>
+                {withBack ? (
+                    !backEqualsUp ? (
+                        <SemanticMenu.Item name='back' onClick={this.handleClickBack}>
+                            <Icon name='backward' />
+                        </SemanticMenu.Item>
+                    ) : (
+                        ''
+                    )
+                ) : (
+                    ''
+                )}
+                {withUp ? (
+                    <SemanticMenu.Item as={Link} name='up' to={up}>
+                        <Icon name='level up' />
                     </SemanticMenu.Item>
-                ) : '') : '' }
-                { withUp ? (
-                    <SemanticMenu.Item as={ Link } name='up' to={ up }>
-                        <Icon name='level up'/>
-                    </SemanticMenu.Item>
-                ) : '' }
-                { withAdmin ? (
-                    <AdminMenu { ...admin } />
-                ) : '' }
-                <SemanticMenu.Item as={ Link } name='sign-out' to='/sign-out'>
-                    <Icon name='sign-out'/>
+                ) : (
+                    ''
+                )}
+                {withAdmin ? <AdminMenu {...admin} /> : ''}
+                <Dropdown item name='language' icon='world'>
+                    <Dropdown.Menu>
+                        <Dropdown.Item
+                            language='en'
+                            selected={currentLanguage === 'en'}
+                            onClick={this.handleClickLanguage}
+                        >
+                            {translate('languages.english')}
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                            language='es'
+                            selected={currentLanguage === 'es'}
+                            onClick={this.handleClickLanguage}
+                        >
+                            {translate('languages.spanish')}
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                <SemanticMenu.Item as={Link} name='sign-out' to='/sign-out'>
+                    <Icon name='sign-out' />
                 </SemanticMenu.Item>
             </Fragment>
         );
@@ -77,8 +122,8 @@ export default class Menu extends Component<Props> {
 class AdminMenu extends Component<AdminProps> {
     render() {
         return this.props.items.map(item => (
-            <SemanticMenu.Item as={ Link } key={ `${ item.key }-admin` } to={ `${ item.path }/admin` }>
-                <Icon name={ item.icon }/>
+            <SemanticMenu.Item as={Link} key={`${item.key}-admin`} to={`${item.path}/admin`}>
+                <Icon name={item.icon} />
             </SemanticMenu.Item>
         ));
     }

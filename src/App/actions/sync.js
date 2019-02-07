@@ -6,7 +6,8 @@ import {
     CREATE_WORLD_SYNC,
     UPDATE_WORLD_SYNC,
     CREATE_GAME_SYNC,
-    UPDATE_GAME_SYNC
+    UPDATE_GAME_SYNC,
+    GET_CURRENT_LANGUAGE_SYNC
 } from '../constants/actions';
 
 import type {
@@ -17,7 +18,8 @@ import type {
     UpdateWorldSyncAction,
     CreateWorldSyncAction,
     UpdateGameSyncAction,
-    CreateGameSyncAction
+    CreateGameSyncAction,
+    GetCurrentLanguageSyncAction
 } from '../types/Action';
 import type {
     SyncMeta,
@@ -91,6 +93,13 @@ export function updateGameSync(payload: UpdateGameSync, meta: SyncMeta): UpdateG
     return {
         type: UPDATE_GAME_SYNC,
         payload,
+        meta
+    };
+}
+
+export function getCurrentLanguageSync(meta: SyncMeta): GetCurrentLanguageSyncAction {
+    return {
+        type: GET_CURRENT_LANGUAGE_SYNC,
         meta
     };
 }

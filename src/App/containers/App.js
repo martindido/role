@@ -1,22 +1,26 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { withLocalize } from 'react-localize-redux';
 import App from '../components/App';
-import { authenticate } from '../actions/auth';
+import { authenticateSync, getCurrentLanguageSync } from '../actions/sync';
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: *) =>
     bindActionCreators(
         {
-            authenticate
+            authenticateSync,
+            getCurrentLanguageSync
         },
         dispatch
     );
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(App)
+export default withLocalize(
+    withRouter(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )(App)
+    )
 );

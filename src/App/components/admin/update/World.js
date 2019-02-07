@@ -18,7 +18,8 @@ export type Props = {
     },
     history: RouterHistory,
     isNotFound: boolean,
-    world?: WorldType
+    world?: WorldType,
+    translate: Function
 };
 
 export default class World extends Component<Props> {
@@ -54,7 +55,7 @@ export default class World extends Component<Props> {
     }
 
     render() {
-        const { world } = this.props;
+        const { translate, world } = this.props;
         const header = {
             menu: {
                 up: this.getUp()
@@ -65,7 +66,7 @@ export default class World extends Component<Props> {
             <Page title='World Admin' className='admin new-world' header={header}>
                 <Fragment>
                     <Header as='h2' color='black' textAlign='center' inverted>
-                        {world ? `Edit ${world.name}` : 'Edit world'}
+                        {translate('forms.update')} {world ? world.name : translate('world')}
                     </Header>
                     <Form form='edit-world' onSubmit={this.handleSubmit} />
                 </Fragment>
