@@ -8,6 +8,7 @@ import type { Game as GameType } from '../../../types/Game';
 import type { CreateGameSync } from '../../../types/Sync';
 import type { CreateGameSyncActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
+import type { Translate } from '../../../types/Locale';
 
 export type Props = {
     createGameSync: CreateGameSyncActionCreator,
@@ -18,7 +19,7 @@ export type Props = {
     },
     history: RouterHistory,
     game?: GameType,
-    translate: Function
+    translate: Translate
 };
 
 export default class Game extends Component<Props> {

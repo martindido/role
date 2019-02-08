@@ -3,9 +3,15 @@ import type { Credentials, Confirmation, Authenticator } from './Auth';
 import type { File } from './Storage';
 import type { User } from './User';
 
-export type Error = Object | string;
+export type AmplifyError =
+    | string
+    | {
+          code: string,
+          name: string,
+          message: string
+      };
 
-export type Errors = Array<Error>;
+export type Errors = Array<AmplifyError | Error>;
 
 export type AuthenticateSync = {
     authenticator?: Authenticator

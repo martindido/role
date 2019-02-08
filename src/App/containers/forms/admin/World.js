@@ -17,7 +17,12 @@ const mapStateToProps = (state: State) => ({
                   id: state.graphql.world.id,
                   name: state.graphql.world.name,
                   slug: state.graphql.world.slug,
-                  logo: state.graphql.world.logo
+                  logo: {
+                      name: state.graphql.world.logo.name,
+                      size: state.graphql.world.logo.size,
+                      type: state.graphql.world.logo.type,
+                      extension: state.graphql.world.logo.extension
+                  }
               }
             : {}
     }

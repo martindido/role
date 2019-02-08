@@ -8,6 +8,7 @@ import type {
     SetSearchLoadingActionCreator,
     SearchAllActionCreator
 } from '../../types/ActionCreator';
+import type { Translate } from '../../types/Locale';
 
 export type Props = {
     searchAll: SearchAllActionCreator,
@@ -16,7 +17,7 @@ export type Props = {
     isLoading: boolean,
     results: SearchResults,
     history: RouterHistory,
-    translate: Function
+    translate: Translate
 };
 export type Value = {
     value: string
@@ -30,12 +31,12 @@ export default class Search extends Component<Props> {
         this.props.unsetSearchResults();
     }
 
-    handleSearchChange = (event: {}, { value }: Value) => {
+    handleSearchChange = (event: SyntheticEvent<>, { value }: Value) => {
         this.props.setSearchLoading(true);
         this.props.searchAll(value);
     };
 
-    handleResultSelect = (event: {}, { result }: Result) => {
+    handleResultSelect = (event: SyntheticEvent<>, { result }: Result) => {
         this.props.history.push(result.path);
     };
 

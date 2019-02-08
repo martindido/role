@@ -12,7 +12,7 @@ import type {
 import type { World } from './World';
 import type { SearchResults } from './Search';
 import type {
-    Error,
+    AmplifyError,
     Errors,
     SyncMeta,
     AuthenticateSync,
@@ -136,7 +136,7 @@ export type AuthenticateSuccessAction = {
 
 export type AuthenticateErrorAction = {
     type: 'AUTHENTICATE_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type SignInAction = {
@@ -151,7 +151,7 @@ export type SignInSuccessAction = {
 
 export type SignInErrorAction = {
     type: 'SIGN_IN_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type SignUpAction = {
@@ -166,7 +166,7 @@ export type SignUpSuccessAction = {
 
 export type SignUpErrorAction = {
     type: 'SIGN_UP_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type SignUpConfirmAction = {
@@ -181,7 +181,7 @@ export type SignUpConfirmSuccessAction = {
 
 export type SignUpConfirmErrorAction = {
     type: 'SIGN_UP_CONFIRM_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type SignOutAction = {
@@ -363,7 +363,7 @@ export type SetCurrentLanguageSuccessAction = {
 
 export type SetCurrentLanguageErrorAction = {
     type: 'SET_CURRENT_LANGUAGE_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type GetCurrentLanguageAction = {
@@ -377,7 +377,7 @@ export type GetCurrentLanguageSuccessAction = {
 
 export type GetCurrentLanguageErrorAction = {
     type: 'GET_CURRENT_LANGUAGE_ERROR',
-    payload: Error
+    payload: AmplifyError
 };
 
 export type RoutingAction = SetLoadingAction | SetNotFoundAction | SetPreviousLocationAction;

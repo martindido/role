@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Message, Image, Segment } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import { InputField, UploadField } from 'react-semantic-redux-form';
-import slugify from 'slugify';
+import { slugify } from '../../../utils';
 import mime from 'mime-types';
 
 import '../../../styles/Form.css';
@@ -11,13 +11,11 @@ import type { FormProps } from 'redux-form';
 import type { File } from '../../../types/Storage';
 
 export default class World extends Component<FormProps> {
-    handleChangeName = (event: Object, newName: string) => {
-        const slug = slugify(newName);
-
-        this.props.change('world[slug]', slug);
+    handleChangeName = (event: SyntheticEvent<>, newName: string) => {
+        this.props.change('world[slug]', slugify(newName));
     };
 
-    handleChangeLogo = (event: Object, newLogo: File) => {
+    handleChangeLogo = (event: SyntheticEvent<>, newLogo: File) => {
         this.props.change('world[logo]', {
             name: newLogo.name,
             size: newLogo.size,

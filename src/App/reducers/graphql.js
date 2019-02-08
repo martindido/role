@@ -1,10 +1,4 @@
-import {
-    SET_WORLDS,
-    SET_WORLD,
-    UNSET_WORLD,
-    SET_GAME,
-    UNSET_GAME
-} from '../constants/actions';
+import { SET_WORLDS, SET_WORLD, UNSET_WORLD, SET_GAME, UNSET_GAME } from '../constants/actions';
 
 import type { GraphQLAction } from '../types/Action';
 import type { World } from '../types/World';
@@ -16,7 +10,7 @@ type State = {
     game?: Game
 };
 
-export const initialState = {
+export const initialState: State = {
     worlds: []
 };
 export const graphql = (state: State = initialState, action: GraphQLAction) => {

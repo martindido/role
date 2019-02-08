@@ -1,17 +1,15 @@
-import {
-    SET_LOADING,
-    SET_NOT_FOUND,
-    SET_PREVIOUS_LOCATION
-} from '../constants/actions';
+import { SET_LOADING, SET_NOT_FOUND, SET_PREVIOUS_LOCATION } from '../constants/actions';
 
+import type { Location } from 'react-router-dom';
 import type { RoutingAction } from '../types/Action';
-type State = {
+
+export type State = {
     isLoading: boolean,
     isNotFound: boolean,
     previousLocation?: Location
 };
 
-export const initialState = {
+export const initialState: State = {
     isLoading: false,
     isNotFound: false
 };

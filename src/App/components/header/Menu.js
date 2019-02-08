@@ -5,6 +5,7 @@ import { Menu as SemanticMenu, Icon, Dropdown } from 'semantic-ui-react';
 import type { Location, RouterHistory } from 'react-router-dom';
 import type { User } from '../../types/User';
 import type { SetCurrentLanguageActionCreator } from '../../types/ActionCreator';
+import type { Translate, SetActiveLanguage, Language } from '../../types/Locale';
 
 export type AdminItemProps = {
     key: string,
@@ -25,9 +26,9 @@ export type Props = {
     location: Location,
     previousLocation: Location,
     currentUser: User,
-    translate: Function,
-    setActiveLanguage: Function,
-    currentLanguage: string,
+    translate: Translate,
+    setActiveLanguage: SetActiveLanguage,
+    currentLanguage: Language,
     setCurrentLanguage: SetCurrentLanguageActionCreator
 } & MenuProps;
 
@@ -43,7 +44,7 @@ export default class Menu extends Component<Props> {
         this.props.history.goBack();
     };
 
-    handleClickLanguage = (event: Object, { language }: Object) => {
+    handleClickLanguage = (event: SyntheticEvent<>, { language }: { language: Language }) => {
         this.props.setCurrentLanguage(language);
         this.props.setActiveLanguage(language);
     };

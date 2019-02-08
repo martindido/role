@@ -1,8 +1,4 @@
-import {
-    SET_SEARCH_LOADING,
-    SET_SEARCH_RESULTS,
-    UNSET_SEARCH_RESULTS
-} from '../constants/actions';
+import { SET_SEARCH_LOADING, SET_SEARCH_RESULTS, UNSET_SEARCH_RESULTS } from '../constants/actions';
 
 import type { SearchAction } from '../types/Action';
 import type { SearchResults } from '../types/Search';
@@ -11,7 +7,7 @@ type State = {
     isLoading: boolean
 };
 
-export const initialState = {
+export const initialState: State = {
     results: [],
     isLoading: false
 };

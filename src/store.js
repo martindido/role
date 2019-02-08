@@ -7,6 +7,8 @@ import createRootReducer, { initialState as reducersInitialState } from './App/r
 import { epics } from './App/epics';
 
 import type { Store } from 'redux';
+import type { State } from './App/types/State';
+import type { Action } from './App/types/Action';
 
 export default (url: string = '/') => {
     const history = getHistory(url);
@@ -15,39 +17,29 @@ export default (url: string = '/') => {
     const enhancers = getInitialEnhancers();
     const composedEnhancers = composeEnhancers(middlewares, enhancers);
     const initialState = getInitialState();
-    const store: Store<Object, Object> = createStore(
-        createRootReducer(history),
-        initialState,
-        composedEnhancers
-    );
+    const store: Store<State, Action> = createStore(createRootReducer(history), initialState, composedEnhancers);
 
     epicMiddleware.run(epics);
     return {
         store,
         history
     };
-}
+};
 
-export const isServer = !(
-    typeof window !== 'undefined' &&
-    window.document &&
-    window.document.createElement
-);
+export const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 function getHistory(url) {
     return isServer
         ? createMemoryHistory({
-            initialEntries: [url]
-        })
+              initialEntries: [url]
+          })
         : createBrowserHistory();
 }
 
 function getInitialEnhancers() {
     const enhancers = [];
 
-    if (isServer
-        || process.env.NODE_ENV !== 'development'
-        || typeof window.devToolsExtension !== 'function') {
+    if (isServer || process.env.NODE_ENV !== 'development' || typeof window.devToolsExtension !== 'function') {
         return enhancers;
     }
     enhancers.push(window.devToolsExtension());

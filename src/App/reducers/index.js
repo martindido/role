@@ -9,18 +9,34 @@ import { search, initialState as searchInitialState } from './search';
 
 import type { BrowserHistory } from 'history/createBrowserHistory';
 import type { CombinedReducer } from 'redux';
+import type { State } from '../types/State';
+import type { Action } from '../types/Action';
+import type { LocalizedReducer } from '../types/Locale';
+import type { ConnectedRouter } from 'connected-react-router';
+import type { FormReducer } from 'redux-form';
 
-export type Reducers = Object;
+export type Reducers = {
+    localize: LocalizedReducer,
+    router: ConnectedRouter,
+    form: FormReducer,
+    auth: typeof auth,
+    routing: typeof routing,
+    graphql: typeof graphql,
+    search: typeof search
+};
 
-export const initialState = {
+export const initialState: State = {
+    localize: undefined,
+    router: undefined,
+    form: undefined,
     auth: authInitialState,
     routing: routingInitialState,
     graphql: graphqlInitialState,
     search: searchInitialState
 };
-export default (history: BrowserHistory): CombinedReducer<Object, Object> => combineReducers(reducers(history));
+export default (history: BrowserHistory): CombinedReducer<State, Action> => combineReducers(reducers(history));
 
-function reducers(history) {
+function reducers(history: BrowserHistory): Reducers {
     return {
         localize: localizeReducer,
         router: connectRouter(history),

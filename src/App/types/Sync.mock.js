@@ -1,7 +1,11 @@
 import { createWorldInput, createGameInput, updateGameInput, updateWorldInput } from './GraphQL.mock';
 import { file } from './Storage.mock';
 
-export const error = {};
+export const error = {
+    code: 'error',
+    name: 'error',
+    message: 'error'
+};
 
 export const errorString = 'error';
 

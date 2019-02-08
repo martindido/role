@@ -8,12 +8,13 @@ import type { World as WorldType } from '../../../types/World';
 import type { CreateWorldSync } from '../../../types/Sync';
 import type { CreateWorldSyncActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
+import type { Translate } from '../../../types/Locale';
 
 export type Props = {
     createWorldSync: CreateWorldSyncActionCreator,
     history: RouterHistory,
     world?: WorldType,
-    translate: Function
+    translate: Translate
 };
 
 export default class World extends Component<Props> {

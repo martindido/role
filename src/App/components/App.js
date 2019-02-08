@@ -7,13 +7,14 @@ import '../styles/App.css';
 import type { Location } from 'react-router-dom';
 import type { AuthenticateSyncActionCreator, GetCurrentLanguageSyncActionCreator } from '../types/ActionCreator';
 import type { AuthenticateSync } from '../types/Sync';
+import type { Initialize, SetActiveLanguage } from '../types/Locale';
 
 type Props = {
     location: Location,
-    setActiveLanguage: Function,
     authenticateSync: AuthenticateSyncActionCreator,
     getCurrentLanguageSync: GetCurrentLanguageSyncActionCreator,
-    initialize: Function
+    initialize: Initialize,
+    setActiveLanguage: SetActiveLanguage
 };
 
 export default class App extends Component<Props> {

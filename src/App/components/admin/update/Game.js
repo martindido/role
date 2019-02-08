@@ -8,6 +8,7 @@ import type { UpdateGameSync } from '../../../types/Sync';
 import type { UpdateGameSyncActionCreator } from '../../../types/ActionCreator';
 import type { RouterHistory } from 'react-router-dom';
 import { SubmissionError } from 'redux-form';
+import type { Translate } from '../../../types/Locale';
 
 export type Props = {
     updateGameSync: UpdateGameSyncActionCreator,
@@ -20,7 +21,7 @@ export type Props = {
     history: RouterHistory,
     isNotFound: boolean,
     game?: GameType,
-    translate: Function
+    translate: Translate
 };
 
 export default class Game extends Component<Props> {

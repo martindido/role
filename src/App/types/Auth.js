@@ -1,3 +1,5 @@
+import type { Auth } from 'aws-amplify';
+
 export type Confirmation = {
     username?: string,
     code: string
@@ -9,4 +11,4 @@ export type Credentials = {
     password: string
 };
 
-export type Authenticator = Object;
+export type Authenticator = Auth;

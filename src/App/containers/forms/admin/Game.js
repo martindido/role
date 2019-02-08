@@ -17,7 +17,12 @@ const mapStateToProps = (state: State) => ({
                   id: state.graphql.game.id,
                   name: state.graphql.game.name,
                   slug: state.graphql.game.slug,
-                  logo: state.graphql.game.logo,
+                  logo: {
+                      name: state.graphql.game.logo.name,
+                      size: state.graphql.game.logo.size,
+                      type: state.graphql.game.logo.type,
+                      extension: state.graphql.game.logo.extension
+                  },
                   gameWorldId: state.graphql.game.world.id
               }
             : state.graphql.world

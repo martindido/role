@@ -39,16 +39,14 @@ type Props = {
     header?: HeaderProps
 } & Rest;
 
-const SITE_URL = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://cra-ssr.herokuapp.com';
+const SITE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.rolecenter.com';
 const FACEBOOK_APP_ID = 'XXXXXXXXX';
 const defaultTitle = 'Role';
 
 export default class Page extends Component<Props> {
     static defaultProps = {
         title: defaultTitle,
-        image: `${ SITE_URL }${ logo }`,
+        image: `${SITE_URL}${logo}`,
         description: 'This is a really awesome website where we can render on the server. Supa cool.',
         contentType: 'website',
         twitter: '@martindido87',
@@ -61,7 +59,7 @@ export default class Page extends Component<Props> {
         withHeader: true,
         forceLoading: false,
         header: {}
-    }
+    };
 
     getMetaTags(
         {
@@ -80,8 +78,7 @@ export default class Page extends Component<Props> {
         }: Rest,
         pathname: string
     ) {
-        const theTitle = (
-            title + separator + defaultTitle).substring(0, 60);
+        const theTitle = (title + separator + defaultTitle).substring(0, 60);
         const theDescription = description.substring(0, 155);
         const metaTags = [
             {
@@ -188,52 +185,55 @@ export default class Page extends Component<Props> {
     }
 
     render() {
-        const {forceLoading, isLoading, forceNotFound, isNotFound, children, id, className, schema, location, withHeader, header, ...rest} = this.props;
+        const {
+            forceLoading,
+            isLoading,
+            forceNotFound,
+            isNotFound,
+            children,
+            id,
+            className,
+            schema,
+            location,
+            withHeader,
+            header,
+            ...rest
+        } = this.props;
         const loading = forceLoading || isLoading;
         const notFound = forceNotFound || isNotFound;
-        const finalId = loading ? 'loading' : (notFound ? 'not-found' : id);
-        const title = loading ? 'Loading...' : (notFound ? 'Not Found' : rest.title);
+        const finalId = loading ? 'loading' : notFound ? 'not-found' : id;
+        const title = loading ? 'Loading...' : notFound ? 'Not Found' : rest.title;
 
         rest.noCrawl = loading || notFound || rest.noCrawl;
         return (
-            <div id={ finalId } className={ `page ${ className }${ loading ? ' loading' : '' }` }>
+            <div id={finalId} className={`page ${className}${loading ? ' loading' : ''}`}>
                 <Helmet
-                    htmlAttributes={ {
+                    htmlAttributes={{
                         lang: 'en',
                         itemscope: undefined,
-                        itemtype: `http://schema.org/${ schema }`
-                    } }
-                    title={ title + rest.separator + defaultTitle }
-                    link={ [
+                        itemtype: `http://schema.org/${schema}`
+                    }}
+                    title={title + rest.separator + defaultTitle}
+                    link={[
                         {
                             rel: 'canonical',
                             href: SITE_URL + location.pathname
-                        }] }
-                    meta={ this.getMetaTags(rest, location.pathname) }
+                        }
+                    ]}
+                    meta={this.getMetaTags(rest, location.pathname)}
                 />
-                { withHeader ? (
-                    <Header { ...header } forceLoading={ forceLoading }/>
-                ) : null }
-                { loading ? (
-                    <NewLoading/>
+                {withHeader ? <Header {...header} forceLoading={forceLoading} /> : null}
+                {loading ? (
+                    <NewLoading />
+                ) : withHeader ? (
+                    <Segment basic>{notFound ? <p>Not Found</p> : children}</Segment>
+                ) : notFound ? (
+                    <Segment basic>
+                        <p>Not Found</p>
+                    </Segment>
                 ) : (
-                    withHeader ? (
-                        <Segment basic>
-                            { notFound
-                                ? (<p>Not Found</p>)
-                                : children
-                            }
-                        </Segment>
-                    ) : (
-                        notFound
-                            ? (
-                                <Segment basic>
-                                    <p>Not Found</p>
-                                </Segment>
-                            )
-                            : children
-                    )
-                ) }
+                    children
+                )}
             </div>
         );
     }

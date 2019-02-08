@@ -15,7 +15,7 @@ import type {
     GetCurrentLanguageSuccessAction,
     GetCurrentLanguageErrorAction
 } from '../types/Action';
-import type { Error } from '../types/Sync';
+import type { AmplifyError } from '../types/Sync';
 
 export function setCurrentLanguage(language: string): SetCurrentLanguageAction {
     return {
@@ -30,7 +30,7 @@ export function setCurrentLanguageSuccess(): SetCurrentLanguageSuccessAction {
     };
 }
 
-export function setCurrentLanguageError(error: Error): SetCurrentLanguageErrorAction {
+export function setCurrentLanguageError(error: AmplifyError): SetCurrentLanguageErrorAction {
     return {
         type: SET_CURRENT_LANGUAGE_ERROR,
         payload: error
@@ -50,7 +50,7 @@ export function getCurrentLanguageSuccess(language: string): GetCurrentLanguageS
     };
 }
 
-export function getCurrentLanguageError(error: Error): GetCurrentLanguageErrorAction {
+export function getCurrentLanguageError(error: AmplifyError): GetCurrentLanguageErrorAction {
     return {
         type: GET_CURRENT_LANGUAGE_ERROR,
         payload: error

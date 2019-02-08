@@ -39,7 +39,7 @@ import type {
 } from '../types/Action';
 import type { User } from '../types/User';
 import type { Credentials, Confirmation, Authenticator } from '../types/Auth';
-import type { Error } from '../types/Sync';
+import type { AmplifyError } from '../types/Sync';
 
 export function authenticate(authenticator?: Authenticator): AuthenticateAction {
     return {
@@ -55,7 +55,7 @@ export function authenticateSuccess(user: User): AuthenticateSuccessAction {
     };
 }
 
-export function authenticateError(error: Error): AuthenticateErrorAction {
+export function authenticateError(error: AmplifyError): AuthenticateErrorAction {
     return {
         type: AUTHENTICATE_ERROR,
         payload: error
@@ -76,7 +76,7 @@ export function signInSuccess(user: User): SignInSuccessAction {
     };
 }
 
-export function signInError(error: Error): SignInErrorAction {
+export function signInError(error: AmplifyError): SignInErrorAction {
     return {
         type: SIGN_IN_ERROR,
         payload: error
@@ -97,7 +97,7 @@ export function signUpSuccess(user: User): SignUpSuccessAction {
     };
 }
 
-export function signUpError(error: Error): SignUpErrorAction {
+export function signUpError(error: AmplifyError): SignUpErrorAction {
     return {
         type: SIGN_UP_ERROR,
         payload: error
@@ -118,7 +118,7 @@ export function signUpConfirmSuccess(result: string): SignUpConfirmSuccessAction
     };
 }
 
-export function signUpConfirmError(error: Error): SignUpConfirmErrorAction {
+export function signUpConfirmError(error: AmplifyError): SignUpConfirmErrorAction {
     return {
         type: SIGN_UP_CONFIRM_ERROR,
         payload: error

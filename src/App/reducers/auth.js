@@ -14,7 +14,7 @@ export type State = {
     currentUnconfirmedUser?: User
 };
 
-export const initialState = {
+export const initialState: State = {
     isAuthenticated: false
 };
 export const auth = (state: State = initialState, action: AuthAction) => {
