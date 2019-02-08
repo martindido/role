@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { isServer } from '../../store';
 import Routes from '../containers/Routes';
-import globalTranslations from '../translations/global.json';
-import { renderToStaticMarkup } from 'react-dom/server';
-
+import * as translations from '../translations';
 import '../styles/App.css';
 
 import type { Location } from 'react-router-dom';
@@ -21,11 +19,7 @@ type Props = {
 export default class App extends Component<Props> {
     constructor(props: Props) {
         super(props);
-        this.props.initialize({
-            languages: [{ name: 'English', code: 'en' }, { name: 'Español', code: 'es' }],
-            translation: globalTranslations,
-            options: { renderToStaticMarkup }
-        });
+        this.props.initialize(translations);
     }
 
     componentWillMount() {
