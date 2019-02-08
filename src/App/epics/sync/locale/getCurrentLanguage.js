@@ -8,7 +8,7 @@ import { ofType } from 'redux-observable';
 import { mergeMap, take, startWith, tap } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { GetCurrentLanguageSyncAction } from '../../../types/Action';
+import type { GetCurrentLanguageSyncAction } from '../../../types/Action/Sync';
 
 export default (action$: ActionsObservable<GetCurrentLanguageSyncAction>) =>
     action$.pipe(

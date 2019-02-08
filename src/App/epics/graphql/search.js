@@ -6,21 +6,16 @@ import { forkJoin, timer } from 'rxjs';
 import { API, graphqlOperation } from 'aws-amplify';
 import { searchWorlds as searchWorldsQuery, searchGames as searchGamesQuery } from '../../graphql/queries';
 
-import type { SearchAllAction } from '../../types/Action';
 import type { ActionsObservable } from 'redux-observable';
+import type { SearchAllAction } from '../../types/Action/GraphQL';
 
 export default (action$: ActionsObservable<SearchAllAction>) =>
     action$.pipe(
         ofType(SEARCH_ALL),
         debounce(() => timer(500)),
-        switchMap(
-            (action: SearchAllAction) => {
-                return forkJoin(
-                    searchWorldsFork(action.payload),
-                    searchGamesFork(action.payload)
-                );
-            }
-        ),
+        switchMap((action: SearchAllAction) => {
+            return forkJoin(searchWorldsFork(action.payload), searchGamesFork(action.payload));
+        }),
         map(categories => {
             const searchResults = {};
 
@@ -46,11 +41,10 @@ async function searchWorldsFork(value) {
         results.forEach(result =>
             category.results.push({
                 title: result.name,
-                path: `/worlds/${ result.id }`
+                path: `/worlds/${result.id}`
             })
         );
-    }
-    catch (error) {
+    } catch (error) {
         console.log('searchAll', 'world', 'error', error);
     }
     return category;
@@ -68,36 +62,39 @@ async function searchGamesFork(value) {
         results.forEach(result =>
             category.results.push({
                 title: result.name,
-                path: `/worlds/${ result.world.id }/games/${ result.id }`
+                path: `/worlds/${result.world.id}/games/${result.id}`
             })
         );
-    }
-    catch (error) {
+    } catch (error) {
         console.log('searchAll', 'game', 'error', error);
     }
     return category;
 }
 
 async function searchWorlds(value) {
-    const response = await API.graphql(graphqlOperation(searchWorldsQuery, {
-        filter: {
-            name: {
-                matchPhrasePrefix: value
+    const response = await API.graphql(
+        graphqlOperation(searchWorldsQuery, {
+            filter: {
+                name: {
+                    matchPhrasePrefix: value
+                }
             }
-        }
-    }));
+        })
+    );
 
     return response.data.searchWorlds.items;
 }
 
 async function searchGames(value) {
-    const response = await API.graphql(graphqlOperation(searchGamesQuery, {
-        filter: {
-            name: {
-                matchPhrasePrefix: value
+    const response = await API.graphql(
+        graphqlOperation(searchGamesQuery, {
+            filter: {
+                name: {
+                    matchPhrasePrefix: value
+                }
             }
-        }
-    }));
+        })
+    );
 
     return response.data.searchGames.items;
 }

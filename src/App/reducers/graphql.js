@@ -1,6 +1,6 @@
 import { SET_WORLDS, SET_WORLD, UNSET_WORLD, SET_GAME, UNSET_GAME } from '../constants/actions';
 
-import type { GraphQLAction } from '../types/Action';
+import type { GraphQLAction } from '../types/Action/GraphQL';
 import type { World } from '../types/World';
 import type { Game } from '../types/Game';
 

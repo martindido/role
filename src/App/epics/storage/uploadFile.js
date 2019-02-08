@@ -5,22 +5,23 @@ import { switchMap } from 'rxjs/operators';
 import { Storage } from 'aws-amplify';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { UploadFileAction } from '../../types/Action';
+import type { UploadFileAction } from '../../types/Action/Storage';
 
 export default (action$: ActionsObservable<UploadFileAction>) =>
     action$.pipe(
         ofType(UPLOAD_FILE),
-        switchMap(async (action: UploadFileAction): Promise => {
-            try {
-                const file = await Storage.put(action.payload.slug, action.payload.file, {
-                    contentType: action.payload.file.type
-                });
+        switchMap(
+            async (action: UploadFileAction): Promise => {
+                try {
+                    const file = await Storage.put(action.payload.slug, action.payload.file, {
+                        contentType: action.payload.file.type
+                    });
 
-                return uploadFileSuccess(file);
+                    return uploadFileSuccess(file);
+                } catch (error) {
+                    console.log('uploadFile', 'error', error);
+                    return uploadFileError(error.errors ? error.errors : [error]);
+                }
             }
-            catch (error) {
-                console.log('uploadFile', 'error', error);
-                return uploadFileError(error.errors ? error.errors : [error]);
-            }
-        })
+        )
     );

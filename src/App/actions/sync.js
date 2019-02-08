@@ -20,7 +20,7 @@ import type {
     UpdateGameSyncAction,
     CreateGameSyncAction,
     GetCurrentLanguageSyncAction
-} from '../types/Action';
+} from '../types/Action/Sync';
 import type {
     SyncMeta,
     AuthenticateSync,

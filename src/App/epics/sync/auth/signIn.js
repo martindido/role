@@ -4,7 +4,7 @@ import { ofType } from 'redux-observable';
 import { mergeMap, take, startWith, tap } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { SignInSyncAction } from '../../../types/Action';
+import type { SignInSyncAction } from '../../../types/Action/Sync';
 
 export default (action$: ActionsObservable<SignInSyncAction>) =>
     action$.pipe(

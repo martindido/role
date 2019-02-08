@@ -6,7 +6,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { createWorld as createWorldMutation } from '../../graphql/mutations';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { CreateWorldAction } from '../../types/Action';
+import type { CreateWorldAction } from '../../types/Action/GraphQL';
 import type { CreateWorldInput } from '../../types/GraphQL';
 
 export default (action$: ActionsObservable<CreateWorldAction>) =>
@@ -18,8 +18,7 @@ export default (action$: ActionsObservable<CreateWorldAction>) =>
                     const world = await createWorld(action.payload);
 
                     return createWorldSuccess(world);
-                }
-                catch (error) {
+                } catch (error) {
                     console.log('createWorld', 'error', error);
                     return createWorldError(error.errors ? error.errors : [error]);
                 }
@@ -28,9 +27,11 @@ export default (action$: ActionsObservable<CreateWorldAction>) =>
     );
 
 async function createWorld(world: CreateWorldInput) {
-    const response = await API.graphql(graphqlOperation(createWorldMutation, {
-        input: world
-    }));
+    const response = await API.graphql(
+        graphqlOperation(createWorldMutation, {
+            input: world
+        })
+    );
     const newWorld = response.data.createWorld;
 
     newWorld.games = newWorld.games.items;

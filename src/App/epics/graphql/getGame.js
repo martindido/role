@@ -5,8 +5,8 @@ import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { getGame as getGameQuery } from '../../graphql/queries';
 
-import type { GetGameAction } from '../../types/Action';
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
+import type { GetGameAction } from '../../types/Action/GraphQL';
 import type { GetGameQueryVariables } from '../../types/GraphQL';
 
 export default (action$: ActionsObservable<GetGameAction>) =>

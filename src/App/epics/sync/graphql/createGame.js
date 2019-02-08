@@ -11,7 +11,7 @@ import { ofType } from 'redux-observable';
 import { mergeMap, take, startWith, tap } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { CreateGameSyncAction } from '../../../types/Action';
+import type { CreateGameSyncAction } from '../../../types/Action/Sync';
 
 export default (action$: ActionsObservable<CreateGameSyncAction>) =>
     action$.pipe(

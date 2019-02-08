@@ -5,8 +5,8 @@ import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { getWorldCustom } from '../../graphql/custom/queries';
 
-import type { GetWorldAction } from '../../types/Action';
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
+import type { GetWorldAction } from '../../types/Action/GraphQL';
 import type { GetWorldQueryVariables } from '../../types/GraphQL';
 
 export default (action$: ActionsObservable<GetWorldAction>) =>

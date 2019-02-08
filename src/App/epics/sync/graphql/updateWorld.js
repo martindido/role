@@ -10,7 +10,7 @@ import { ofType } from 'redux-observable';
 import { mergeMap, take, tap, startWith } from 'rxjs/operators';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { UpdateWorldSyncAction } from '../../../types/Action';
+import type { UpdateWorldSyncAction } from '../../../types/Action/Sync';
 import { uploadFile } from '../../../actions/storage';
 
 export default (action$: ActionsObservable<UpdateWorldSyncAction>) =>

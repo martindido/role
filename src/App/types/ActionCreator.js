@@ -1,4 +1,27 @@
+import type {
+    SetCurrentUnconfirmedUserAction,
+    UnsetCurrentUnconfirmedUserAction,
+    AuthenticateAction,
+    SignOutAction
+} from './Action/Auth';
+import type { SearchAllAction } from './Action/GraphQL';
+import type { LoadWorldAction, LoadGameAction } from './Action/Load';
+import type { SetCurrentLanguageAction } from './Action/Locale';
+import type { SetNotFoundAction, SetPreviousLocationAction } from './Action/Routing';
+import type { SetSearchLoadingAction, UnsetSearchResultsAction } from './Action/Search';
+import type {
+    SignInSyncAction,
+    SignUpSyncAction,
+    SignUpConfirmSyncAction,
+    AuthenticateSyncAction,
+    CreateWorldSyncAction,
+    UpdateWorldSyncAction,
+    CreateGameSyncAction,
+    UpdateGameSyncAction,
+    GetCurrentLanguageSyncAction
+} from './Action/Sync';
 import type { Location } from 'react-router-dom';
+import type { User } from './User';
 import type {
     SyncMeta,
     AuthenticateSync,
@@ -10,30 +33,6 @@ import type {
     UpdateWorldSync,
     UpdateGameSync
 } from './Sync';
-import type {
-    UnsetSearchResultsAction,
-    SetSearchLoadingAction,
-    SearchAllAction,
-    SetCurrentUnconfirmedUserAction,
-    UnsetCurrentUnconfirmedUserAction,
-    AuthenticateAction,
-    SignInSyncAction,
-    SignUpSyncAction,
-    SignUpConfirmSyncAction,
-    SignOutAction,
-    AuthenticateSyncAction,
-    CreateWorldSyncAction,
-    UpdateWorldSyncAction,
-    CreateGameSyncAction,
-    UpdateGameSyncAction,
-    SetPreviousLocationAction,
-    SetNotFoundAction,
-    LoadWorldAction,
-    LoadGameAction,
-    SetCurrentLanguageAction,
-    GetCurrentLanguageSyncAction
-} from './Action';
-import type { User } from './User';
 
 export type SetNotFoundActionCreator = boolean => SetNotFoundAction;
 export type SetPreviousLocationActionCreator = Location => SetPreviousLocationAction;

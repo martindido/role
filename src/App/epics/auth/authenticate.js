@@ -5,7 +5,7 @@ import { switchMap, mergeMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
 
 import type { User } from '../../types/User';
-import type { AuthenticateAction } from '../../types/Action';
+import type { AuthenticateAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
 
 export default (action$: ActionsObservable<AuthenticateAction>) =>

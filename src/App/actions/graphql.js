@@ -56,7 +56,7 @@ import type {
     GetGameErrorAction,
     SetGameAction,
     UnsetGameAction
-} from '../types/Action';
+} from '../types/Action/GraphQL';
 import type { CreateWorldInput, UpdateWorldInput, UpdateGameInput, CreateGameInput } from '../types/GraphQL';
 import type { World } from '../types/World';
 import type { Errors } from '../types/Sync';

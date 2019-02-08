@@ -4,7 +4,7 @@ import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
 
-import type { SignInAction } from '../../types/Action';
+import type { SignInAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
 
 export default (action$: ActionsObservable<SignInAction>) =>

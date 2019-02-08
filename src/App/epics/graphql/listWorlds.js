@@ -5,8 +5,8 @@ import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { listWorlds as listWorldsQuery } from '../../graphql/queries';
 
-import type { ListWorldsAction } from '../../types/Action';
 import type { ActionsObservable } from 'redux-observable';
+import type { ListWorldsAction } from '../../types/Action/GraphQL';
 
 export default (action$: ActionsObservable<ListWorldsAction>) =>
     action$.pipe(

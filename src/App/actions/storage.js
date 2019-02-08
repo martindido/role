@@ -1,6 +1,6 @@
 import { UPLOAD_FILE, UPLOAD_FILE_SUCCESS, UPLOAD_FILE_ERROR } from '../constants/actions';
 
-import type { UploadFileAction, UploadFileSuccessAction, UploadFileErrorAction } from '../types/Action';
+import type { UploadFileAction, UploadFileSuccessAction, UploadFileErrorAction } from '../types/Action/Storage';
 import type { Errors } from '../types/Sync';
 import type { FileUpload, S3File } from '../types/Storage';
 

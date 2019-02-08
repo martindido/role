@@ -5,7 +5,7 @@ import {
     UNSET_CURRENT_USER
 } from '../constants/actions';
 
-import type { AuthAction } from '../types/Action';
+import type { AuthAction } from '../types/Action/Auth';
 import type { User } from '../types/User';
 
 export type State = {

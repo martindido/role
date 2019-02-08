@@ -4,8 +4,8 @@ import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
 
-import type { GetCurrentLanguageAction } from '../../types/Action';
 import type { ActionsObservable, Promise } from 'redux-observable';
+import type { GetCurrentLanguageAction } from '../../types/Action/Locale';
 
 export default (action$: ActionsObservable<GetCurrentLanguageAction>) =>
     action$.pipe(

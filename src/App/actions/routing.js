@@ -1,15 +1,7 @@
-import {
-    SET_LOADING,
-    SET_NOT_FOUND,
-    SET_PREVIOUS_LOCATION
-} from '../constants/actions';
+import { SET_LOADING, SET_NOT_FOUND, SET_PREVIOUS_LOCATION } from '../constants/actions';
 
 import type { Location } from 'react-router-dom';
-import type {
-    SetLoadingAction,
-    SetNotFoundAction,
-    SetPreviousLocationAction
-} from '../types/Action';
+import type { SetLoadingAction, SetNotFoundAction, SetPreviousLocationAction } from '../types/Action/Routing';
 
 export function setLoading(isLoading: boolean): SetLoadingAction {
     return {

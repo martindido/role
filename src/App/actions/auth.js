@@ -36,7 +36,7 @@ import type {
     SignOutAction,
     SetCurrentUserAction,
     UnsetCurrentUserAction
-} from '../types/Action';
+} from '../types/Action/Auth';
 import type { User } from '../types/User';
 import type { Credentials, Confirmation, Authenticator } from '../types/Auth';
 import type { AmplifyError } from '../types/Sync';

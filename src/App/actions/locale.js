@@ -14,7 +14,7 @@ import type {
     GetCurrentLanguageAction,
     GetCurrentLanguageSuccessAction,
     GetCurrentLanguageErrorAction
-} from '../types/Action';
+} from '../types/Action/Locale';
 import type { AmplifyError } from '../types/Sync';
 
 export function setCurrentLanguage(language: string): SetCurrentLanguageAction {

@@ -6,7 +6,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { createGame as createGameMutation } from '../../graphql/mutations';
 
 import type { ActionsObservable } from 'redux-observable';
-import type { CreateGameAction } from '../../types/Action';
+import type { CreateGameAction } from '../../types/Action/GraphQL';
 import type { CreateGameInput } from '../../types/GraphQL';
 
 export default (action$: ActionsObservable<CreateGameAction>) =>
@@ -18,8 +18,7 @@ export default (action$: ActionsObservable<CreateGameAction>) =>
                     const game = await createGame(action.payload);
 
                     return createGameSuccess(game);
-                }
-                catch (error) {
+                } catch (error) {
                     console.log('createGame', 'error', error);
                     return createGameError(error.errors ? error.errors : [error]);
                 }
@@ -28,9 +27,11 @@ export default (action$: ActionsObservable<CreateGameAction>) =>
     );
 
 async function createGame(game: CreateGameInput) {
-    const response = await API.graphql(graphqlOperation(createGameMutation, {
-        input: game
-    }));
+    const response = await API.graphql(
+        graphqlOperation(createGameMutation, {
+            input: game
+        })
+    );
 
     return response.data.createGame;
 }
