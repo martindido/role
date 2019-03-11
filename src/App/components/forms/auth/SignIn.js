@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Form, Message } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import { InputField } from 'react-semantic-redux-form';
+import { isRequired } from '../../../utils/validations';
 
 import type { FormProps } from 'redux-form';
-
-const isRequired = value => (value || typeof value === 'number' ? undefined : 'Required');
 
 export default class SignIn extends Component<FormProps> {
     render() {

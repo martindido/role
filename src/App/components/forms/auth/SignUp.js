@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import { Form, Message } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import { InputField } from 'react-semantic-redux-form';
+import * as validations from '../../../utils/validations';
 
 import type { FormProps } from 'redux-form';
 
-const isRequired = value => (value || typeof value === 'number' ? undefined : 'Required');
-const rEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const isValidEmail = value => (rEmail.test(String(value)) ? undefined : 'Must be a valid email address');
-const rPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*().,:;"'<>_-])/;
-const isValidPassword = value =>
-    rPassword.test(String(value))
-        ? undefined
-        : 'Must have at least 1 lowecase, 1 uppercase, 1 numeric and 1 special character';
-const hasMinLength = min => value => (value && value.length < min ? `Must be ${min} characters or more` : undefined);
-const hasMinLength8 = hasMinLength(8);
+const hasMinLength8 = validations.hasMinLength(8);
 
 export default class SignUp extends Component<FormProps> {
     render() {
@@ -30,7 +22,7 @@ export default class SignUp extends Component<FormProps> {
                     iconPosition='left'
                     placeholder='Email'
                     type='email'
-                    validate={[isRequired, isValidEmail]}
+                    validate={[validations.isRequired, validations.isValidEmail]}
                 />
                 <Field
                     component={InputField}
@@ -39,7 +31,7 @@ export default class SignUp extends Component<FormProps> {
                     icon='at'
                     iconPosition='left'
                     placeholder='Username'
-                    validate={[isRequired]}
+                    validate={[validations.isRequired]}
                 />
                 <Field
                     component={InputField}
@@ -49,7 +41,7 @@ export default class SignUp extends Component<FormProps> {
                     iconPosition='left'
                     placeholder='Password'
                     type='password'
-                    validate={[isRequired, hasMinLength8, isValidPassword]}
+                    validate={[validations.isRequired, hasMinLength8, validations.isValidPassword]}
                 />
                 <Form.Button fluid size='massive' inverted>
                     Sign Up

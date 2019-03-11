@@ -3,6 +3,7 @@ import { Form, Message, Image, Segment } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import { InputField, UploadField } from 'react-semantic-redux-form';
 import { slugify } from '../../../utils';
+import { isRequired } from '../../../utils/validations';
 import mime from 'mime-types';
 
 import '../../../styles/Form.css';
@@ -40,6 +41,7 @@ export default class World extends Component<FormProps> {
                     label='Name'
                     placeholder='Name'
                     onChange={this.handleChangeName}
+                    validate={[isRequired]}
                 />
                 <Field
                     fluid
@@ -48,6 +50,7 @@ export default class World extends Component<FormProps> {
                     label='Logo'
                     onChange={this.handleChangeLogo}
                     normalize={this.normalizeLogo}
+                    validate={world ? [] : [isRequired]}
                 />
                 {world && !selectedValues.logo ? (
                     <Segment inverted>
