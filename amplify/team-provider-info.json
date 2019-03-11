@@ -1,5 +1,5 @@
 {
-    "providers": {
+    "NONE": {
         "awscloudformation": {
             "AuthRoleName": "role-20181027160927-authRole",
             "UnauthRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-unauthRole",

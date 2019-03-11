@@ -19,14 +19,14 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2019-02-07T08:44:56.029Z",
+			"lastPushTimeStamp": "2019-03-11T20:55:53.810Z",
 			"output": {
 				"S3BucketSecureURL": "https://role-20181027161358--hostingbucket.s3.amazonaws.com",
 				"WebsiteURL": "http://role-20181027161358--hostingbucket.s3-website-us-east-1.amazonaws.com",
 				"Region": "us-east-1",
 				"HostingBucketName": "role-20181027161358--hostingbucket"
 			},
-			"lastPushDirHash": "64NiaBYeEgRlW9rMzF5EknliS4k="
+			"lastPushDirHash": "IDzmgmnTaZS3n4QCrNNlRP67DI0="
 		}
 	},
 	"auth": {
@@ -37,7 +37,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/auth/role-cloudformation-template.yml",
 				"logicalId": "authrole"
 			},
-			"lastPushTimeStamp": "2019-02-07T08:45:01.163Z",
+			"lastPushTimeStamp": "2019-03-11T20:55:53.810Z",
 			"output": {
 				"AppClientSecret": "1q8ao9celnhqa1dvdvhakth5vf6m7cafgbdea2cdjbhe36o9pvhk",
 				"UserPoolId": "us-east-1_gyBnaWgjl",
@@ -47,7 +47,7 @@
 				"IdentityPoolName": "role",
 				"UserPoolName": "role-users"
 			},
-			"lastPushDirHash": "OXSmabPRhEmpXXxaTleNs/N0F1M=",
+			"lastPushDirHash": "BOmBZU5hy+MXnOGYaPIOnjCcIKk=",
 			"[object Object]": {}
 		}
 	},
@@ -68,8 +68,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apirole"
 			},
-			"lastPushTimeStamp": "2019-02-07T08:44:56.031Z",
-			"lastPushDirHash": "QEwTafNpNck8fD/vpn9Vt/DLGmk="
+			"lastPushTimeStamp": "2019-03-11T20:55:53.809Z",
+			"lastPushDirHash": "xMxhqQjGTXfiJAr8l6WjRCCGbHM="
 		}
 	},
 	"storage": {
@@ -80,12 +80,12 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storageimages"
 			},
-			"lastPushTimeStamp": "2019-02-07T08:44:56.031Z",
+			"lastPushTimeStamp": "2019-03-11T20:55:53.810Z",
 			"output": {
 				"BucketName": "role-images",
 				"Region": "us-east-1"
 			},
-			"lastPushDirHash": "CU+62yCtIQNzwRYxwPuEEJqCrrs="
+			"lastPushDirHash": "PyQNk2I4Cu5zoN7Yq6HTrLOHQ+M="
 		}
 	}
 }

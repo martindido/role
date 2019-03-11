@@ -1,4 +1,22 @@
 {
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
     "identityPoolName": "role",
     "allowUnauthenticatedIdentities": false,
     "thirdPartyAuth": false,
@@ -55,9 +73,7 @@
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "role",
     "unAuthRoleName": "role-20181027160927-unauthRole",
-    "authRoleName": "role-20181027160927-authRole",
     "unAuthRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-unauthRole",
-    "authRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-authRole",
     "userpoolClientWriteAttributes": [
         "locale",
         "picture",

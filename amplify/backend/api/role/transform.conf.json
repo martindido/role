@@ -1,0 +1,12 @@
+{
+    "Migration": {
+        "V1": {
+            "Resources": [
+                "WorldTable",
+                "GameTable",
+                "ElasticSearchAccessIAMRole",
+                "ElasticSearchDomain"
+            ]
+        }
+    }
+}

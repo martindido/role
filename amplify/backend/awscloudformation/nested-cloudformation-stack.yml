@@ -82,7 +82,10 @@
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/hosting/template.json",
-				"Parameters": {}
+				"Parameters": {
+					"bucketName": "role-20181027161358--hostingbucket",
+					"env": "NONE"
+				}
 			}
 		},
 		"authrole": {
@@ -90,6 +93,24 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/auth/role-cloudformation-template.yml",
 				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
+					"unauthRoleArn": {
+						"Fn::GetAtt": [
+							"UnauthRole",
+							"Arn"
+						]
+					},
 					"identityPoolName": "role",
 					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": false,
@@ -129,10 +150,9 @@
 					"authSelections": "identityPoolAndUserPool",
 					"resourceName": "role",
 					"unAuthRoleName": "role-20181027160927-unauthRole",
-					"authRoleName": "role-20181027160927-authRole",
 					"unAuthRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-unauthRole",
-					"authRoleArn": "arn:aws:iam::996626415660:role/role-20181027160927-authRole",
-					"userpoolClientWriteAttributes": "locale,picture,email,nickname"
+					"userpoolClientWriteAttributes": "locale,picture,email,nickname",
+					"env": "NONE"
 				}
 			}
 		},
@@ -141,6 +161,8 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/role-20181027160927-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
+					"APIKeyExpirationEpoch": -1,
+					"DynamoDBBillingMode": "PROVISIONED",
 					"AppSyncApiName": "role",
 					"AuthCognitoUserPoolId": {
 						"Fn::GetAtt": [
@@ -148,12 +170,9 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://role-20181027160927-deployment/amplify-appsync-files/schema.graphql.1547829450822",
-					"ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
-					"ElasticSearchStreamingLambdaCodeS3Bucket": "role-20181027160927-deployment",
-					"ResolverBucket": "role-20181027160927-deployment",
-					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1547829450822"
+					"S3DeploymentBucket": "role-20181027160927-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/8d89264705b4bf7ed59c869e107b6ad6d12e7732",
+					"env": "NONE"
 				}
 			}
 		},
@@ -165,10 +184,15 @@
 					"bucketName": "role-images",
 					"authPolicyName": "s3_amplify_1544d4d6",
 					"unauthPolicyName": "s3_amplify_1544d4d6",
-					"authRoleName": "role-20181027160927-authRole",
-					"unauthRoleName": "role-20181027160927-unauthRole",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
 					"authPermissions": "rw",
-					"unauthPermissions": ""
+					"unauthPermissions": "",
+					"env": "NONE"
 				}
 			}
 		}
