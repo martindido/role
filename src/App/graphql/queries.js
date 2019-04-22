@@ -17,6 +17,17 @@ export const getWorld = `query GetWorld($id: ID!) {
         id
         name
         slug
+        logo {
+          name
+          size
+          type
+          extension
+        }
+        world {
+          id
+          name
+          slug
+        }
       }
       nextToken
     }
@@ -67,6 +78,20 @@ export const getGame = `query GetGame($id: ID!) {
       id
       name
       slug
+      logo {
+        name
+        size
+        type
+        extension
+      }
+      games {
+        items {
+          id
+          name
+          slug
+        }
+        nextToken
+      }
     }
   }
 }
@@ -91,6 +116,15 @@ export const listGames = `query ListGames(
         id
         name
         slug
+        logo {
+          name
+          size
+          type
+          extension
+        }
+        games {
+          nextToken
+        }
       }
     }
     nextToken
@@ -158,6 +192,15 @@ export const searchGames = `query SearchGames(
         id
         name
         slug
+        logo {
+          name
+          size
+          type
+          extension
+        }
+        games {
+          nextToken
+        }
       }
     }
     nextToken

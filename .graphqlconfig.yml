@@ -11,6 +11,4 @@ projects:
         generatedFileName: src/App/types/GraphQL.js
         docsFilePath: src/App/graphql
         graphQLApiId: ldwhxik6snfr3jie75y6lheed4
-      endpoints:
-        prod: >-
-          https://brazb3xh2rgidlri2inrcoomxu.appsync-api.us-east-1.amazonaws.com/graphql
+        maxDepth: 4

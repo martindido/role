@@ -160,12 +160,12 @@ export type SearchableGameSortableFields =
   "slug";
 
 
-export type getWorldCustomQueryVariables = {|
-  id: string,
+export type CreateWorldMutationVariables = {|
+  input: CreateWorldInput,
 |};
 
-export type getWorldCustomQuery = {|
-  getWorld: ? {|
+export type CreateWorldMutation = {|
+  createWorld: ? {|
     __typename: "World",
     id: string,
     name: string,
@@ -191,36 +191,12 @@ export type getWorldCustomQuery = {|
           type: string,
           extension: string,
         |},
-      |} >,
-      nextToken: ?string,
-    |},
-  |},
-|};
-
-export type CreateWorldMutationVariables = {|
-  input: CreateWorldInput,
-|};
-
-export type CreateWorldMutation = {|
-  createWorld: ? {|
-    __typename: "World",
-    id: string,
-    name: string,
-    slug: string,
-    logo: {|
-      __typename: string,
-      name: string,
-      size: number,
-      type: string,
-      extension: string,
-    |},
-    games: ? {|
-      __typename: string,
-      items: ? Array<? {|
-        __typename: string,
-        id: string,
-        name: string,
-        slug: string,
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -251,6 +227,19 @@ export type UpdateWorldMutation = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -281,6 +270,19 @@ export type DeleteWorldMutation = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -309,6 +311,23 @@ export type CreateGameMutation = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -335,6 +354,23 @@ export type UpdateGameMutation = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -361,6 +397,23 @@ export type DeleteGameMutation = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -389,6 +442,19 @@ export type GetWorldQuery = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -453,6 +519,23 @@ export type GetGameQuery = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -483,6 +566,17 @@ export type ListGamesQuery = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        games: ? {|
+          __typename: string,
+          nextToken: ?string,
+        |},
       |},
     |} >,
     nextToken: ?string,
@@ -553,6 +647,17 @@ export type SearchGamesQuery = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        games: ? {|
+          __typename: string,
+          nextToken: ?string,
+        |},
       |},
     |} >,
     nextToken: ?string,
@@ -579,6 +684,19 @@ export type OnCreateWorldSubscription = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -605,6 +723,19 @@ export type OnUpdateWorldSubscription = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -631,6 +762,19 @@ export type OnDeleteWorldSubscription = {|
         id: string,
         name: string,
         slug: string,
+        logo: {|
+          __typename: string,
+          name: string,
+          size: number,
+          type: string,
+          extension: string,
+        |},
+        world: {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |},
       |} >,
       nextToken: ?string,
     |},
@@ -655,6 +799,23 @@ export type OnCreateGameSubscription = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -677,6 +838,23 @@ export type OnUpdateGameSubscription = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};
@@ -699,6 +877,23 @@ export type OnDeleteGameSubscription = {|
       id: string,
       name: string,
       slug: string,
+      logo: {|
+        __typename: string,
+        name: string,
+        size: number,
+        type: string,
+        extension: string,
+      |},
+      games: ? {|
+        __typename: string,
+        items: ? Array<? {|
+          __typename: string,
+          id: string,
+          name: string,
+          slug: string,
+        |} >,
+        nextToken: ?string,
+      |},
     |},
   |},
 |};

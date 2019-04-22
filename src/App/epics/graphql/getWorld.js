@@ -3,7 +3,7 @@ import { getWorldSuccess, getWorldError } from '../../actions/graphql';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
-import { getWorldCustom } from '../../graphql/custom/queries';
+import { getWorld as getWorldQuery } from '../../graphql/queries';
 
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
 import type { GetWorldAction } from '../../types/Action/GraphQL';
@@ -27,7 +27,7 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
     );
 
 async function getWorld(variables: GetWorldQueryVariables) {
-    const response = await API.graphql(graphqlOperation(getWorldCustom, variables));
+    const response = await API.graphql(graphqlOperation(getWorldQuery, variables));
     const world = response.data.getWorld;
 
     try {
