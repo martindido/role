@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import createBrowserHistory from 'history/createBrowserHistory';
-import createMemoryHistory from 'history/createMemoryHistory';
+// $FlowFixMe
+import { createBrowserHistory, createMemoryHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import { createEpicMiddleware } from 'redux-observable';
 import createRootReducer, { initialState as reducersInitialState } from './App/reducers/index';
