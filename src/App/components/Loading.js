@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as Spinners from 'react-epic-spinners';
+import * as Spinners from 'react-epic-spinners/dist/react-epic-spinners.cjs';
 import { Grid } from 'semantic-ui-react';
 
 import '../styles/Loading.css';
@@ -19,11 +19,7 @@ function getSpinner() {
 }
 
 function filterSpinners(spinners) {
-    const filteredSpinners = [
-        'ScalingSquaresSpinner',
-        'SwappingSquaresSpinner',
-        'TrinityRingsSpinner'
-    ];
+    const filteredSpinners = ['ScalingSquaresSpinner', 'SwappingSquaresSpinner', 'TrinityRingsSpinner'];
 
     for (const spinner of filteredSpinners) {
         const index = spinners.indexOf(spinner);
@@ -38,7 +34,7 @@ function filterSpinners(spinners) {
 export default class Loading extends Component<Props> {
     static defaultProps = {
         pastDelay: true
-    }
+    };
 
     render() {
         if (!this.props.pastDelay) {
@@ -47,7 +43,7 @@ export default class Loading extends Component<Props> {
         return (
             <Grid verticalAlign='middle'>
                 <Grid.Column>
-                    <Spinner className='spinner' color='white' size={ 200 }/>
+                    <Spinner className='spinner' color='white' size={200} />
                 </Grid.Column>
             </Grid>
         );

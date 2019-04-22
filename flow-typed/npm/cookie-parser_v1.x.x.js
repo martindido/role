@@ -1,5 +1,5 @@
-// flow-typed signature: f4490542210f56d64e3c60f4043dabb5
-// flow-typed version: dd8117f9f7/cookie-parser_v1.x.x/flow_>=v0.25.x
+// flow-typed signature: ed7441f29a8ef9f05e1b58c2cb692439
+// flow-typed version: c7321cc104/cookie-parser_v1.x.x/flow_>=v0.93.x
 
 /**
  * Flow libdef for 'cookie-parser'
@@ -14,7 +14,7 @@ declare module 'cookie-parser' {
   /**
    * NOTE:
    * The following block has all been copied from
-   * https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/express_v4.x.x/flow_v0.32.x-/express_v4.x.x.js#L103-L105
+   * https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/express_v4.x.x/flow_v0.93.x-/express_v4.x.x.js#L103-L105
    */
 
   /* -------------------------- 8< ------------------------------------------------------------------ */
@@ -97,13 +97,13 @@ declare module 'cookie-parser' {
       callback: express$RenderCallback
     ): void;
     handle(
-      req: http$IncomingMessage,
+      req: http$IncomingMessage<>,
       res: http$ServerResponse,
       next?: ?express$NextFunction
     ): void;
     // callable signature is not inherited
     (
-      req: http$IncomingMessage,
+      req: http$IncomingMessage<>,
       res: http$ServerResponse,
       next?: ?express$NextFunction
     ): void;
@@ -155,7 +155,7 @@ declare module 'cookie-parser' {
     ): this;
     use(path: string, router: express$Router): this;
     handle(
-      req: http$IncomingMessage,
+      req: http$IncomingMessage<>,
       res: http$ServerResponse,
       next: express$NextFunction
     ): void;
@@ -169,7 +169,7 @@ declare module 'cookie-parser' {
       ) => mixed
     ): void;
     (
-      req: http$IncomingMessage,
+      req: http$IncomingMessage<>,
       res: http$ServerResponse,
       next?: ?express$NextFunction
     ): void;
