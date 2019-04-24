@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "postinstall": "mkdir -p node_modules/babel-preset-react-app/node_modules/@babel & cp -R node_modules/@babel/runtime node_modules/babel-preset-react-app/node_modules/@babel",
         "start:server": "node server",
         "start": "react-scripts start",
         "build": "react-scripts build",
@@ -78,6 +79,6 @@
     "devDependencies": {
         "flow-bin": "0.97.0",
         "flow-typed": "2.5.1",
-        "react-scripts": "2.1.8"
+        "react-scripts": "3.0.0"
     }
 }
