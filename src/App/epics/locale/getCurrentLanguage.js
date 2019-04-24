@@ -3,9 +3,12 @@ import { getCurrentLanguageSuccess, getCurrentLanguageError } from '../../action
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable, Promise } from 'redux-observable';
 import type { GetCurrentLanguageAction } from '../../types/Action/Locale';
+
+const logger = createLogger(['epics', 'locale', 'getCurrentLanguage']);
 
 export default (action$: ActionsObservable<GetCurrentLanguageAction>) =>
     action$.pipe(
@@ -15,7 +18,7 @@ export default (action$: ActionsObservable<GetCurrentLanguageAction>) =>
                 try {
                     return getCurrentLanguageSuccess(await getCurrentLanguage());
                 } catch (error) {
-                    console.log('getCurrentLanguage', 'error', error);
+                    logger.error(error);
                     return getCurrentLanguageError(error);
                 }
             }

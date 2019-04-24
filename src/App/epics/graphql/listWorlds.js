@@ -4,9 +4,12 @@ import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { listWorlds as listWorldsQuery } from '../../graphql/queries';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable } from 'redux-observable';
 import type { ListWorldsAction } from '../../types/Action/GraphQL';
+
+const logger = createLogger(['epics', 'graphql', 'listWorlds']);
 
 export default (action$: ActionsObservable<ListWorldsAction>) =>
     action$.pipe(
@@ -18,7 +21,7 @@ export default (action$: ActionsObservable<ListWorldsAction>) =>
 
                     return listWorldsSuccess(worlds);
                 } catch (error) {
-                    console.log('listWorlds', 'error', error);
+                    logger.error(error);
                     return listWorldsError([error]);
                 }
             }

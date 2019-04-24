@@ -3,9 +3,12 @@ import { signInSuccess, signInError } from '../../actions/auth';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { SignInAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
+
+const logger = createLogger(['epics', 'auth', 'signIn']);
 
 export default (action$: ActionsObservable<SignInAction>) =>
     action$.pipe(
@@ -15,7 +18,7 @@ export default (action$: ActionsObservable<SignInAction>) =>
                 try {
                     return signInSuccess(await signIn(action.payload));
                 } catch (error) {
-                    console.log('signIn', 'error', error);
+                    logger.error(error);
                     return signInError(error);
                 }
             }

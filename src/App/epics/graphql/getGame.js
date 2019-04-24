@@ -4,10 +4,13 @@ import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { getGame as getGameQuery } from '../../graphql/queries';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
 import type { GetGameAction } from '../../types/Action/GraphQL';
 import type { GetGameQueryVariables } from '../../types/GraphQL';
+
+const logger = createLogger(['epics', 'graphql', 'getGame']);
 
 export default (action$: ActionsObservable<GetGameAction>) =>
     action$.pipe(
@@ -19,7 +22,7 @@ export default (action$: ActionsObservable<GetGameAction>) =>
 
                     return game ? getGameSuccess(game) : getGameError([new Error('Not Found')]);
                 } catch (error) {
-                    console.log('getGame', 'error', error);
+                    logger.error(error);
                     return getGameError([error]);
                 }
             }

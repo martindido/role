@@ -5,9 +5,13 @@ import { debounce, switchMap, map } from 'rxjs/operators';
 import { forkJoin, timer } from 'rxjs';
 import { API, graphqlOperation } from 'aws-amplify';
 import { searchWorlds as searchWorldsQuery, searchGames as searchGamesQuery } from '../../graphql/queries';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable } from 'redux-observable';
 import type { SearchAllAction } from '../../types/Action/GraphQL';
+
+const loggerWorlds = createLogger(['epics', 'graphql', 'search', 'worlds']);
+const loggerGames = createLogger(['epics', 'graphql', 'search', 'games']);
 
 export default (action$: ActionsObservable<SearchAllAction>) =>
     action$.pipe(
@@ -45,7 +49,7 @@ async function searchWorldsFork(value) {
             })
         );
     } catch (error) {
-        console.log('searchAll', 'world', 'error', error);
+        loggerWorlds.error(error);
     }
     return category;
 }
@@ -66,7 +70,7 @@ async function searchGamesFork(value) {
             })
         );
     } catch (error) {
-        console.log('searchAll', 'game', 'error', error);
+        loggerGames.error(error);
     }
     return category;
 }

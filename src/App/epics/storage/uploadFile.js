@@ -3,9 +3,12 @@ import { uploadFileSuccess, uploadFileError } from '../../actions/storage';
 import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Storage } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable } from 'redux-observable';
 import type { UploadFileAction } from '../../types/Action/Storage';
+
+const logger = createLogger(['epics', 'storage', 'uploadFile']);
 
 export default (action$: ActionsObservable<UploadFileAction>) =>
     action$.pipe(
@@ -19,7 +22,7 @@ export default (action$: ActionsObservable<UploadFileAction>) =>
 
                     return uploadFileSuccess(file);
                 } catch (error) {
-                    console.log('uploadFile', 'error', error);
+                    logger.error(error);
                     return uploadFileError(error.errors ? error.errors : [error]);
                 }
             }

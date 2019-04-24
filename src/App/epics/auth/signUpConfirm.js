@@ -3,9 +3,12 @@ import { signUpConfirmSuccess, signUpConfirmError } from '../../actions/auth';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { SignUpConfirmAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
+
+const logger = createLogger(['epics', 'auth', 'signUpConfirm']);
 
 export default (action$: ActionsObservable<SignUpConfirmAction>) =>
     action$.pipe(
@@ -15,7 +18,7 @@ export default (action$: ActionsObservable<SignUpConfirmAction>) =>
                 try {
                     return signUpConfirmSuccess(await signUpConfirm(action.payload));
                 } catch (error) {
-                    console.log('signUpConfirm', 'error', error);
+                    logger.error(error);
                     return signUpConfirmError(error);
                 }
             }

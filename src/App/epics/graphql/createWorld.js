@@ -4,10 +4,13 @@ import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createWorld as createWorldMutation } from '../../graphql/mutations';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable } from 'redux-observable';
 import type { CreateWorldAction } from '../../types/Action/GraphQL';
 import type { CreateWorldInput } from '../../types/GraphQL';
+
+const logger = createLogger(['epics', 'graphql', 'createWorld']);
 
 export default (action$: ActionsObservable<CreateWorldAction>) =>
     action$.pipe(
@@ -19,7 +22,7 @@ export default (action$: ActionsObservable<CreateWorldAction>) =>
 
                     return createWorldSuccess(world);
                 } catch (error) {
-                    console.log('createWorld', 'error', error);
+                    logger.error(error);
                     return createWorldError(error.errors ? error.errors : [error]);
                 }
             }

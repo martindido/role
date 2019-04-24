@@ -3,9 +3,12 @@ import { unsetCurrentUser } from '../../actions/auth';
 import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { SignOutAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
+
+const logger = createLogger(['epics', 'auth', 'signOut']);
 
 export default (action$: ActionsObservable<SignOutAction>) =>
     action$.pipe(
@@ -15,7 +18,7 @@ export default (action$: ActionsObservable<SignOutAction>) =>
                 try {
                     await Auth.signOut();
                 } catch (error) {
-                    console.log('signOut', 'error', error);
+                    logger.error(error);
                 }
                 return unsetCurrentUser();
             }

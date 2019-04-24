@@ -4,10 +4,13 @@ import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { getWorld as getWorldQuery } from '../../graphql/queries';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable, Promise as PromiseType } from 'redux-observable';
 import type { GetWorldAction } from '../../types/Action/GraphQL';
 import type { GetWorldQueryVariables } from '../../types/GraphQL';
+
+const logger = createLogger(['epics', 'graphql', 'getWorld']);
 
 export default (action$: ActionsObservable<GetWorldAction>) =>
     action$.pipe(
@@ -19,7 +22,7 @@ export default (action$: ActionsObservable<GetWorldAction>) =>
 
                     return world ? getWorldSuccess(world) : getWorldError([new Error('Not Found')]);
                 } catch (error) {
-                    console.log('getWorld', 'error', error);
+                    logger.error(error);
                     return getWorldError([error]);
                 }
             }

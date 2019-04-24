@@ -4,10 +4,13 @@ import { ofType, Promise } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createGame as createGameMutation } from '../../graphql/mutations';
+import createLogger from '../../utils/logger';
 
 import type { ActionsObservable } from 'redux-observable';
 import type { CreateGameAction } from '../../types/Action/GraphQL';
 import type { CreateGameInput } from '../../types/GraphQL';
+
+const logger = createLogger(['epics', 'graphql', 'createGame']);
 
 export default (action$: ActionsObservable<CreateGameAction>) =>
     action$.pipe(
@@ -19,7 +22,7 @@ export default (action$: ActionsObservable<CreateGameAction>) =>
 
                     return createGameSuccess(game);
                 } catch (error) {
-                    console.log('createGame', 'error', error);
+                    logger.error(error);
                     return createGameError(error.errors ? error.errors : [error]);
                 }
             }

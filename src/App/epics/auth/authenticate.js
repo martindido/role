@@ -3,10 +3,13 @@ import { authenticateSuccess, authenticateError, setCurrentUser, unsetCurrentUse
 import { ofType } from 'redux-observable';
 import { switchMap, mergeMap } from 'rxjs/operators';
 import { Auth } from 'aws-amplify';
+import createLogger from '../../utils/logger';
 
 import type { User } from '../../types/User';
 import type { AuthenticateAction } from '../../types/Action/Auth';
 import type { ActionsObservable, Promise } from 'redux-observable';
+
+const logger = createLogger(['epics', 'auth', 'authenticate']);
 
 export default (action$: ActionsObservable<AuthenticateAction>) =>
     action$.pipe(
@@ -16,7 +19,7 @@ export default (action$: ActionsObservable<AuthenticateAction>) =>
                 try {
                     return authenticateSuccess(await authenticate(action.payload));
                 } catch (error) {
-                    console.log('authenticate', 'error', error);
+                    logger.error(error);
                     return authenticateError(error);
                 }
             }
