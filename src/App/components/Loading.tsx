@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// @ts-ignore
-import * as ReactSpinners from 'react-epic-spinners/dist/react-epic-spinners.cjs';
+import * as ReactSpinners from 'react-epic-spinners';
 import { Grid } from 'semantic-ui-react';
 
 import '../styles/Loading.css';
