@@ -2,7 +2,6 @@ import path from 'path';
 import fs from 'fs';
 import React from 'react';
 import Amplify from 'aws-amplify';
-// $FlowFixMe
 import AuthClass from '@aws-amplify/auth/lib/Auth';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
@@ -13,7 +12,6 @@ import Loadable from 'react-loadable';
 
 import createStore from '../src/store';
 import App from '../src/app';
-// $FlowFixMe
 import manifest from '../build/asset-manifest.json';
 import { authenticateSync } from '../src/App/actions/sync';
 import aws_exports from '../src/aws-exports';
@@ -59,7 +57,7 @@ async function authenticate(req, store) {
 }
 
 function newAuth(req) {
-    const authConfig: Object = {
+    const authConfig = {
         storage: new CustomCookieStorage(req.cookies)
     };
     if (aws_exports['aws_cognito_identity_pool_id'] || aws_exports['aws_user_pools_id']) {
@@ -77,8 +75,7 @@ async function render(req, store, modules, context) {
             <Loadable.Capture
                 report={m => {
                     modules.push(m);
-                }}
-            >
+                }}>
                 <Provider store={store}>
                     <StaticRouter location={req.url} context={context}>
                         <Frontload isServer={true}>

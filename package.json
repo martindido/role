@@ -8,8 +8,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "flow": "flow"
+        "eject": "react-scripts eject"
     },
     "browserslist": [
         ">0.2%",
@@ -42,7 +41,6 @@
         "@babel/plugin-syntax-dynamic-import": "7.2.0",
         "@babel/polyfill": "7.4.4",
         "@babel/preset-env": "7.4.4",
-        "@babel/preset-flow": "7.0.0",
         "@babel/preset-react": "7.0.0",
         "@babel/register": "7.4.4",
         "@types/debug": "4.1.4",
@@ -93,8 +91,6 @@
         "typescript": "3.4.5"
     },
     "devDependencies": {
-        "flow-bin": "0.98.1",
-        "flow-typed": "2.5.2",
         "react-scripts": "3.0.1"
     }
 }
