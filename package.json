@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "postinstall": "mkdir -p node_modules/babel-preset-react-app/node_modules/@babel & cp -R node_modules/@babel/runtime node_modules/babel-preset-react-app/node_modules/@babel",
+        "postinstall": "./scripts/postinstall.sh",
         "start:server": "node server",
         "start": "react-scripts start",
         "build": "react-scripts build",
