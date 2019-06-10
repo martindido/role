@@ -1,17 +1,24 @@
-import * as actionCreators from './auth';
-import { user } from '../types/User.mock';
-import { credentials, credentialsWithEmail, confirmation } from '../types/Auth.mock';
 import {
-    signInAction,
-    signUpAction,
-    signUpSuccessAction,
-    signUpConfirmAction,
-    unsetCurrentUnconfirmedUserAction,
-    signOutAction,
     authenticateAction,
     setCurrentUserAction,
+    signInAction,
+    signOutAction,
+    signUpAction,
+    signUpConfirmAction,
+    signUpSuccessAction,
+    unsetCurrentUnconfirmedUserAction,
     unsetCurrentUserAction
-} from '../types/Action.mock';
+} from '../mocks/actions/auth';
+import { confirmation, credentials, credentialsWithEmail } from '../mocks/auth';
+import { user } from '../mocks/user';
+
+import * as actionCreators from './auth';
+
+describe('.authenticate', () => {
+    it('returns the corresponding action when authenticating', () => {
+        expect(actionCreators.authenticate()).toEqual(authenticateAction);
+    });
+});
 
 describe('.signIn', () => {
     it('returns the corresponding action', () => {
@@ -46,12 +53,6 @@ describe('.unsetCurrentUnconfirmedUser', () => {
 describe('.signOut', () => {
     it('returns the corresponding action', () => {
         expect(actionCreators.signOut()).toEqual(signOutAction);
-    });
-});
-
-describe('.authenticate', () => {
-    it('returns the corresponding action when authenticating', () => {
-        expect(actionCreators.authenticate()).toEqual(authenticateAction);
     });
 });
 

@@ -1,12 +1,13 @@
-import * as actionCreators from './storage';
 import {
     uploadFileAction,
-    uploadFileSuccessAction,
     uploadFileErrorAction,
-    uploadFileErrorStringAction
-} from '../types/Action.mock';
-import { fileUpload, s3File } from '../types/Storage.mock';
-import { errors, errorStrings } from '../types/Sync.mock';
+    uploadFileErrorStringAction,
+    uploadFileSuccessAction
+} from '../mocks/actions/storage';
+import { errors, errorStrings } from '../mocks/error';
+import { fileUpload, s3File } from '../mocks/storage';
+
+import * as actionCreators from './storage';
 
 describe('.uploadFile', () => {
     it('returns the corresponding action', () => {

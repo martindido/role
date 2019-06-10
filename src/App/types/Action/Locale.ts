@@ -37,7 +37,7 @@ export type GetCurrentLanguageActionCreator = typeof getCurrentLanguage;
 
 export type GetCurrentLanguageSuccessAction = {
     type: 'GET_CURRENT_LANGUAGE_SUCCESS';
-    payload: string;
+    payload: Language;
 };
 
 export type GetCurrentLanguageSuccessActionCreator = typeof getCurrentLanguageSuccess;

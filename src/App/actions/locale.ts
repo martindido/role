@@ -4,7 +4,7 @@ import {
     GET_CURRENT_LANGUAGE_SUCCESS,
     SET_CURRENT_LANGUAGE,
     SET_CURRENT_LANGUAGE_ERROR,
-    SET_CURRENT_LANGUAGE_SUCCESS,
+    SET_CURRENT_LANGUAGE_SUCCESS
 } from '../constants/actions';
 import {
     GetCurrentLanguageAction,
@@ -12,7 +12,7 @@ import {
     GetCurrentLanguageSuccessAction,
     SetCurrentLanguageAction,
     SetCurrentLanguageErrorAction,
-    SetCurrentLanguageSuccessAction,
+    SetCurrentLanguageSuccessAction
 } from '../types/Action/Locale';
 import { Language } from '../types/Locale';
 import { AmplifyError } from '../types/Sync';
@@ -43,7 +43,7 @@ export function getCurrentLanguage(): GetCurrentLanguageAction {
     };
 }
 
-export function getCurrentLanguageSuccess(language: string): GetCurrentLanguageSuccessAction {
+export function getCurrentLanguageSuccess(language: Language): GetCurrentLanguageSuccessAction {
     return {
         type: GET_CURRENT_LANGUAGE_SUCCESS,
         payload: language

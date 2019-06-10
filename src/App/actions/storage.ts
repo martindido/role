@@ -1,7 +1,7 @@
-import { UPLOAD_FILE, UPLOAD_FILE_SUCCESS, UPLOAD_FILE_ERROR } from '../constants/actions';
-import { UploadFileAction, UploadFileSuccessAction, UploadFileErrorAction } from '../types/Action/Storage';
-import { Errors } from '../types/Sync';
+import { UPLOAD_FILE, UPLOAD_FILE_ERROR, UPLOAD_FILE_SUCCESS } from '../constants/actions';
+import { UploadFileAction, UploadFileErrorAction, UploadFileSuccessAction } from '../types/Action/Storage';
 import { FileUpload, S3File } from '../types/Storage';
+import { Errors } from '../types/Sync';
 
 export function uploadFile(payload: FileUpload): UploadFileAction {
     return {

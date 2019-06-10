@@ -14,10 +14,10 @@ export type CreateWorldFormData = WorldAdminFormData &
         world: CreateWorldInput;
     }>;
 
-export type UpdateWorldFormData = WorldAdminFormData &
-    Readonly<{
-        world: UpdateWorldInput;
-    }>;
+export type UpdateWorldFormData = Readonly<{
+    world: UpdateWorldInput;
+    logo?: File;
+}>;
 
 export type WorldAdminFormStateProps = Readonly<{
     world?: World;

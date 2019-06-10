@@ -1,12 +1,13 @@
-import * as actionCreators from './search';
 import {
     setSearchLoadingAction,
-    unsetSearchLoadingAction,
     setSearchResultsAction,
     setSearchResultsWithCategoriesAction,
+    unsetSearchLoadingAction,
     unsetSearchResultsAction
-} from '../types/Action.mock';
-import { searchResults, searchResultsWithCategories } from '../types/Search.mock';
+} from '../mocks/actions/search';
+import { searchResults, searchResultsWithCategories } from '../mocks/search';
+
+import * as actionCreators from './search';
 
 describe('.setSearchLoading', () => {
     it('returns the corresponding action when loading', () => {

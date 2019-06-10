@@ -1,29 +1,30 @@
-import * as reducer from './auth';
 import {
+    setCurrentUnconfirmedUserAction,
     signInAction,
     signOutAction,
-    setCurrentUnconfirmedUserAction,
     unsetCurrentUnconfirmedUserAction
-} from '../types/Action.mock';
-import { stateAuthenticated, stateWithCurrentUnconfirmedUser } from './auth.mock';
+} from '../mocks/actions/auth';
+import { stateAuthenticated, stateWithCurrentUnconfirmedUser } from '../mocks/reducers/auth';
+
+import * as reducer from './auth';
 
 describe('#initialState', () => {
     it('is an object', () => {
-        expect(reducer.initialState).toBeObject;
+        expect(reducer.initialState).toBeObject();
     });
     it('has the corresponding attributes', () => {
         expect(Object.keys(reducer.initialState)).toEqual(['isAuthenticated']);
     });
     describe('#isAuthenticated', () => {
         it('is false', () => {
-            expect(reducer.initialState.isAuthenticated).toBeFalse;
+            expect(reducer.initialState.isAuthenticated).toBeFalse();
         });
     });
 });
 
 describe('.auth', () => {
     it('is an function', () => {
-        expect(reducer.auth).toBeFunction;
+        expect(reducer.auth).toBeFunction();
     });
     it('defaults the state argument to #initialState', () => {
         expect(reducer.auth(undefined, signInAction)).toEqual(reducer.initialState);

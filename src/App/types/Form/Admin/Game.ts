@@ -14,10 +14,10 @@ export type CreateGameFormData = GameAdminFormData &
         game: CreateGameInput;
     }>;
 
-export type UpdateGameFormData = GameAdminFormData &
-    Readonly<{
-        game: UpdateGameInput;
-    }>;
+export type UpdateGameFormData = Readonly<{
+    game: UpdateGameInput;
+    logo?: File;
+}>;
 
 export type GameAdminFormStateProps = Readonly<{
     game?: Game;

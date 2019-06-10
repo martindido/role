@@ -21,7 +21,7 @@
         "overrides": [
             {
                 "files": [
-                    "**/*.test.js"
+                    "**/*.test.ts"
                 ],
                 "rules": {
                     "no-unused-expressions": "off"
@@ -32,7 +32,7 @@
     "jest": {
         "collectCoverageFrom": [
             "src/**/*.js",
-            "!**/*.mock.js"
+            "!**/mock/**/*"
         ]
     },
     "dependencies": {
@@ -91,6 +91,7 @@
         "typescript": "3.4.5"
     },
     "devDependencies": {
+        "jest-extended": "0.11.1",
         "react-scripts": "3.0.1"
     }
 }

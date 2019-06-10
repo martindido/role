@@ -1,44 +1,44 @@
 import {
     AUTHENTICATE,
-    AUTHENTICATE_SUCCESS,
     AUTHENTICATE_ERROR,
-    SIGN_IN,
-    SIGN_IN_SUCCESS,
-    SIGN_IN_ERROR,
-    SIGN_UP,
-    SIGN_UP_SUCCESS,
-    SIGN_UP_ERROR,
-    SIGN_UP_CONFIRM,
-    SIGN_UP_CONFIRM_SUCCESS,
-    SIGN_UP_CONFIRM_ERROR,
+    AUTHENTICATE_SUCCESS,
     SET_CURRENT_UNCONFIRMED_USER,
-    UNSET_CURRENT_UNCONFIRMED_USER,
-    SIGN_OUT,
     SET_CURRENT_USER,
+    SIGN_IN,
+    SIGN_IN_ERROR,
+    SIGN_IN_SUCCESS,
+    SIGN_OUT,
+    SIGN_UP,
+    SIGN_UP_CONFIRM,
+    SIGN_UP_CONFIRM_ERROR,
+    SIGN_UP_CONFIRM_SUCCESS,
+    SIGN_UP_ERROR,
+    SIGN_UP_SUCCESS,
+    UNSET_CURRENT_UNCONFIRMED_USER,
     UNSET_CURRENT_USER
 } from '../constants/actions';
 import {
     AuthenticateAction,
-    AuthenticateSuccessAction,
     AuthenticateErrorAction,
-    SignInAction,
-    SignInSuccessAction,
-    SignInErrorAction,
-    SignUpAction,
-    SignUpSuccessAction,
-    SignUpErrorAction,
-    SignUpConfirmAction,
-    SignUpConfirmSuccessAction,
-    SignUpConfirmErrorAction,
+    AuthenticateSuccessAction,
     SetCurrentUnconfirmedUserAction,
-    UnsetCurrentUnconfirmedUserAction,
-    SignOutAction,
     SetCurrentUserAction,
+    SignInAction,
+    SignInErrorAction,
+    SignInSuccessAction,
+    SignOutAction,
+    SignUpAction,
+    SignUpConfirmAction,
+    SignUpConfirmErrorAction,
+    SignUpConfirmSuccessAction,
+    SignUpErrorAction,
+    SignUpSuccessAction,
+    UnsetCurrentUnconfirmedUserAction,
     UnsetCurrentUserAction
 } from '../types/Action/Auth';
-import { User } from '../types/User';
-import { Credentials, Confirmation, Authenticator } from '../types/Auth';
+import { Authenticator, Confirmation, Credentials } from '../types/Auth';
 import { AmplifyError } from '../types/Sync';
+import { User } from '../types/User';
 
 export function authenticate(authenticator?: Authenticator): AuthenticateAction {
     return {

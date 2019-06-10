@@ -1,5 +1,5 @@
-import { LOAD_WORLDS, LOAD_WORLD, LOAD_GAME } from '../constants/actions';
-import { LoadWorldsAction, LoadWorldAction, LoadGameAction } from '../types/Action/Load';
+import { LOAD_GAME, LOAD_WORLD, LOAD_WORLDS } from '../constants/actions';
+import { LoadGameAction, LoadWorldsAction, LoadWorldAction } from '../types/Action/Load';
 
 export function loadWorlds(): LoadWorldsAction {
     return {

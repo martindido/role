@@ -1,65 +1,65 @@
 import {
-    SEARCH_ALL,
-    LIST_WORLDS,
-    LIST_WORLDS_SUCCESS,
-    LIST_WORLDS_ERROR,
-    SET_WORLDS,
-    CREATE_WORLD,
-    CREATE_WORLD_SUCCESS,
-    CREATE_WORLD_ERROR,
-    UPDATE_WORLD,
-    UPDATE_WORLD_SUCCESS,
-    UPDATE_WORLD_ERROR,
-    GET_WORLD,
-    GET_WORLD_SUCCESS,
-    GET_WORLD_ERROR,
-    SET_WORLD,
-    UNSET_WORLD,
     CREATE_GAME,
-    CREATE_GAME_SUCCESS,
     CREATE_GAME_ERROR,
-    UPDATE_GAME,
-    UPDATE_GAME_SUCCESS,
-    UPDATE_GAME_ERROR,
+    CREATE_GAME_SUCCESS,
+    CREATE_WORLD,
+    CREATE_WORLD_ERROR,
+    CREATE_WORLD_SUCCESS,
     GET_GAME,
-    GET_GAME_SUCCESS,
     GET_GAME_ERROR,
+    GET_GAME_SUCCESS,
+    GET_WORLD,
+    GET_WORLD_ERROR,
+    GET_WORLD_SUCCESS,
+    LIST_WORLDS,
+    LIST_WORLDS_ERROR,
+    LIST_WORLDS_SUCCESS,
+    SEARCH_ALL,
     SET_GAME,
-    UNSET_GAME
+    SET_WORLD,
+    SET_WORLDS,
+    UNSET_GAME,
+    UNSET_WORLD,
+    UPDATE_GAME,
+    UPDATE_GAME_ERROR,
+    UPDATE_GAME_SUCCESS,
+    UPDATE_WORLD,
+    UPDATE_WORLD_ERROR,
+    UPDATE_WORLD_SUCCESS
 } from '../constants/actions';
 import {
-    SearchAllAction,
-    ListWorldsAction,
-    ListWorldsSuccessAction,
-    ListWorldsErrorAction,
-    SetWorldsAction,
-    CreateWorldAction,
-    CreateWorldSuccessAction,
-    CreateWorldErrorAction,
-    UpdateWorldAction,
-    UpdateWorldSuccessAction,
-    UpdateWorldErrorAction,
-    GetWorldAction,
-    GetWorldSuccessAction,
-    GetWorldErrorAction,
-    SetWorldAction,
-    UnsetWorldAction,
     CreateGameAction,
-    CreateGameSuccessAction,
     CreateGameErrorAction,
-    UpdateGameAction,
-    UpdateGameSuccessAction,
-    UpdateGameErrorAction,
+    CreateGameSuccessAction,
+    CreateWorldAction,
+    CreateWorldErrorAction,
+    CreateWorldSuccessAction,
     GetGameAction,
-    GetGameSuccessAction,
     GetGameErrorAction,
+    GetGameSuccessAction,
+    GetWorldAction,
+    GetWorldErrorAction,
+    GetWorldSuccessAction,
+    ListWorldsAction,
+    ListWorldsErrorAction,
+    ListWorldsSuccessAction,
+    SearchAllAction,
     SetGameAction,
-    UnsetGameAction
+    SetWorldsAction,
+    SetWorldAction,
+    UnsetGameAction,
+    UnsetWorldAction,
+    UpdateGameAction,
+    UpdateGameErrorAction,
+    UpdateGameSuccessAction,
+    UpdateWorldAction,
+    UpdateWorldErrorAction,
+    UpdateWorldSuccessAction
 } from '../types/Action/GraphQL';
-import { CreateWorldInput, UpdateWorldInput, UpdateGameInput, CreateGameInput } from '../types/GraphQL';
-import { World } from '../types/World';
-import { Errors } from '../types/Sync';
 import { Game } from '../types/Game';
+import { CreateGameInput, CreateWorldInput, UpdateGameInput, UpdateWorldInput } from '../types/GraphQL';
+import { Errors } from '../types/Sync';
+import { World } from '../types/World';
 
 export function searchAll(value: string): SearchAllAction {
     return {
@@ -74,7 +74,7 @@ export function listWorlds(): ListWorldsAction {
     };
 }
 
-export function listWorldsSuccess(worlds: Array<World>): ListWorldsSuccessAction {
+export function listWorldsSuccess(worlds: World[]): ListWorldsSuccessAction {
     return {
         type: LIST_WORLDS_SUCCESS,
         payload: worlds
@@ -88,7 +88,7 @@ export function listWorldsError(errors: Errors): ListWorldsErrorAction {
     };
 }
 
-export function setWorlds(worlds: Array<World>): SetWorldsAction {
+export function setWorlds(worlds: World[]): SetWorldsAction {
     return {
         type: SET_WORLDS,
         payload: worlds

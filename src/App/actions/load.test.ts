@@ -1,7 +1,8 @@
+import { loadGameAction, loadWorldsAction, loadWorldAction } from '../mocks/actions/load';
+import { game } from '../mocks/game';
+import { world } from '../mocks/world';
+
 import * as actionCreators from './load';
-import { loadWorldsAction, loadWorldAction, loadGameAction } from '../types/Action.mock';
-import { world } from '../types/World.mock';
-import { game } from '../types/Game.mock';
 
 describe('.loadWorlds', () => {
     it('returns the corresponding action', () => {

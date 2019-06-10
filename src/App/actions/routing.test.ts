@@ -1,12 +1,13 @@
-import * as actionCreators from './routing';
 import {
     setLoadingAction,
-    unsetLoadingAction,
     setNotFoundAction,
-    unsetNotFoundAction,
-    setPreviousLocationAction
-} from '../types/Action.mock';
-import { location } from '../types/Router.mock';
+    setPreviousLocationAction,
+    unsetLoadingAction,
+    unsetNotFoundAction
+} from '../mocks/actions/routing';
+import { location } from '../mocks/router';
+
+import * as actionCreators from './routing';
 
 describe('.setLoading', () => {
     it('returns the corresponding action when loading', () => {

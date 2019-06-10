@@ -1,11 +1,11 @@
 import {
     SET_CURRENT_UNCONFIRMED_USER,
-    UNSET_CURRENT_UNCONFIRMED_USER,
     SET_CURRENT_USER,
+    UNSET_CURRENT_UNCONFIRMED_USER,
     UNSET_CURRENT_USER
 } from '../constants/actions';
-import { AuthState } from '../types/State/Auth';
 import { AuthAction } from '../types/Action/Auth';
+import { AuthState } from '../types/State/Auth';
 
 export const initialState: AuthState = {
     isAuthenticated: false
