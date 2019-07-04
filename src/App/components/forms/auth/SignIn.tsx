@@ -14,7 +14,7 @@ export default class SignInForm extends Component<SignInFormProps> {
             <Form size='large' onSubmit={handleSubmit} loading={submitting} error={invalid}>
                 <Field
                     component={InputField}
-                    name='username'
+                    name='credentials[username]'
                     fluid
                     icon='at'
                     iconPosition='left'
@@ -23,7 +23,7 @@ export default class SignInForm extends Component<SignInFormProps> {
                 />
                 <Field
                     component={InputField}
-                    name='password'
+                    name='credentials[password]'
                     fluid
                     icon='lock'
                     iconPosition='left'

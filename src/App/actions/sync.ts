@@ -22,7 +22,10 @@ import {
 } from '../types/Action/Sync';
 import { CreateGameFormData, UpdateGameFormData } from '../types/Form/Admin/Game';
 import { CreateWorldFormData, UpdateWorldFormData } from '../types/Form/Admin/World';
-import { AuthenticateSync, SignInSync, SignUpConfirmSync, SignUpSync, SyncMeta } from '../types/Sync';
+import { SignInFormData } from '../types/Form/Auth/SignIn';
+import { SignUpFormData } from '../types/Form/Auth/SignUp';
+import { SignUpConfirmFormData } from '../types/Form/Auth/SignUpConfirm';
+import { AuthenticateSync, SyncMeta } from '../types/Sync';
 
 export function authenticateSync(payload: AuthenticateSync, meta: SyncMeta): AuthenticateSyncAction {
     return {
@@ -32,7 +35,7 @@ export function authenticateSync(payload: AuthenticateSync, meta: SyncMeta): Aut
     };
 }
 
-export function signInSync(payload: SignInSync, meta: SyncMeta): SignInSyncAction {
+export function signInSync(payload: SignInFormData, meta: SyncMeta): SignInSyncAction {
     return {
         type: SIGN_IN_SYNC,
         payload,
@@ -40,7 +43,7 @@ export function signInSync(payload: SignInSync, meta: SyncMeta): SignInSyncActio
     };
 }
 
-export function signUpSync(payload: SignUpSync, meta: SyncMeta): SignUpSyncAction {
+export function signUpSync(payload: SignUpFormData, meta: SyncMeta): SignUpSyncAction {
     return {
         type: SIGN_UP_SYNC,
         payload,
@@ -48,7 +51,7 @@ export function signUpSync(payload: SignUpSync, meta: SyncMeta): SignUpSyncActio
     };
 }
 
-export function signUpConfirmSync(payload: SignUpConfirmSync, meta: SyncMeta): SignUpConfirmSyncAction {
+export function signUpConfirmSync(payload: SignUpConfirmFormData, meta: SyncMeta): SignUpConfirmSyncAction {
     return {
         type: SIGN_UP_CONFIRM_SYNC,
         payload,

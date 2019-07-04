@@ -8,19 +8,15 @@ import Page from '../../containers/pages/Page';
 import logo from '../../images/logo.png';
 import { SignUpConfirmFormData } from '../../types/Form/Auth/SignUpConfirm';
 import { SignUpConfirmProps } from '../../types/Props/Auth/SignUpConfirm';
-import { SignUpConfirmSync } from '../../types/Sync';
 
 export default class SignUpConfirm extends Component<SignUpConfirmProps> {
     componentWillUnmount() {
         this.props.unsetCurrentUnconfirmedUser();
     }
 
-    handleSubmit = async (confirmation: SignUpConfirmFormData) => {
+    handleSubmit = async (payload: SignUpConfirmFormData) => {
         try {
-            await this.signUpConfirm({
-                user: this.props.currentUnconfirmedUser!,
-                confirmation
-            });
+            await this.signUpConfirm(payload);
             this.props.history.push('/sign-in');
         } catch (error) {
             throw new SubmissionError({
@@ -29,7 +25,7 @@ export default class SignUpConfirm extends Component<SignUpConfirmProps> {
         }
     }
 
-    signUpConfirm = async (payload: SignUpConfirmSync) => {
+    signUpConfirm = async (payload: SignUpConfirmFormData) => {
         return await new Promise((resolve, reject) => {
             this.props.signUpConfirmSync(payload, {
                 onSuccess: resolve,

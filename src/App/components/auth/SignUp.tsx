@@ -8,15 +8,12 @@ import Page from '../../containers/pages/Page';
 import logo from '../../images/logo.png';
 import { SignUpFormData } from '../../types/Form/Auth/SignUp';
 import { SignUpProps } from '../../types/Props/Auth/SignUp';
-import { SignUpSync } from '../../types/Sync';
 import { User } from '../../types/User';
 
 export default class SignUp extends Component<SignUpProps> {
-    handleSubmit = async (credentials: SignUpFormData) => {
+    handleSubmit = async (payload: SignUpFormData) => {
         try {
-            const user = await this.signUp({
-                credentials
-            });
+            const user = await this.signUp(payload);
 
             this.props.setCurrentUnconfirmedUser(user);
             this.props.history.push(`/sign-up-confirm`);
@@ -27,7 +24,7 @@ export default class SignUp extends Component<SignUpProps> {
         }
     }
 
-    signUp = async (payload: SignUpSync) => {
+    signUp = async (payload: SignUpFormData) => {
         return await new Promise<User>((resolve, reject) => {
             this.props.signUpSync(payload, {
                 onSuccess: resolve,

@@ -38,7 +38,7 @@ import {
 } from '../../types/Action/Auth';
 import { confirmation, credentials, credentialsWithEmail, RESULT } from '../auth';
 import { authenticator } from '../aws-amplify';
-import { error } from '../error';
+import { error, errorString } from '../error';
 import { user } from '../user';
 
 export const authenticateAction: AuthenticateAction = {
@@ -60,6 +60,11 @@ export const authenticateErrorAction: AuthenticateErrorAction = {
     payload: error
 };
 
+export const authenticateErrorStringAction: AuthenticateErrorAction = {
+    type: AUTHENTICATE_ERROR,
+    payload: errorString
+};
+
 export const signInAction: SignInAction = {
     type: SIGN_IN,
     payload: credentials
@@ -73,6 +78,11 @@ export const signInSuccessAction: SignInSuccessAction = {
 export const signInErrorAction: SignInErrorAction = {
     type: SIGN_IN_ERROR,
     payload: error
+};
+
+export const signInErrorStringAction: SignInErrorAction = {
+    type: SIGN_IN_ERROR,
+    payload: errorString
 };
 
 export const signUpAction: SignUpAction = {
@@ -90,6 +100,11 @@ export const signUpErrorAction: SignUpErrorAction = {
     payload: error
 };
 
+export const signUpErrorStringAction: SignUpErrorAction = {
+    type: SIGN_UP_ERROR,
+    payload: errorString
+};
+
 export const signUpConfirmAction: SignUpConfirmAction = {
     type: SIGN_UP_CONFIRM,
     payload: confirmation
@@ -103,6 +118,11 @@ export const signUpConfirmSuccessAction: SignUpConfirmSuccessAction = {
 export const signUpConfirmErrorAction: SignUpConfirmErrorAction = {
     type: SIGN_UP_CONFIRM_ERROR,
     payload: error
+};
+
+export const signUpConfirmErrorStringAction: SignUpConfirmErrorAction = {
+    type: SIGN_UP_CONFIRM_ERROR,
+    payload: errorString
 };
 
 export const setCurrentUnconfirmedUserAction: SetCurrentUnconfirmedUserAction = {

@@ -8,14 +8,12 @@ import Page from '../../containers/pages/Page';
 import logo from '../../images/logo.png';
 import { SignInFormData } from '../../types/Form/Auth/SignIn';
 import { SignInProps } from '../../types/Props/Auth/SignIn';
-import { AuthenticateSync, SignInSync } from '../../types/Sync';
+import { AuthenticateSync } from '../../types/Sync';
 
 export default class SignIn extends Component<SignInProps> {
-    handleSubmit = async (credentials: SignInFormData) => {
+    handleSubmit = async (signInFormData: SignInFormData) => {
         try {
-            await this.signIn({
-                credentials
-            });
+            await this.signIn(signInFormData);
             await this.authenticate();
             this.props.history.push('/');
         } catch (error) {
@@ -25,9 +23,9 @@ export default class SignIn extends Component<SignInProps> {
         }
     }
 
-    signIn = async (payload: SignInSync) => {
+    signIn = async (signInFormData: SignInFormData) => {
         return await new Promise((resolve, reject) => {
-            this.props.signInSync(payload, {
+            this.props.signInSync(signInFormData, {
                 onSuccess: resolve,
                 onError: reject
             });

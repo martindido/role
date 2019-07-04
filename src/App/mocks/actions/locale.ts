@@ -14,33 +14,43 @@ import {
     SetCurrentLanguageErrorAction,
     SetCurrentLanguageSuccessAction
 } from '../../types/Action/Locale';
-import { error } from '../error';
+import { error, errorString } from '../error';
 import { LANGUAGE } from '../locale';
 
-export const setCurrentLanguage: SetCurrentLanguageAction = {
+export const setCurrentLanguageAction: SetCurrentLanguageAction = {
     type: SET_CURRENT_LANGUAGE,
     payload: LANGUAGE
 };
 
-export const setCurrentLanguageSuccess: SetCurrentLanguageSuccessAction = {
+export const setCurrentLanguageSuccessAction: SetCurrentLanguageSuccessAction = {
     type: SET_CURRENT_LANGUAGE_SUCCESS
 };
 
-export const setCurrentLanguageError: SetCurrentLanguageErrorAction = {
+export const setCurrentLanguageErrorAction: SetCurrentLanguageErrorAction = {
     type: SET_CURRENT_LANGUAGE_ERROR,
     payload: error
 };
 
-export const getCurrentLanguage: GetCurrentLanguageAction = {
+export const setCurrentLanguageErrorStringAction: SetCurrentLanguageErrorAction = {
+    type: SET_CURRENT_LANGUAGE_ERROR,
+    payload: errorString
+};
+
+export const getCurrentLanguageAction: GetCurrentLanguageAction = {
     type: GET_CURRENT_LANGUAGE
 };
 
-export const getCurrentLanguageSuccess: GetCurrentLanguageSuccessAction = {
+export const getCurrentLanguageSuccessAction: GetCurrentLanguageSuccessAction = {
     type: GET_CURRENT_LANGUAGE_SUCCESS,
     payload: LANGUAGE
 };
 
-export const getCurrentLanguageError: GetCurrentLanguageErrorAction = {
+export const getCurrentLanguageErrorAction: GetCurrentLanguageErrorAction = {
     type: GET_CURRENT_LANGUAGE_ERROR,
     payload: error
+};
+
+export const getCurrentLanguageErrorStringAction: GetCurrentLanguageErrorAction = {
+    type: GET_CURRENT_LANGUAGE_ERROR,
+    payload: errorString
 };

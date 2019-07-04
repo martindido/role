@@ -6,10 +6,9 @@ import {
 } from '../constants/actions';
 import { AuthAction } from '../types/Action/Auth';
 import { AuthState } from '../types/State/Auth';
+import { unset } from '../utils/state';
 
-export const initialState: AuthState = {
-    isAuthenticated: false
-};
+export const initialState: AuthState = {};
 export const auth = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
         case SET_CURRENT_UNCONFIRMED_USER:
@@ -18,7 +17,7 @@ export const auth = (state: AuthState = initialState, action: AuthAction) => {
                 currentUnconfirmedUser: action.payload
             };
         case UNSET_CURRENT_UNCONFIRMED_USER:
-            return unset(state, 'currentUnconfirmedUser');
+            return unset<AuthState>(state, 'currentUnconfirmedUser');
         case SET_CURRENT_USER:
             return {
                 ...state,
@@ -26,24 +25,8 @@ export const auth = (state: AuthState = initialState, action: AuthAction) => {
                 isAuthenticated: true
             };
         case UNSET_CURRENT_USER:
-            return unset(state, ['currentUser', 'isAuthenticated']);
+            return unset<AuthState>(state, ['currentUser', 'isAuthenticated']);
         default:
             return state;
     }
 };
-
-function unset(state: AuthState, attributes: string | string[]) {
-    const newState = { ...state };
-
-    if (typeof attributes === 'string') {
-        attributes = [attributes];
-    }
-    for (const attribute of attributes) {
-        const key = attribute as keyof AuthState;
-
-        if (newState.hasOwnProperty(key)) {
-            delete newState[key];
-        }
-    }
-    return newState;
-}

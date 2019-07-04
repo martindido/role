@@ -11,7 +11,10 @@ import {
 } from '../../actions/sync';
 import { CreateGameFormData, UpdateGameFormData } from '../Form/Admin/Game';
 import { CreateWorldFormData, UpdateWorldFormData } from '../Form/Admin/World';
-import { AuthenticateSync, SignInSync, SignUpConfirmSync, SignUpSync, SyncMeta } from '../Sync';
+import { SignInFormData } from '../Form/Auth/SignIn';
+import { SignUpFormData } from '../Form/Auth/SignUp';
+import { SignUpConfirmFormData } from '../Form/Auth/SignUpConfirm';
+import { AuthenticateSync, SyncMeta } from '../Sync';
 
 export type AuthenticateSyncAction = {
     type: 'AUTHENTICATE_SYNC';
@@ -30,7 +33,7 @@ export type GetCurrentLanguageSyncActionCreator = typeof getCurrentLanguageSync;
 
 export type SignInSyncAction = {
     type: 'SIGN_IN_SYNC';
-    payload: SignInSync;
+    payload: SignInFormData;
     meta: SyncMeta;
 };
 
@@ -38,7 +41,7 @@ export type SignInSyncActionCreator = typeof signInSync;
 
 export type SignUpSyncAction = {
     type: 'SIGN_UP_SYNC';
-    payload: SignUpSync;
+    payload: SignUpFormData;
     meta: SyncMeta;
 };
 
@@ -46,7 +49,7 @@ export type SignUpSyncActionCreator = typeof signUpSync;
 
 export type SignUpConfirmSyncAction = {
     type: 'SIGN_UP_CONFIRM_SYNC';
-    payload: SignUpConfirmSync;
+    payload: SignUpConfirmFormData;
     meta: SyncMeta;
 };
 

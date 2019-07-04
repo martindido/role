@@ -5,9 +5,11 @@ export type AuthenticatedRouteDefaultProps = Readonly<{
     canAccess: boolean;
 }>;
 
-export type AuthenticatedRouteStateProps = Readonly<{
-    isAuthenticated: boolean;
-}>;
+export type AuthenticatedRouteStateProps = Readonly<
+    Partial<{
+        isAuthenticated: boolean;
+    }>
+>;
 
 export type AuthenticatedRouteConfigProps = Readonly<{
     component: ComponentType<RouteComponentProps<any>> | ComponentType<any>;

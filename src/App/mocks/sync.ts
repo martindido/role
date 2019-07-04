@@ -1,8 +1,34 @@
 import { CreateGameFormData, UpdateGameFormData } from '../types/Form/Admin/Game';
 import { CreateWorldFormData, UpdateWorldFormData } from '../types/Form/Admin/World';
+import { SignInFormData } from '../types/Form/Auth/SignIn';
+import { SignUpFormData } from '../types/Form/Auth/SignUp';
+import { SignUpConfirmFormData } from '../types/Form/Auth/SignUpConfirm';
+import { AuthenticateSync } from '../types/Sync';
 
+import { confirmation, credentials } from './auth';
+import { authenticator } from './aws-amplify';
 import { createGameInput, createWorldInput, updateGameInput, updateWorldInput } from './graphql';
 import { file } from './storage';
+import { user } from './user';
+
+export const authenticateSync: AuthenticateSync = {};
+
+export const authenticateWithAuthenticatorSync: AuthenticateSync = {
+    authenticator
+};
+
+export const signInFormData: SignInFormData = {
+    credentials
+};
+
+export const signUpFormData: SignUpFormData = {
+    credentials
+};
+
+export const signUpConfirmFormData: SignUpConfirmFormData = {
+    user,
+    confirmation
+};
 
 export const createWorldFormData: CreateWorldFormData = {
     world: createWorldInput,

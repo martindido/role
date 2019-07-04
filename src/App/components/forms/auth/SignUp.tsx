@@ -16,7 +16,7 @@ export default class SignUp extends Component<SignUpFormProps> {
             <Form size='large' onSubmit={handleSubmit} loading={submitting} error={invalid}>
                 <Field
                     component={InputField}
-                    name='email'
+                    name='credentials[email]'
                     fluid
                     icon='mail'
                     iconPosition='left'
@@ -26,7 +26,7 @@ export default class SignUp extends Component<SignUpFormProps> {
                 />
                 <Field
                     component={InputField}
-                    name='username'
+                    name='credentials[username]'
                     fluid
                     icon='at'
                     iconPosition='left'
@@ -35,7 +35,7 @@ export default class SignUp extends Component<SignUpFormProps> {
                 />
                 <Field
                     component={InputField}
-                    name='password'
+                    name='credentials[password]'
                     fluid
                     icon='lock'
                     iconPosition='left'

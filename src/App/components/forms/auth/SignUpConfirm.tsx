@@ -14,7 +14,7 @@ export default class SignUpConfirm extends Component<SignUpConfirmFormProps> {
             <Form size='large' onSubmit={handleSubmit} loading={submitting} error={invalid}>
                 <Field
                     component={InputField}
-                    name='code'
+                    name='confirmation[code]'
                     fluid
                     icon='key'
                     iconPosition='left'

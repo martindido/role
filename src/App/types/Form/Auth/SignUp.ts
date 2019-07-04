@@ -2,7 +2,9 @@ import { InjectedFormProps } from 'redux-form';
 
 import { Credentials } from '../../Auth';
 
-export type SignUpFormData = Readonly<Credentials>;
+export type SignUpFormData = Readonly<{
+    credentials: Credentials;
+}>;
 
 export type SignUpFormStateProps = Partial<
     Readonly<{
