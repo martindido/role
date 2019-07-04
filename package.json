@@ -8,7 +8,9 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "coverage": "react-scripts test --coverage --watchAll=false",
+        "eject": "react-scripts eject",
+        "analyze": "source-map-explorer 'build/static/js/*.js'"
     },
     "browserslist": [
         ">0.2%",
@@ -21,7 +23,7 @@
         "overrides": [
             {
                 "files": [
-                    "**/*.test.ts"
+                    "**/*.test.{js,ts}"
                 ],
                 "rules": {
                     "no-unused-expressions": "off"
@@ -31,8 +33,9 @@
     },
     "jest": {
         "collectCoverageFrom": [
-            "src/**/*.js",
-            "!**/mock/**/*"
+            "src/**/*.{js,jsx,ts,tsx}",
+            "!<rootDir>/node_modules/",
+            "!<rootDir>/**/mock/"
         ]
     },
     "dependencies": {
@@ -92,6 +95,7 @@
     },
     "devDependencies": {
         "jest-extended": "0.11.1",
-        "react-scripts": "3.0.1"
+        "react-scripts": "3.0.1",
+        "source-map-explorer": "2.0.1"
     }
 }

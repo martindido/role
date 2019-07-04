@@ -1,5 +1,4 @@
 // This optional code is used to register a service worker.
-import createLogger from './App/utils/logger';
 // register() is not called by default.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -10,6 +9,8 @@ import createLogger from './App/utils/logger';
 
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
+
+import createLogger from './App/utils/logger';
 
 const logger = createLogger('sw');
 
