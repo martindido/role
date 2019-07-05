@@ -1,4 +1,4 @@
-import { SET_WORLDS, SET_WORLD, UNSET_WORLD, SET_GAME, UNSET_GAME } from '../constants/actions';
+import { SET_GAME, SET_WORLD, SET_WORLDS, UNSET_GAME, UNSET_WORLD } from '../constants/actions';
 import { GraphQLAction } from '../types/Action/GraphQL';
 import { GraphQLState } from '../types/State/GraphQL';
 

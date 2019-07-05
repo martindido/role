@@ -13,8 +13,8 @@ import { initialState as searchInitialState, search } from './search';
 
 export const initialState: InitialState = {
     auth: authInitialState,
-    routing: routingInitialState,
     graphql: graphqlInitialState,
+    routing: routingInitialState,
     search: searchInitialState
 };
 

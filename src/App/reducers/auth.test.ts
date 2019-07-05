@@ -1,8 +1,7 @@
+import { fakeAction } from '../mocks/actions';
 import {
     setCurrentUnconfirmedUserAction,
     setCurrentUserAction,
-    signInAction,
-    signOutAction,
     unsetCurrentUnconfirmedUserAction,
     unsetCurrentUserAction
 } from '../mocks/actions/auth';
@@ -17,11 +16,6 @@ describe('#initialState', () => {
     it('is empty', () => {
         expect(reducer.initialState).toBeEmpty();
     });
-    describe('#isAuthenticated', () => {
-        it('is undefined', () => {
-            expect(reducer.initialState.isAuthenticated).toBeUndefined();
-        });
-    });
 });
 
 describe('.auth', () => {
@@ -29,16 +23,17 @@ describe('.auth', () => {
         expect(reducer.auth).toBeFunction();
     });
     it('defaults the state argument to #initialState', () => {
-        expect(reducer.auth(undefined, signInAction)).toEqual(reducer.initialState);
+        // @ts-ignore
+        expect(reducer.auth(undefined, fakeAction)).toEqual(reducer.initialState);
     });
     it('returns an unmodified state for an irrelevant action', () => {
-        expect(reducer.auth(stateAuthenticated, signOutAction)).toEqual(stateAuthenticated);
+        // @ts-ignore
+        expect(reducer.auth(stateAuthenticated, fakeAction)).toEqual(stateAuthenticated);
     });
     it('returns the corresponding state for a setCurrentUnconfirmedUserAction', () => {
-        expect(reducer.auth(reducer.initialState, setCurrentUnconfirmedUserAction)).toEqual({
-            ...reducer.initialState,
-            currentUnconfirmedUser: setCurrentUnconfirmedUserAction.payload
-        });
+        expect(reducer.auth(reducer.initialState, setCurrentUnconfirmedUserAction)).toEqual(
+            stateWithCurrentUnconfirmedUser
+        );
     });
     it('returns the corresponding state for a unsetCurrentUnconfirmedUserAction', () => {
         expect(reducer.auth(stateWithCurrentUnconfirmedUser, unsetCurrentUnconfirmedUserAction)).toEqual(
