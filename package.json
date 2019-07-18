@@ -33,24 +33,26 @@
     },
     "jest": {
         "collectCoverageFrom": [
-            "src/**/*.{js,jsx,ts,tsx}",
-            "!<rootDir>/node_modules/",
-            "!<rootDir>/**/mock/"
+            "<rootDir>/src/**/*.{js,jsx,ts,tsx}",
+            "!<rootDir>/src/App/graphql/**/*",
+            "!<rootDir>/src/App/types/**/*",
+            "!<rootDir>/src/App/mocks/**/*",
+            "!<rootDir>/node_modules/**/*"
         ]
     },
     "dependencies": {
-        "@babel/core": "7.5.0",
-        "@babel/plugin-proposal-class-properties": "7.5.0",
+        "@babel/core": "7.5.5",
+        "@babel/plugin-proposal-class-properties": "7.5.5",
         "@babel/plugin-syntax-dynamic-import": "7.2.0",
         "@babel/polyfill": "7.4.4",
-        "@babel/preset-env": "7.5.0",
+        "@babel/preset-env": "7.5.5",
         "@babel/preset-react": "7.0.0",
-        "@babel/register": "7.4.4",
+        "@babel/register": "7.5.5",
         "@types/debug": "4.1.4",
         "@types/history": "4.7.2",
         "@types/jest": "24.0.15",
         "@types/mime-types": "2.1.0",
-        "@types/node": "12.0.12",
+        "@types/node": "12.6.8",
         "@types/react": "16.8.23",
         "@types/react-dom": "16.8.4",
         "@types/react-frontload": "1.0.0",
@@ -59,11 +61,11 @@
         "@types/react-redux": "7.1.1",
         "@types/react-router-dom": "4.3.4",
         "@types/redux-form": "8.1.4",
-        "aws-amplify": "1.1.29",
-        "aws-amplify-react": "2.3.9",
+        "aws-amplify": "1.1.30",
+        "aws-amplify-react": "2.3.10",
         "body-parser": "1.19.0",
         "compression": "1.7.4",
-        "connected-react-router": "6.5.0",
+        "connected-react-router": "6.5.2",
         "cookie-parser": "1.4.4",
         "debug": "4.1.1",
         "express": "4.17.1",
@@ -84,17 +86,17 @@
         "react-router": "5.0.1",
         "react-router-dom": "5.0.1",
         "react-semantic-redux-form": "1.2.6",
-        "redux": "4.0.1",
+        "redux": "4.0.4",
         "redux-form": "8.2.4",
         "redux-observable": "1.1.0",
         "rxjs": "6.5.2",
-        "semantic-ui-react": "0.87.2",
+        "semantic-ui-react": "0.87.3",
         "slugify": "1.3.4",
         "tslint": "5.18.0",
-        "typescript": "3.5.2"
+        "typescript": "3.5.3"
     },
     "devDependencies": {
-        "jest-extended": "0.11.1",
+        "jest-extended": "0.11.2",
         "react-scripts": "3.0.1",
         "source-map-explorer": "2.0.1"
     }
